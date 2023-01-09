@@ -7,6 +7,30 @@ namespace KursachTP.Models
 {
     public class Post
     {
-        // USUSUSUSUSUSUka
+        private string header;
+        public static string Header
+        {
+            get
+            {
+                return Header;
+            }
+            set
+            {
+                Header = value;
+            }
+        }
+        private string text;
+        public static string Text
+        {
+            get
+            {
+                return Text;
+            }
+            set
+            {
+                Text = value;
+            }
+        }
+        List<string> comments = new List<string>();
     }
 }
