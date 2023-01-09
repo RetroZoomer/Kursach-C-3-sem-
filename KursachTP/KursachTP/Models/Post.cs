@@ -7,5 +7,6 @@ namespace KursachTP.Models
 {
     public class Post
     {
+        // USUSUSUSUSUSUka
     }
 }
