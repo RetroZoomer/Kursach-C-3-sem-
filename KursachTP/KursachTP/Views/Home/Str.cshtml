@@ -1,0 +1,38 @@
+@using KursachTP.Models
+@model List<User>
+
+<style>
+    body {
+        background-color: lightblue;
+    }
+    form {
+        font-size: 15px;
+        display: inline-block;
+        background-color: white;
+        padding: 10px 60px;
+        border-radius: 8px;
+    }
+</style>
+
+@foreach(var usr in Model) {
+<form>
+    <p>Имя:              @usr.Name   </p>
+    <p>Фамилия:          @usr.LastName   </p>
+    <p>Описание:         @usr.UserDescription </p>
+    <p>Дата рождения:    @usr.Birthday   </p>
+    <p>Пол:              @usr.Pol   </p>
+    <p>Логин:            @usr.Login    </p>
+    <p>Пароль:           @usr.Password   </p>
+    <p>Номер телефона:   @usr.Phone   </p>
+    <p>*_*_*_*_*_*_*_*_*_*_*_*_*</p>
+</form>
+}
+
+<form asp-antiforgery="true" asp-action="Index" asp-controller="Home">
+    <input type="submit" value="Добавить нового пользователя"  />
+</form>
+ 
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

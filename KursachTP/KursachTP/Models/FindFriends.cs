@@ -21,15 +21,15 @@ namespace KursachTP.Models
             }
         }
         private string description;
-        public static string Description
+        public static string UserDescription
         {
             get
             {
-                return User.Description;
+                return UserDescription;
             }
             set
             {
-                User.Description = value;
+                UserDescription = value;
             }
         }
         public static void SkipPerson()

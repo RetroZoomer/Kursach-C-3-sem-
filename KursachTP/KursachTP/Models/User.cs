@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace KursachTP.Models
 {
@@ -19,32 +20,33 @@ namespace KursachTP.Models
                 UserID = value;
             }
         }
-        private string description;
-        public static string Description
+        
+        /*private string userdescription;
+        public static string UserDescription
         {
             get
             {
-                return Description;
+                return UserDescription;
             }
             set
             {
-                Description = value;
+                UserDescription = value;
             }
-        }
+        }*/
         //private  photo;
         private Boolean sex;
-        public static Boolean Sex
+        /*public static String Pol
         {
             get
             {
-                return Sex;
+                return Pol;
             }
             set
             {
-                Sex = value;
+                Pol = value;
             }
-        }
-        private string login;
+        }*/
+        /*private string login;
         public static string Login
         {
             get
@@ -68,5 +70,59 @@ namespace KursachTP.Models
                 Password = value;
             }
         }
+        private string phone;
+        public static string Phone
+        {
+            get
+            {
+                return Phone;
+            }
+            set
+            {
+                Phone = value;
+            }
+        }*/
+
+        public User(string f1, string f2, string f3, string f4, string f5, string f6, string f7, string f8)
+        {
+            
+            Name = f1;
+            LastName = f2;
+            UserDescription = f3;
+            Birthday = Convert.ToDateTime(f4);
+            Pol = Convert.ToBoolean(f5);
+            Login = f6;
+            Password = f7;
+            Phone = f8;
+        }
+        public User()
+        {
+
+        }
+        [Required]
+        public string? Name { get; set; }
+        [Required]
+        public string? LastName { get; set; }
+        [Required]
+        public string? UserDescription { get; set; }
+        [Required]
+        public DateTime? Birthday { get; set; }
+        [Required]
+        public Boolean? Pol { get; set; }
+        [Required]
+        public string? Login { get; set; }
+        [Required]
+        public string? Password { get; set; }
+        [Required]
+        public string? Phone { get; set; }
+
+        //[Range(1, 150, ErrorMessage = "Incorrect age")]
+        //public int Age { get; set; }
     }
+        public static class Users
+    {
+        public static List<User> users = new List<User>();
+    }
+
 }
+
