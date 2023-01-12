@@ -8,7 +8,7 @@
     form {
         font-size: 15px;
         display: inline-block;
-        background-color: white;
+        background-color: lightcyan;
         padding: 10px 60px;
         border-radius: 8px;
     }
@@ -20,12 +20,22 @@
     <p>Фамилия:          @usr.LastName   </p>
     <p>Описание:         @usr.UserDescription </p>
     <p>Дата рождения:    @usr.Birthday   </p>
-    <p>Пол:              @usr.Pol   </p>
-    <p>Логин:            @usr.Login    </p>
-    <p>Пароль:           @usr.Password   </p>
-    <p>Номер телефона:   @usr.Phone   </p>
-    <p>*_*_*_*_*_*_*_*_*_*_*_*_*</p>
-</form>
+    <p>
+        Пол:
+        @if (@usr.Pol == true)
+        {
+            <p>Мужской</p>
+        }   
+        else
+        {
+            <p>Женский</p>
+        }   
+    </p>
+        <p>Логин:            @usr.Login    </p>
+        <p>Пароль:           @usr.Password   </p>
+        <p>Номер телефона:   @usr.Phone   </p>
+        <p>*_*_*_*_*_*_*_*_*_*_*_*_*</p>
+    </form>
 }
 
 <form asp-antiforgery="true" asp-action="Index" asp-controller="Home">

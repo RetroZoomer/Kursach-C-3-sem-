@@ -20,7 +20,7 @@ namespace KursachTP.Models
                 UserID = value;
             }
         }
-        
+
         /*private string userdescription;
         public static string UserDescription
         {
@@ -85,7 +85,7 @@ namespace KursachTP.Models
 
         public User(string f1, string f2, string f3, string f4, string f5, string f6, string f7, string f8)
         {
-            
+
             Name = f1;
             LastName = f2;
             UserDescription = f3;
@@ -99,30 +99,29 @@ namespace KursachTP.Models
         {
 
         }
-        //[Required]
+        [Required]
         public string? Name { get; set; }
-        //[Required]
+        [Required]
         public string? LastName { get; set; }
-        //[Required]
+        [Required]
         public string? UserDescription { get; set; }
-        //[Required]
+        [Required]
         public DateTime? Birthday { get; set; }
-        //[Required]
-        public Boolean? Pol { get; set; }
-        //[Required]
+        [Required]
+        public bool? Pol { get; set; }
+        [Required]
         public string? Login { get; set; }
-        //[Required]
+        [Required]
         public string? Password { get; set; }
-        //[Required]
+        [Required]
         public string? Phone { get; set; }
 
         //[Range(1, 150, ErrorMessage = "Incorrect age")]
         //public int Age { get; set; }
     }
-        public static class Users
+    public static class Users
     {
         public static List<User> users = new List<User>();
     }
-
 }
 
