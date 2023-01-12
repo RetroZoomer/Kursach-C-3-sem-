@@ -66,3 +66,5 @@ C:\Users\root\source\repos\KP\KursachTP\KursachTP\bin\Debug\net5.0\System.Memory
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\bin\Debug\net5.0\System.Text.Encodings.Web.dll
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\bin\Debug\net5.0\System.Text.Json.dll
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Info.cshtml.g.cs
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\NewUser.cshtml.g.cs
