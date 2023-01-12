@@ -99,21 +99,21 @@ namespace KursachTP.Models
         {
 
         }
-        [Required]
+        //[Required]
         public string? Name { get; set; }
-        [Required]
+        //[Required]
         public string? LastName { get; set; }
-        [Required]
+        //[Required]
         public string? UserDescription { get; set; }
-        [Required]
+        //[Required]
         public DateTime? Birthday { get; set; }
-        [Required]
+        //[Required]
         public Boolean? Pol { get; set; }
-        [Required]
+        //[Required]
         public string? Login { get; set; }
-        [Required]
+        //[Required]
         public string? Password { get; set; }
-        [Required]
+        //[Required]
         public string? Phone { get; set; }
 
         //[Range(1, 150, ErrorMessage = "Incorrect age")]

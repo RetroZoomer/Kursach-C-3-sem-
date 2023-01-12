@@ -66,7 +66,7 @@ namespace KursachTP.Controllers
             comanda.Parameters.AddWithValue("user.phone", user.Phone);
 
             comanda.ExecuteNonQuery();
-            /* Доделать
+            
             Users.users.Clear();
 
             sql = "SELECT name,lastname,userdescription,birthday,pol,login," +
@@ -81,7 +81,7 @@ namespace KursachTP.Controllers
                 Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
                     reader.GetString(5), reader.GetString(6), reader.GetString(7)));
-            }*/
+            }
             return View(Users.users);
             
         }
