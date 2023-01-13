@@ -15,6 +15,8 @@ body {
 
     min-width: 20%;
 
+    white-space: normal;
+
     background: #6296E4;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
 
@@ -51,6 +53,20 @@ body {
     min-height: 100%;
 }
 
+.nav_link_find {
+    display: inline-block;
+    text-decoration: none;
+    color: #6296E4;
+    font: 'Roboto';
+    font-size: 24pt;
+
+    background-color: #FFFFFF;
+    border-radius: 51px;
+    
+    padding: 0 15px 0 15px;
+
+}
+
 .nav_link {
     
     display: inline-block;
@@ -71,12 +87,18 @@ body {
     align-items: center;
     margin: 13% auto 0 auto;
     min-width: 50%;
+    display: flex;
+    flex-direction: row;
+    /* flex-flow: row wrap; */
+    justify-content: flex-start;
+    align-items: flex-start;
+
 }
 
-.content {
-    text-align: center;
+.profileMainWindow {
     margin: 0 auto;
-    width: 30%;
+    height: 420px;
+    width: 35%;
 
     background: #6296E4;
     
@@ -84,30 +106,55 @@ body {
     border-radius: 20px;
 }
 
-.title {
+/* .title {
     color: #FFFFFF;
     font-size: 26px;
     padding: 5% 0 3% 0;
-}
+} */
 
-.login {
+.styleWindow {
     color: #FFFFFF;
     font-size: 21px;
 
-    display: flex;
-    flex-direction: column;
-    flex-flow: column wrap;
-    align-items: stretch;
-    justify-content: flex-start;
+    /* display: flex; */
+    /* flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: flex-start; */
 
-    padding: 5% 5% 0% 5%;
+    padding: 8% 8% 0% 8%;
 }
 
-.loginText {
+.styleOtherWindow {
+    color: #FFFFFF;
+    font-size: 21px;
+
+    /* display: flex; */
+    /* flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: flex-start; */
+
+    padding: 3% 3% 0% 3%;
+}
+
+.profileImg {
+    width: 200px;
+    min-width: 200px;
+    
+}
+
+.styleImg {
+    display: block;
+    margin: auto;
+    padding: 8% 8% 0% 8%;
+    
+}
+
+.profileText {
     text-align: left;
+    padding-left: 5%;
 }
 
-.inputLogin {
+.profileInf {
     background: #5389DA;
     border-radius: 51px;
     border: 2px solid #4876bb;
@@ -115,18 +162,16 @@ body {
     height: 30px;
 }
 
-.button {
-    margin: 8% 5% 5% auto; 
-    width: 25%;
-    float: right;
+.profileOtherWindow {
+    margin: 0 0 0 3%;
+    height: 420px;
+    width: 100%;
 
-    border-radius: 51px; 
-    border: 2px solid white; 
-    background: white; 
-    color: #6296E4; 
-    font-size: 24px;
+    background: #6296E4;
+    
+    box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
 }
-
 
 .contentF {
     justify-content: space-between;
