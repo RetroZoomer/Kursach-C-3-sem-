@@ -48,30 +48,31 @@
         </tr>
         @foreach (var usr in Model)
         {
-        <tr>
-        <td></td>
-        <td>@usr.Name</td>
-        <td>@usr.LastName</td>
-        <td>@usr.UserDescription</td>
-        <td>@usr.Birthday</td>
-        <td> @if (@usr.Pol == true)
-            {<p>Мужской</p>}
-            else
-            {<p>Женский</p>}
-            </td>
-            <td>@usr.Login</td>
-            <td>@usr.Password</td>
-            <td>@usr.Phone</td>
-            <td>
-            <td>
-                <a class="btn btn-warning" asp-action="DeletePerson" asp-route-id="@usr.Name">Удалить</a>
-                <a class="btn btn-primary" asp-action="EditPerson" asp-route-id="@usr.Name">Редактировать</a>
-                <a class="btn btn-info" asp-action="InfoPerson" asp-route-id="@usr.Name">i</a>
-        </tr>
-        }
+<tr>
+    <td></td>
+    <td>@usr.Name</td>
+    <td>@usr.LastName</td>
+    <td>@usr.UserDescription</td>
+    <td>@usr.Birthday</td>
+    <td>
+        @if (@usr.Pol == true)
+        {<p>Мужской</p>}
+        else
+        {<p>Женский</p>}
+    </td>
+    <td>@usr.Login</td>
+    <td>@usr.Password</td>
+    <td>@usr.Phone</td>
+    <td>
+    <td>
+        <a class="btn btn-warning" asp-action="DeletePerson" asp-route-id="@usr.Name">Удалить</a>
+        <a class="btn btn-primary" asp-action="EditPerson" asp-route-id="@usr.Name">Редактировать</a>
+        <a class="btn btn-info" asp-action="InfoPerson" asp-route-id="@usr.Name">i</a>
+</tr>}
     </table>
 </div>
 <a class="btn btn-warning" asp-action="CreatePerson">Добавить нового пользователя</a>
+
 
 @section scripts{
 

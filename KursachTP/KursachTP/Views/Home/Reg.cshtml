@@ -1,0 +1,250 @@
+﻿@model KursachTP.Models.User
+<style>
+    body {
+        font: 'Roboto', sans-serif;
+        font-size: 16px;
+        background: #7CA8FF;
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .header {
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        left: 0px;
+        top: 0px;
+        min-width: 20%;
+        background: #6296E4;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        min-width: 20%;
+        min-height: 50%;
+    }
+
+    .header-intro {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1.3%;
+        margin-left: 15%;
+        margin-right: 15%;
+        min-width: none;
+    }
+
+    .logo {
+        text-decoration: none;
+        color: white;
+        font: 'Roboto';
+        font-size: 24pt;
+        min-width: 20%;
+        min-height: 100%;
+    }
+
+    .nav_link {
+        display: inline-block;
+        margin-left: 10%;
+        text-decoration: none;
+        color: white;
+        font: 'Roboto';
+        font-size: 24pt;
+        white-space: nowrap;
+        max-height: 100%;
+        min-width: auto;
+        min-height: 100%;
+    }
+
+    .main {
+        align-items: center;
+        margin: 7% auto 0 auto;
+        min-width: 50%;
+    }
+
+    .content {
+        text-align: center;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        margin: 0 auto;
+        width: 40%;
+        background: #6296E4;
+        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+    }
+
+    .title {
+        color: #FFFFFF;
+        font-size: 26px;
+    }
+
+    .mainInf {
+        color: #FFFFFF;
+        font-size: 21px;
+        display: flex;
+        flex-direction: column;
+        flex-flow: column wrap;
+        align-items: stretch;
+        justify-content: flex-start;
+        padding: 2% 4% 0% 4%;
+    }
+
+    .Text {
+        text-align: left;
+    }
+
+    .input {
+        background: #5389DA;
+        border-radius: 51px;
+        border: 2px solid #4876bb;
+        color: white;
+        width: 100%;
+        height: 30px;
+    }
+
+    .inputDate {
+        background: #5389DA;
+        border-radius: 51px;
+        border: 2px solid #4876bb;
+        color: white;
+        padding-left: 2%;
+        padding-right: 2%;
+        width: 20%;
+        height: 30px;
+    }
+
+    /* Должно масштабироваться в зависимости сколько хобби */
+    .inputMed {
+        background: #5389DA;
+        border-radius: 51px;
+        border: 2px solid #4876bb;
+        color: white;
+        width: 100%;
+        height: 30px;
+    }
+
+    .inputBig {
+        background: #5389DA;
+        border-radius: 51px;
+        border: 2px solid #4876bb;
+        color: white;
+        width: 100%;
+        height: 50px;
+    }
+
+    .button {
+        margin: 10% 3% 0% auto;
+        width: 50%;
+        float: right;
+        border-radius: 51px;
+        border: 2px solid white;
+        background: white;
+        color: #6296E4;
+        font-size: 24px;
+    }
+
+
+    .contentF {
+        justify-content: space-between;
+        max-width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        color: #FFFFFF;
+        width: 100%;
+        margin-top: 2%;
+        margin-bottom: 5%;
+    }
+
+    .aboutF {
+        float: right;
+    }
+
+    .footerA {
+        text-decoration: none;
+        color: #FFFFFF;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск друзей</title>
+</head>
+
+<header class="header">
+    <div class="header-intro">
+        <div class="logo">Logo</div>
+        <nav class="nav">
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+            <a class="nav_link" href="#">Вход</a>
+            <a class="nav_link" href="#">О нас</a>
+        </nav>
+    </div>
+</header>
+
+<div class="main">
+    <form class="content" method="post" asp-antiforgery="true" asp-action="NewPerson" asp-controller="Home">
+        <div class="title">
+            Регистрация:
+        </div>
+
+        <div class="mainInf">
+            <div class="Text" asp-for="LastName">
+                <p>Фамилия: </p>
+                <input asp-for="LastName" id="LastName" type="text" required minlength="2" maxlength="20" class="input">
+            </div>
+            <div class="Text" asp-for="Name">
+                <p>Имя: </p>
+                <input asp-for="Name" id="Name" type="text" required minlength="2" maxlength="20" class="input">
+            </div>
+            <div class="Text" asp-for="Birthday">
+                <p>Дата рождения: </p>
+                <input asp-for="Birthday" id="birthdate" type="date" required class="inputDate">
+            </div>
+            <div class="Text">
+                <p>Пол: </p>
+                <input id="pol" name="pol" type="radio" value="true" class="pol">
+                Мужской
+                <br>
+                <input id="pol" name="pol" type="radio" value="false" class="pol">
+                Женский
+            </div>
+            <div class="Text">
+                <p>Логин: </p>
+                <input asp-for="Login" id="Login" type="text" required minlength="2" maxlength="20" class="input">
+            </div>
+            <div class="Text">
+                <p>Пароль: </p>
+                <input asp-for="Password" id="Password" type="password" required minlength="2" maxlength="50" class="input">
+            </div>
+            <div class="Text">
+                <p>Телефон: </p>
+                <input asp-for="Phone" id="phone" type="tel" required minlength="11" maxlength="11" value="8" class="input">
+            </div>
+            <div class="Text">
+                <p>Описание: </p>
+                <input asp-for="UserDescription" id="UserDescription" type="text" minlength="2" maxlength="150" class="inputBig">
+            </div>
+
+        </div>
+        <input type="submit" value="Зарегистрироваться" class="button">
+        <hr style="width: 90%; visibility: hidden;">
+    </form>
+</div>
+
+<hr style="margin-top: 15%;">
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

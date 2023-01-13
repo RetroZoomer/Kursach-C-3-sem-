@@ -48,7 +48,7 @@ namespace KursachTP.Controllers
 
         public IActionResult CreatePerson(User user)
         {
-            return View("NewUser", user);
+            return View("Reg", user);
             //Ссылка на создание нового знатока
         }
         // Пока что не работает
