@@ -61,7 +61,7 @@ namespace KursachTP.Controllers
 
         public IActionResult EditPerson(int id)
         {
-            return View("UpdateUser", dataDao.OprZn(id));
+            return View("UpdateUser", dataDao.UserInfo(id));
             // Ссылка на редактуру
         }
 
@@ -75,7 +75,7 @@ namespace KursachTP.Controllers
         public IActionResult InfoPerson(int id)
         {
             // Подробный Вывод
-            return View("Info", dataDao.OprZn(id));
+            return View("Info", dataDao.UserInfo(id));
         }
         public IActionResult Vr()
         {

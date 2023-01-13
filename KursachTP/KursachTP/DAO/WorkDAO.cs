@@ -14,7 +14,7 @@ namespace KursachTP.DAO
         public List<User> Record()
         {
             Connect();
-            string sql = "SELECT name,lastname,userdescription,birthday,pol,login," +
+            string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
                 "password,phone FROM User";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
@@ -26,7 +26,8 @@ namespace KursachTP.DAO
             {
                 Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7)));
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7), 
+                    reader.GetString(8)));
             }
 
             Disconnect();
@@ -56,7 +57,7 @@ namespace KursachTP.DAO
         public void DeleteById(int id)
         {
             Connect();
-            string sql = "DELETE FROM User WHERE id = @id;";// ???? id????
+            string sql = "DELETE FROM User WHERE id_user = @id;";// ???? id????
 
 
             MySqlCommand command = new MySqlCommand(sql, connection);
@@ -67,16 +68,16 @@ namespace KursachTP.DAO
 
             Disconnect();
         }
-        public User OprZn(int id) /////// что происходит ?????
+        public User UserInfo(int userid) 
         {
             Connect();
 
-            string sql = "SELECT * FROM User WHERE id like (@id);";
+            string sql = "SELECT * FROM User WHERE id_user like (@userid);";
             User person = null;
 
             MySqlCommand command = new MySqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("id", id);
+            command.Parameters.AddWithValue("userid", userid);
 
             command.ExecuteNonQuery();
 
@@ -85,7 +86,8 @@ namespace KursachTP.DAO
             {
                 Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7)));
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                    reader.GetString(8)));
             }
 
             Disconnect();
@@ -95,7 +97,7 @@ namespace KursachTP.DAO
         {
             Connect();
             string sql = "UPDATE USER SET  name = @name, lastname = @lastname, userdescription = @userdescription," +
-                " birthday = @birthday, pol = @pol, login = @login, password = @password, phone=@phone WHERE name = @id name;";
+                " birthday = @birthday, pol = @pol, login = @login, password = @password, phone=@phone WHERE id_user = @id ;";
 
             MySqlCommand comanda = new MySqlCommand(sql, connection);
 

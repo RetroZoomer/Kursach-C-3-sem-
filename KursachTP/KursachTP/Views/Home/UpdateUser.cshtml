@@ -23,6 +23,11 @@
         <form method="post" asp-antiforgery="true" asp-action="UpdatePerson" asp-controller="Home">
             <div>
                 <div>
+                    <label asp-for="UserID"></label><br />
+                    <input value="@Model.UserID" type="text" asp-for="UserID" />
+                    <span asp-validation-for="UserID"></span>
+                </div>
+                <div>
                     <label asp-for="Name"></label><br />
                     <input value="@Model.Name" type="text" asp-for="Name" />
                     <span asp-validation-for="Name"></span>
@@ -39,7 +44,7 @@
                 </div>
                 <div>
                     <label asp-for="Birthday"></label><br />
-                    <input value="@Model.Birthday" asp-for="Birthday"  />
+                    <input value="@Model.Birthday" asp-for="Birthday" />
                     <span asp-validation-for="Birthday"></span>
                 </div>
                 <div>
@@ -54,7 +59,7 @@
                 </div>
                 <div>
                     <label asp-for="Password"></label><br />
-                    <input value="@Model.Password" asp-for="Password" type="password"/>
+                    <input value="@Model.Password" asp-for="Password" type="password" />
                     <span asp-validation-for="Password"></span>
                 </div>
                 <div>
