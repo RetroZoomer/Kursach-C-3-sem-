@@ -12,11 +12,11 @@ namespace KursachTP.Models
         {
             get
             {
-                return User.UserID;
+                return UserID;
             }
             set
             {
-                User.UserID = value;
+                UserID = value;
             }
         }
         private string text;

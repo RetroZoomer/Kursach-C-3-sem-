@@ -41,7 +41,6 @@ C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.Tag
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.TagHelpers.output.cache
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.RazorCoreGenerate.cache
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Str.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -68,3 +67,5 @@ C:\Users\root\source\repos\KP\KursachTP\KursachTP\bin\Debug\net5.0\System.Text.E
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\bin\Debug\net5.0\System.Text.Json.dll
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Info.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\NewUser.cshtml.g.cs
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\UpdateUser.cshtml.g.cs
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Zapas.cshtml.g.cs

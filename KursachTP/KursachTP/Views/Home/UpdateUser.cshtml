@@ -1,0 +1,75 @@
+
+@using KursachTP.DAO
+@using KursachTP.Controllers
+@model KursachTP.Models.User
+
+<style>
+    body {
+        background-color: #3870ff;
+        color: white
+    }
+
+    form {
+        font-size: 15px;
+        display: inline-block;
+        background-color: white;
+        padding: 10px 60px;
+        border-radius: 8px;
+    }
+</style>
+
+<div style="text-align: center;"
+    <table class="table table-striped" width="454" border="4" style="display: inline-block;">
+        <form method="post" asp-antiforgery="true" asp-action="UpdatePerson" asp-controller="Home">
+            <div>
+                <div>
+                    <label asp-for="Name"></label><br />
+                    <input value="@Model.Name" type="text" asp-for="Name" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div>
+                    <label asp-for="LastName"></label><br />
+                    <input value="@Model.LastName" type="text" asp-for="LastName" />
+                    <span asp-validation-for="LastName"></span>
+                </div>
+                <div>
+                    <label asp-for="UserDescription"></label><br />
+                    <input value="@Model.UserDescription" asp-for="UserDescription" />
+                    <span asp-validation-for="UserDescription"></span>
+                </div>
+                <div>
+                    <label asp-for="Birthday"></label><br />
+                    <input value="@Model.Birthday" asp-for="Birthday"  />
+                    <span asp-validation-for="Birthday"></span>
+                </div>
+                <div>
+                    <label asp-for="Pol"></label><br />
+                    <input value="@Model.Pol" asp-for="Pol" />
+                    <span asp-validation-for="Pol"></span>
+                </div>
+                <div>
+                    <label asp-for="Login"></label><br />
+                    <input value="@Model.Login" asp-for="Login" />
+                    <span asp-validation-for="Login"></span>
+                </div>
+                <div>
+                    <label asp-for="Password"></label><br />
+                    <input value="@Model.Password" asp-for="Password" type="password"/>
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div>
+                    <label asp-for="Phone"></label><br />
+                    <input value="@Model.Phone" asp-for="Phone" />
+                    <span asp-validation-for="Phone"></span>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-outline-dark" value="Изменить" />
+                </div>
+            </div>
+        </form>
+    </table>
+</div>
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

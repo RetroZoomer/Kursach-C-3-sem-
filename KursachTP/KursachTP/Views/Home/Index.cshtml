@@ -1,9 +1,10 @@
-﻿@model KursachTP.Models.User
- 
+﻿@using KursachTP.Models
+@model List<User>
 <style>
     body {
         background-color: lightblue;
     }
+
     form {
         font-size: 15px;
         display: inline-block;
@@ -12,63 +13,68 @@
         border-radius: 8px;
     }
 </style>
-
-<h2>Регистрация на нашем сайте</h2>
-
-<form asp-antiforgery="true" asp-action="Str" asp-controller="Home">
-    <div>
-        <div>
-            <label asp-for="Name"></label><br />
-            <input type="text" asp-for="Name" />
-            <span asp-validation-for="Name"></span>
-        </div>
-        <div>
-            <label asp-for="LastName"></label><br />
-            <input type="text" asp-for="LastName" />
-            <span asp-validation-for="LastName"></span>
-        </div>
-        <div>
-            <label asp-for="UserDescription"></label><br />
-            <input asp-for="UserDescription" />
-            <span asp-validation-for="UserDescription"></span>
-        </div>
-        <div>
-            <label asp-for="Birthday"></label><br />
-            <input asp-for="Birthday" type="datetime"/>
-            <span asp-validation-for="Birthday"></span>
-        </div>
-        <div>
-            <label asp-for="Login"></label><br />
-            <input id="pol" name="pol" type="radio" value="true" />
-            <span>Мужчина</span> <br />
-            <input id="pol" name="pol" type="radio" value="false" />
-            <span>Женщина</span> <br />
-
-        </div>
-        <div>
-            <label asp-for="Login"></label><br />
-            <input asp-for="Login" />
-            <span asp-validation-for="Login"></span>
-        </div>
-        <div>
-            <label asp-for="Password"></label><br />
-            <input asp-for="Password" type="password" />
-            <span asp-validation-for="Password"></span>
-        </div>
-        <div>
-            <label asp-for="Phone"></label><br />
-            <input asp-for="Phone" />
-            <span asp-validation-for="Phone"></span>
-        </div>
-        <br />
-        <div>
-            <input type="submit" value="Save" />
-        </div>
-    </div>
+<form method="post" asp-action="GetSpecialPersons">
+    <table class="table table-striped">
+        <tr>
+            <td>Показать пользователей от</td>
+            <td><input name="AgeFrom" type="number" /></td>
+            <td><input type="submit" id="btnA" class="btn btn-info" value="Найти" /></td>
+        </tr>
+    </table>
 </form>
- 
+<form method="post" asp-action="Vr">
+    <table class="table table-striped">
+        <tr>
+            Введите данные пользователя:
+            <td><input name="AgeFrom" type="number" /></td>
+            <td><input type="submit" id="btnB" class="btn btn-info" value="Найти пользователя" /></td>
+        </tr>
+    </table>
+</form>
+
+<h2>Все пользователи</h2>
+<div class="tb1">
+    <table class="table table-striped">
+        <tr>
+            <td></td>
+            <td>Имя</td>
+            <td>Фамилия</td>
+            <td>Описание</td>
+            <td>Дата рождения</td>
+            <td>Пол</td>
+            <td>Логин</td>
+            <td>Пароль</td>
+            <td>Телефон</td>
+        </tr>
+        @foreach (var usr in Model)
+        {
+        <tr>
+        <td></td>
+        <td>@usr.Name</td>
+        <td>@usr.LastName</td>
+        <td>@usr.UserDescription</td>
+        <td>@usr.Birthday</td>
+        <td> @if (@usr.Pol == true)
+            {<p>Мужской</p>}
+            else
+            {<p>Женский</p>}
+            </td>
+            <td>@usr.Login</td>
+            <td>@usr.Password</td>
+            <td>@usr.Phone</td>
+            <td>
+            <td>
+                <a class="btn btn-warning" asp-action="DeletePerson" asp-route-id="@usr.Name">Удалить</a>
+                <a class="btn btn-primary" asp-action="EditPerson" asp-route-id="@usr.Name">Редактировать</a>
+                <a class="btn btn-info" asp-action="InfoPerson" asp-route-id="@usr.Name">i</a>
+        </tr>
+        }
+    </table>
+</div>
+<a class="btn btn-warning" asp-action="CreatePerson">Добавить нового пользователя</a>
+
 @section scripts{
- 
+
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }

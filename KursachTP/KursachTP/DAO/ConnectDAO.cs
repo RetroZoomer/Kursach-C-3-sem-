@@ -10,7 +10,7 @@ namespace KursachTP.DAO
 {
     public class ConnectDAO
     {
-       /*private const string connStr = "server=localhost;user=root;database=dbkp2;password=root";
+        private const string connStr = "server=localhost;user=root;database=dbkp2;password=root";
         public MySqlConnection connection;
         public void Connect()
         {
@@ -21,6 +21,6 @@ namespace KursachTP.DAO
         public void Disconnect()
         {
             connection.Close();
-        }*/
+        }
     }
 }

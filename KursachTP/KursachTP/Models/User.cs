@@ -8,7 +8,7 @@ namespace KursachTP.Models
 {
     public class User : Person
     {
-        private int userID;
+        /*private int userID;
         public static int UserID
         {
             get
@@ -19,7 +19,7 @@ namespace KursachTP.Models
             {
                 UserID = value;
             }
-        }
+        }*/
 
         /*private string userdescription;
         public static string UserDescription
@@ -83,9 +83,9 @@ namespace KursachTP.Models
             }
         }*/
 
-        public User(string f1, string f2, string f3, string f4, string f5, string f6, string f7, string f8)
+        public User(/*string f0,*/ string f1, string f2, string f3, string f4, string f5, string f6, string f7, string f8)
         {
-
+            //UserId = Convert.ToInt32(f0);
             Name = f1;
             LastName = f2;
             UserDescription = f3;
@@ -99,6 +99,8 @@ namespace KursachTP.Models
         {
 
         }
+        [Required]
+        public int? UserID { get; set; }
         [Required]
         public string? Name { get; set; }
         [Required]

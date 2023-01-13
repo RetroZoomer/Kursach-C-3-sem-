@@ -7,12 +7,14 @@ using System.Diagnostics;
 using KursachTP.Models;
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Logging;
+using KursachTP.DAO;
 
 //namespace ValidationApp.Controllers
 namespace KursachTP.Controllers
 {
     public class HomeController : Controller
     {
+        WorkDAO dataDao = new WorkDAO();
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -20,12 +22,7 @@ namespace KursachTP.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
+        public IActionResult Zapas()
         {
             return View();
         }
@@ -36,15 +33,66 @@ namespace KursachTP.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-
-        public IActionResult Create()
+        public IActionResult Index()
         {
-            return View();
+            //Пока что Стартовая страница
+            return View(dataDao.Record());
         }
 
+        public IActionResult NewPerson(User user)
+        {
+            //Создание нового пользователя
+            dataDao.GetPerson(user);
+            return View("Index", dataDao.Record());
+        }
+
+        public IActionResult CreatePerson(User user)
+        {
+            return View("NewUser", user);
+            //Ссылка на создание нового знатока
+        }
+        // Пока что не работает
+        public IActionResult DeletePerson(int id)
+        {
+            dataDao.DeleteById(id);
+            return View("Index", dataDao.Record());
+            //Удаление пользователя
+        }
+
+        public IActionResult EditPerson(int id)
+        {
+            return View("UpdateUser", dataDao.OprZn(id));
+            // Ссылка на редактуру
+        }
+
+        public IActionResult UpdatePerson(User user)
+        // Редактура
+        {
+            dataDao.UpZn(user);
+            return View("Index", dataDao.Record());
+        }
+
+        public IActionResult InfoPerson(int id)
+        {
+            // Подробный Вывод
+            return View("Info", dataDao.OprZn(id));
+        }
+        public IActionResult Vr()
+        {
+            //Вывод
+            return View(dataDao.Record());
+
+        }
+
+
+        /*public IActionResult Create()
+        {
+            return View();
+        }*/
+        /*
         [HttpPost]
         public IActionResult Str(User user)
-        {
+        {/*
 
             string conect = "server=localhost;user=root;database=dbkp2;password=root";
             MySqlConnection connection = new MySqlConnection(conect);
@@ -83,7 +131,8 @@ namespace KursachTP.Controllers
                     reader.GetString(5), reader.GetString(6), reader.GetString(7)));
             }
             return View(Users.users);
+        }*/
             
-        }
+        
     }
 }
