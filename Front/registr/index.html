@@ -39,11 +39,15 @@
                 <div class="Text">
                     <p>Дата рождения: </p>
                     <input id="birthdate" type="date" required class="inputDate"> 
-                </div> 
+                </div>
                 <div class="Text">
-                    <p>Возраст: </p>
-                    <input id="age" type="number" min="1" max="100" required class="inputDate"> 
-                </div> 
+                    <p>Пол: </p>
+                    <input id="pol" name="pol" type="radio" value="true" class="pol">
+                    Мужской
+                    <br>
+                    <input id="pol" name="pol" type="radio" value="false" class="pol">
+                    Женский
+                </div>  
                 <div class="Text">
                     <p>Логин: </p>
                     <input id="login" type="text" required minlength="2" maxlength="20" class="input"> 
@@ -51,18 +55,23 @@
                 <div class="Text">
                     <p>Пароль: </p>
                     <input id="password" type="password" required minlength="2" maxlength="50" class="input"> 
-                </div> 
+                </div>
                 <div class="Text">
+                    <p>Телефон: </p>
+                    <input id="password" type="tel" required minlength="11" maxlength="11" value="8" class="input"> 
+                </div>  
+                <!-- <div class="Text">
                     <p>Хобби: </p>
                     <input id="hobby" type="text" class="inputMed"> 
-                </div> 
+                </div>  -->
                 <div class="Text">
                     <p>Описание: </p>
-                    <input id="description" type="text" minlength="2" maxlength="150" class="inputBig"> 
+                    <input id="description" type="text" minlength="2" maxlength="150" class="inputBig">
                 </div> 
 
             </div>
             <input type="submit" value="Зарегистрироваться" class="button">
+            <hr style="width: 90%; visibility: hidden;"> 
         </form>
     </div>
 

@@ -79,8 +79,7 @@ body {
     padding-top: 2%;
     padding-bottom: 2%;
     margin: 0 auto;
-    height: 1000px;
-    width: 50%;
+    width: 40%;
 
     background: #6296E4;
     
@@ -103,7 +102,7 @@ body {
     align-items: stretch;
     justify-content: flex-start;
 
-    padding: 2% 8% 0% 8%;
+    padding: 2% 4% 0% 4%;
 }
 
 .Text {
@@ -152,8 +151,8 @@ body {
 }
 
 .button {
-    margin: 10% 8% 5% auto; 
-    width: 40%;
+    margin: 10% 3% 0% auto; 
+    width: 50%;
     float: right;
 
     border-radius: 51px; 

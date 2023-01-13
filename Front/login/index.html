@@ -26,14 +26,15 @@
             <div class="login">
                 <div class="loginText">
                     Логин: 
-                    <p><input type="text" class="inputLogin"></p> 
+                    <p><input type="text" required minlength="2" maxlength="20" class="inputLogin"></p> 
                 </div>
                 <div class="loginText">
                     <p>Пароль: </p>
-                    <input id="userPassword" type="password" required class="inputLogin"> 
+                    <input id="userPassword" required minlength="2" maxlength="50" type="password" required class="inputLogin"> 
                 </div> 
             </div>
             <input type="submit" value="Войти" class="button">
+            <hr style="width: 90%; visibility: hidden;">
         </form>
     </div>
 
