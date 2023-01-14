@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск друзей</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-intro">
+            <div class="logo">Logo</div>
+            <a class="nav_link_find" href="/Front/mainPage/index.html">Поиск друзей</a>
+            <nav class="nav">
+                <a class="nav_link" href="/Front/login/index.html">Лента</a>
+                <a class="nav_link" href="/Front/profile/index.html">Профиль</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main">
+        <form class="content" action="" method="post">
+            <div class="title">
+                Регистрация:
+            </div>
+            <div class="mainInf">
+                <div class="Text">
+                    <p>Фамилия: </p>  
+                    <input id="lastName" type="text" required minlength="2" maxlength="20" class="input">
+                </div>
+                <div class="Text">
+                    <p>Имя: </p>
+                    <input id="name" type="text" required minlength="2" maxlength="20" class="input"> 
+                </div> 
+                <div class="Text">
+                    <p>Дата рождения: </p>
+                    <input id="birthdate" type="date" required class="inputDate"> 
+                </div>
+                <div class="Text">
+                    <p>Описание: </p>
+                    <input id="description" type="text" minlength="2" maxlength="150" class="inputBig">
+                </div> 
+
+            </div>
+            <input type="submit" value="Зарегистрироваться" class="button">
+            <hr style="width: 90%; visibility: hidden;"> 
+        </form>
+    </div>
+
+    <hr style="margin-top: 15%;">
+    <footer>
+            <div class="contentF">
+                Logo
+            </div> 
+            <div class="aboutF">
+                <a href="#" class="footerA">About us</a>  
+            </div> 
+    </footer>
+    
+    
+
+    <script src="index.js"></script>
+
+</body>
+</html>

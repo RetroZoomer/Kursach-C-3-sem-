@@ -51,6 +51,20 @@ body {
     min-height: 100%;
 }
 
+.nav_link_find {
+    display: inline-block;
+    text-decoration: none;
+    color: #6296E4;
+    font: 'Roboto';
+    font-size: 24pt;
+
+    background-color: #FFFFFF;
+    border-radius: 51px;
+    
+    padding: 0 15px 0 15px;
+
+}
+
 .nav_link {
     
     display: inline-block;
@@ -71,6 +85,67 @@ body {
     align-items: center;
     margin: 13% auto 0 auto;
     min-width: 50%;
+}
+
+.title {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 26px;
+    padding: 3% 5% 3% 5%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dateTime {
+    font-size: 16px;
+    color: #d6d6d6;
+}
+
+.titleD {
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 21px;
+    padding: 1% 5% 2% 5%;
+}
+
+.hobby {
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 21px;
+    padding: 1% 5% 2% 5%;
+}
+
+.description {
+    width: 90%;
+    height: 50%;
+    margin: 0 auto;
+    padding: 1%;
+
+    text-align: left;
+
+    background: #AAC4FF;
+    border-radius: 10px;
+}
+
+.textDescription {
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 18px;
+    padding: 1% 5% 2% 5%;
+}
+
+.button {
+    margin: 3% 5% 3% auto; 
+    width: 30%;
+    float: right;
+
+    border-radius: 51px; 
+    border: 2px solid white; 
+    background: white; 
+    color: #6296E4; 
+    font-size: 24px;
 }
 
 .content {
@@ -107,7 +182,6 @@ body {
 
 .Text {
     text-align: left;
-    font: 'Roboto', sans-serif;
 }
 
 .input {
@@ -128,7 +202,7 @@ body {
     padding-left: 2%;
     padding-right: 2%;
 
-    width: 110px;
+    width: 20%;
     height: 30px;
 }
 
@@ -153,7 +227,7 @@ body {
 
 .button {
     margin: 10% 3% 0% auto; 
-    width: 250px;
+    width: 50%;
     float: right;
 
     border-radius: 51px; 
