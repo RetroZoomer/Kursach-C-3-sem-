@@ -93,6 +93,31 @@ namespace KursachTP.DAO
             Disconnect();
             return person;
         }
+        public User UsersInfoIndex(int userid)
+        {
+            Connect();
+
+            string sql = "SELECT * FROM User WHERE id_user > (@userid);";
+            User person = null;
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("userid", userid);
+
+            command.ExecuteNonQuery();
+
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                person = new User(reader.GetString(0), reader.GetString(1),
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                    reader.GetString(8));
+            }
+
+            Disconnect();
+            return person;
+        }
         public void UpZn(User user)
         {
             Connect();

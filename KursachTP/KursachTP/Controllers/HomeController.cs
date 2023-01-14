@@ -83,6 +83,13 @@ namespace KursachTP.Controllers
             return View(dataDao.Record());
 
         }
+        public IActionResult IndexSpec(int usersid)
+        {
+            //dataDao.DeleteById(id);
+            return View("Index", dataDao.UsersInfoIndex(usersid));
+            //Вывод пользователей от определенного id
+
+        }
 
 
         /*public IActionResult Create()
@@ -132,7 +139,7 @@ namespace KursachTP.Controllers
             }
             return View(Users.users);
         }*/
-            
-        
+
+
     }
 }

@@ -139,4 +139,5 @@ Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.pdb
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.genruntimeconfig.cache
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Reg.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Reg.cshtml.g.cs
-C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Admin\InfoUserView.cshtml.g.cs
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\InfoUserView.cshtml.g.cs
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\IndexSpec.cshtml.g.cs
