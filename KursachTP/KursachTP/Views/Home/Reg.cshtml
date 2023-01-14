@@ -61,7 +61,7 @@
 
     .main {
         align-items: center;
-        margin: 7% auto 0 auto;
+        margin: 13% auto 0 auto;
         min-width: 50%;
     }
 
@@ -94,6 +94,7 @@
 
     .Text {
         text-align: left;
+        font: 'Roboto', sans-serif;
     }
 
     .input {
@@ -101,8 +102,9 @@
         border-radius: 51px;
         border: 2px solid #4876bb;
         color: white;
-        width: 100%;
+        width: 96%;
         height: 30px;
+        padding: 0% 2% 0 2%;
     }
 
     .inputDate {
@@ -128,11 +130,13 @@
 
     .inputBig {
         background: #5389DA;
-        border-radius: 51px;
+        border-radius: 18px;
         border: 2px solid #4876bb;
         color: white;
-        width: 100%;
-        height: 50px;
+        padding: 5%;
+        resize: none;
+        width: 90%;
+        min-height: 50px;
     }
 
     .button {
@@ -171,6 +175,7 @@
         text-decoration: none;
         color: #FFFFFF;
     }
+
 </style>
 
 <head>
@@ -233,7 +238,7 @@
             </div>
             <div class="Text">
                 <p>Описание: </p>
-                <input asp-for="UserDescription" id="UserDescription" type="text" minlength="2" maxlength="150" class="inputBig">
+                <textarea asp-for="UserDescription" form="content" minlength="2" maxlength="100" rows="1" class="inputBig"> </textarea>
             </div>
 
         </div>

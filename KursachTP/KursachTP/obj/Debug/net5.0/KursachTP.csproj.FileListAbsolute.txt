@@ -120,7 +120,6 @@ Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.TagHelpers.input.c
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.TagHelpers.output.cache
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.RazorCoreGenerate.cache
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Info.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Str.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\UpdateUser.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Zapas.cshtml.g.cs
@@ -141,3 +140,5 @@ Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Reg.cshtml.
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Reg.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\InfoUserView.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\IndexSpec.cshtml.g.cs
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\IndexSpec.cshtml.g.cs
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\InfoUserView.cshtml.g.cs
