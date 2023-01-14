@@ -1,48 +1,64 @@
-﻿<h2>Все пользователи</h2>
-<div class="tb1">
-    <table class="table table-striped">
-        <tr>
-            <td></td>
-            <td>Имя</td>
-            <td>Фамилия</td>
-            <td>Описание</td>
-            <td>Дата рождения</td>
-            <td>Пол</td>
-            <td>Логин</td>
-            <td>Пароль</td>
-            <td>Телефон</td>
-        </tr>
-        @foreach (var usr in Model)
-        {
+﻿@using KursachTP.Models
+@model List<User>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        form {
+            font-size: 15px;
+            display: inline-block;
+            background-color: white;
+            padding: 10px 60px;
+            border-radius: 8px;
+        }
+    </style>
+
+    <h2>Все пользователи</h2>
+    <div class="tb1">
+        <table class="table table-striped">
             <tr>
-                <td>@usr.UserID</td>
-                <td>@usr.Name</td>
-                <td>@usr.LastName</td>
-                <td>@usr.UserDescription</td>
-                <td>@usr.Birthday</td>
-                <td>
-                    @if (@usr.Pol == true)
-                    {<p>Мужской</p>}
-                    else
-                    {<p>Женский</p>}
-                </td>
-                <td>@usr.Login</td>
-                <td>@usr.Password</td>
-                <td>@usr.Phone</td>
-                <td>
-                <td>
-                    <a class="btn btn-warning" asp-action="DeletePerson" asp-route-id="@usr.UserID">Удалить</a>
-                    <a class="btn btn-primary" asp-action="EditPerson" asp-route-id="@usr.UserID">Редактировать</a>
-                    <a class="btn btn-info" asp-action="InfoPerson" asp-route-id="@usr.UserID">i</a>
+                <td></td>
+                <td>Имя</td>
+                <td>Фамилия</td>
+                <td>Описание</td>
+                <td>Дата рождения</td>
+                <td>Пол</td>
+                <td>Логин</td>
+                <td>Пароль</td>
+                <td>Телефон</td>
             </tr>
-}
-    </table>
-</div>
-<a class="btn btn-warning" asp-action="CreatePerson">Добавить нового пользователя</a>
+            @foreach (var usr in Model)
+            {
+                <tr>
+                    <td>@usr.UserID</td>
+                    <td>@usr.Name</td>
+                    <td>@usr.LastName</td>
+                    <td>@usr.UserDescription</td>
+                    <td>@usr.Birthday</td>
+                    <td>
+                        @if (@usr.Pol == true)
+                        {<p>Мужской</p>}
+                        else
+                        {<p>Женский</p>}
+                    </td>
+                    <td>@usr.Login</td>
+                    <td>@usr.Password</td>
+                    <td>@usr.Phone</td>
+                    <td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="DeletePerson" asp-route-id="@usr.UserID">Удалить</a>
+                        <a class="btn btn-primary" asp-action="EditPerson" asp-route-id="@usr.UserID">Редактировать</a>
+                        <a class="btn btn-info" asp-action="InfoPerson" asp-route-id="@usr.UserID">i</a>
+                </tr>
+            }
+        </table>
+    </div>
+    <a class="btn btn-warning" asp-action="CreatePerson">Добавить нового пользователя</a>
 
 
-@section scripts{
+    @section scripts{
 
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-}
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }
