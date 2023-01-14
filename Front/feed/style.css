@@ -110,7 +110,19 @@ body {
     align-items: center;
 }
 
+.titleNiz {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 22px;
+    padding: 3% 0% 3% 5%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
 .dateTime {
+    padding-left: 1%;
     font-size: 16px;
     color: #d6d6d6;
 }
