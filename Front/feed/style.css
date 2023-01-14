@@ -85,15 +85,47 @@ body {
     align-items: center;
     margin: 13% auto 0 auto;
     min-width: 50%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.right {
+    margin: 0% auto 3% auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+
+.createPost{
+    font-size: 24px;
 }
 
 .post {
-    
     text-align: center;
-    margin: 3% auto;
-    width: 50%;
+    margin: 0% auto 5% auto;
+    width: 80%;
 
     background: #6296E4;
+    
+    box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.findFriends{
+    text-align: center;
+    border-radius: 51px; 
+    border: 2px solid white; 
+    background: white; 
+    color: #6296E4; 
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+
+    width: 250px;
     
     box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
@@ -114,7 +146,7 @@ body {
     text-align: center;
     color: #FFFFFF;
     font-size: 22px;
-    padding: 3% 0% 3% 5%;
+    padding: 3% 0% 0% 5%;
 
     display: flex;
     justify-content: space-between;
@@ -161,15 +193,28 @@ body {
 }
 
 .button {
-    margin: 3% 5% 3% auto; 
-    width: 30%;
     float: right;
-
+    margin: 3% 5% 3% 0%;
     border-radius: 51px; 
     border: 2px solid white; 
     background: white; 
     color: #6296E4; 
     font-size: 24px;
+    width: 200px;
+}
+
+.buttonRight {
+    margin: 0% auto 30px auto;
+    border-radius: 51px; 
+    border: 2px solid white; 
+    background: white; 
+    color: #6296E4; 
+    font-size: 24px;
+
+    width: 250px;
+
+    box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
 }
 
 .commentSection {
