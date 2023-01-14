@@ -92,7 +92,7 @@ body {
 }
 
 .right {
-    margin: 0% auto 3% auto;
+    margin: 0% 0% 3% auto;
 
     display: flex;
     flex-direction: column;
@@ -108,7 +108,7 @@ body {
 .post {
     text-align: center;
     margin: 0% auto 5% auto;
-    width: 80%;
+    width: 700px;
 
     background: #6296E4;
     
@@ -238,10 +238,17 @@ body {
 }
 
 .textComment {
-    text-align: left;
     color: #FFFFFF;
     font-size: 18px;
     padding: 1% 2% 1% 2%;
+    width: 362px;
+}
+
+.timeComment {
+    float: right;
+    color: #FFFFFF;
+    font-size: 18px;
+    padding: 1% 2% 1% 0%;
 }
 
 .userComment {
