@@ -7,7 +7,7 @@ namespace KursachTP.Models
 {
     public class Person
     {
-        private string name;
+        /*private string name;
         public static string Name
         {
             get
@@ -30,7 +30,7 @@ namespace KursachTP.Models
             {
                 LastName = value;
             }
-        }
+        }*/
         private string phoneNumber;
         public static string PhoneNumber
         {

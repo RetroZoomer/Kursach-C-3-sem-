@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Home\Admin\" />
   </ItemGroup>
 
 </Project>

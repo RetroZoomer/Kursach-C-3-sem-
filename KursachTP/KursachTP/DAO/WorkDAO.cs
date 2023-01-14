@@ -14,7 +14,7 @@ namespace KursachTP.DAO
         public List<User> Record()
         {
             Connect();
-            string sql = "SELECT name,lastname,userdescription,birthday,pol,login," +
+            string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
                 "password,phone FROM User";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
@@ -26,7 +26,8 @@ namespace KursachTP.DAO
             {
                 Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7)));
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7), 
+                    reader.GetString(8)));
             }
 
             Disconnect();
@@ -56,7 +57,7 @@ namespace KursachTP.DAO
         public void DeleteById(int id)
         {
             Connect();
-            string sql = "DELETE FROM User WHERE id = @id;";// ???? id????
+            string sql = "DELETE FROM User WHERE id_user = @id;";
 
 
             MySqlCommand command = new MySqlCommand(sql, connection);
@@ -67,25 +68,51 @@ namespace KursachTP.DAO
 
             Disconnect();
         }
-        public User OprZn(int id) /////// что происходит ?????
+        public User UserInfo(int userid) 
         {
             Connect();
 
-            string sql = "SELECT * FROM User WHERE id like (@id);";
+            string sql = "SELECT * FROM User WHERE id_user like (@userid);";
             User person = null;
 
             MySqlCommand command = new MySqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("id", id);
+            command.Parameters.AddWithValue("userid", userid);
 
             command.ExecuteNonQuery();
 
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
+                person = new User(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7)));
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                    reader.GetString(8));
+            }
+
+            Disconnect();
+            return person;
+        }
+        public User UsersInfoIndex(int userid)
+        {
+            Connect();
+
+            string sql = "SELECT * FROM User WHERE id_user > (@userid);";
+            User person = null;
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("userid", userid);
+
+            command.ExecuteNonQuery();
+
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                person = new User(reader.GetString(0), reader.GetString(1),
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                    reader.GetString(8));
             }
 
             Disconnect();
@@ -94,19 +121,20 @@ namespace KursachTP.DAO
         public void UpZn(User user)
         {
             Connect();
-            string sql = "UPDATE USER SET  name = @name, lastname = @lastname, userdescription = @userdescription," +
-                " birthday = @birthday, pol = @pol, login = @login, password = @password, phone=@phone WHERE name = @id name;";
+            string sql = "UPDATE USER SET id_user = @id_user, name = @name, lastname = @lastname, userdescription = @userdescription," +
+                " birthday = @birthday, pol = @pol, login = @login, password = @password, phone=@phone WHERE id_user = @id_user ;";
 
             MySqlCommand comanda = new MySqlCommand(sql, connection);
 
-            comanda.Parameters.AddWithValue("user.name", user.Name);
-            comanda.Parameters.AddWithValue("user.lastname", user.LastName);
-            comanda.Parameters.AddWithValue("user.userdescription", user.UserDescription);
-            comanda.Parameters.AddWithValue("user.birthday", user.Birthday);
-            comanda.Parameters.AddWithValue("user.pol", user.Pol);
-            comanda.Parameters.AddWithValue("user.login", user.Login);
-            comanda.Parameters.AddWithValue("user.password", user.Password);
-            comanda.Parameters.AddWithValue("user.phone", user.Phone);
+            comanda.Parameters.AddWithValue("id_user", user.UserID);
+            comanda.Parameters.AddWithValue("name", user.Name);
+            comanda.Parameters.AddWithValue("lastname", user.LastName);
+            comanda.Parameters.AddWithValue("userdescription", user.UserDescription);
+            comanda.Parameters.AddWithValue("birthday", user.Birthday);
+            comanda.Parameters.AddWithValue("pol", user.Pol);
+            comanda.Parameters.AddWithValue("login", user.Login);
+            comanda.Parameters.AddWithValue("password", user.Password);
+            comanda.Parameters.AddWithValue("phone", user.Phone);
 
             comanda.ExecuteNonQuery();
 

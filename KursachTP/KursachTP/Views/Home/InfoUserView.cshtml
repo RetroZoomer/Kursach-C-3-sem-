@@ -1,0 +1,49 @@
+﻿@model KursachTP.Models.User
+<style>
+    body {
+        background-color: #3870ff;
+    }
+
+    form {
+        font-size: 15px;
+        display: inline-block;
+        background-color: white;
+        color: black;
+        padding: 10px 60px;
+        border-radius: 8px;
+    }
+</style>
+<h3>Данные пользователя</h3>
+<div style="text-align: center;">
+    <form>
+        <table class="table table-striped" width="200" border="1" style="display: inline-block;">
+            <tr>
+                <p>ID:              @Model.UserID   </p>
+                <p>Имя:              @Model.Name   </p>
+                <p>Фамилия:          @Model.LastName   </p>
+                <p>Описание:         @Model.UserDescription </p>
+                <p>Дата рождения:    @Model.Birthday   </p>
+                <p>
+                    Пол:
+                    @if (@Model.Pol == true)
+                    {
+                <p>Мужской</p>
+                }
+                else
+                {
+                <p>Женский</p>
+                }
+                </p>
+                <p>Логин:            @Model.Login    </p>
+                <p>Пароль:           @Model.Password   </p>
+                <p>Номер телефона:   @Model.Phone   </p>
+            </tr>
+        </table>
+        <a class="btn btn-outline-dark" asp-action="Index">Список пользователей</a>
+    </form>
+</div>
+@section scripts{
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

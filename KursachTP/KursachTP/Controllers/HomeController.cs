@@ -61,7 +61,7 @@ namespace KursachTP.Controllers
 
         public IActionResult EditPerson(int id)
         {
-            return View("UpdateUser", dataDao.OprZn(id));
+            return View("UpdateUser", dataDao.UserInfo(id));
             // Ссылка на редактуру
         }
 
@@ -75,12 +75,19 @@ namespace KursachTP.Controllers
         public IActionResult InfoPerson(int id)
         {
             // Подробный Вывод
-            return View("Info", dataDao.OprZn(id));
+            return View("InfoUserView", dataDao.UserInfo(id));
         }
         public IActionResult Vr()
         {
             //Вывод
             return View(dataDao.Record());
+
+        }
+        public IActionResult IndexSpec(int usersid)
+        {
+            //dataDao.DeleteById(id);
+            return View("Index", dataDao.UsersInfoIndex(usersid));
+            //Вывод пользователей от определенного id
 
         }
 
@@ -132,7 +139,7 @@ namespace KursachTP.Controllers
             }
             return View(Users.users);
         }*/
-            
-        
+
+
     }
 }
