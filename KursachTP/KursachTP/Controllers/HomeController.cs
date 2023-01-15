@@ -93,10 +93,14 @@ namespace KursachTP.Controllers
         public IActionResult IndexSpecName(string namesuser)
         {
             //Вывод пользователей по имени
-            //return View("IndexSpecName", dataDao.RecordOprName(namesuser));
             return View(dataDao.RecordOprName(namesuser));
-
         }
+
+        //public IActionResult PostIndex()
+        //{
+            //Пока что Стартовая страница
+            //return View(dataDao.ListPost());
+        //}
 
         /*public IActionResult Create()
         {

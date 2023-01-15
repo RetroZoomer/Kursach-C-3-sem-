@@ -86,6 +86,37 @@ namespace KursachTP.DAO
             Disconnect();
             return Users.users;
         }
+        
+        /*public List<Post> ListPost()
+        {
+            Connect();/*
+            string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
+                "password,phone FROM User where id_user BETWEEN @id_user and @id_user2";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("id_user", id_user);
+            if (id_user2 < 1)
+            {
+                id_user2 = id_user + 100;
+            }
+            command.Parameters.AddWithValue("id_user2", id_user2);
+
+            MySqlDataReader reader = command.ExecuteReader();
+
+            Users.users.Clear();
+
+            while (reader.Read())
+            {
+                Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                    reader.GetString(8)));
+            }
+
+            Disconnect();
+            //return Users.users;
+        }*/
+
         [HttpGet]
         public void GetPerson(User user)
         {
