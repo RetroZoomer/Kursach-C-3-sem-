@@ -33,14 +33,19 @@ namespace KursachTP.DAO
             Disconnect();
             return Users.users;
         }
-        public List<User> RecordOprId(int id_user)
+        public List<User> RecordOprId(int id_user,int id_user2)
         {
             Connect();
             string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
-                "password,phone FROM User where id_user > @id_user";
+                "password,phone FROM User where id_user BETWEEN @id_user and @id_user2";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("id_user", id_user);
+            if (id_user2 < 1)
+            {
+                id_user2 = id_user + 100;
+            }
+            command.Parameters.AddWithValue("id_user2", id_user2);
 
             MySqlDataReader reader = command.ExecuteReader();
 
@@ -61,10 +66,10 @@ namespace KursachTP.DAO
         {
             Connect();
             string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
-                "password,phone FROM User where name = @name";
+                "password,phone FROM User where name LIKE @name or Login LIKE @name";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("name", name);
+            command.Parameters.AddWithValue("name", "%" + name + "%");
 
             MySqlDataReader reader = command.ExecuteReader();
 

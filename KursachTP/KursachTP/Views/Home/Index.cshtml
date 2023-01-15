@@ -17,15 +17,15 @@
     <table class="table table-striped">
         <tr>
             <td>Показать пользователей от</td>
-            <td><input name="usersid" type="number" /></td>
-            <td><input type="submit" id="btnA" class="btn btn-info" value="Найти" /></td>
+            <td><input name="usersid" type="number" /></td><td><input name="usersid2" type="number" /></td>
+            <td><input type="submit" id="btnA" class="btn btn-info" value="Найти пользователя" /></td>
         </tr>
     </table>
 </form>
 <form method="post" asp-action="IndexSpecName">
     <table class="table table-striped">
         <tr>
-            Введите данные пользователя:
+            Введите данные пользователя (фрагмент имени или логина):
             <td><input name="namesuser" type="text" /></td>
             <td><input type="submit" id="btnB" class="btn btn-info" value="Найти пользователя" /></td>
         </tr>
