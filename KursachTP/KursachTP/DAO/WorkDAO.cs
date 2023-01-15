@@ -57,14 +57,14 @@ namespace KursachTP.DAO
             Disconnect();
             return Users.users;
         }
-        public List<User> RecordOprName(string names)
+        public List<User> RecordOprName(string name)
         {
             Connect();
             string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
-                "password,phone FROM User where name LIKE @names";
+                "password,phone FROM User where name LIKE @name";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("names", names);
+            command.Parameters.AddWithValue("name", name);
 
             MySqlDataReader reader = command.ExecuteReader();
 
