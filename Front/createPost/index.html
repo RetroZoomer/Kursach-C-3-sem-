@@ -24,28 +24,29 @@
     <div class="main">
         <form class="content" action="" method="post">
             <div class="title">
-                Регистрация:
+                Создание поста:
             </div>
             <div class="mainInf">
                 <div class="Text">
-                    <p>Фамилия: </p>  
+                    <p>Название меропрития: </p>  
                     <input id="lastName" type="text" required minlength="2" maxlength="20" class="input">
                 </div>
                 <div class="Text">
-                    <p>Имя: </p>
+                    <p>Хобби: </p>
                     <input id="name" type="text" required minlength="2" maxlength="20" class="input"> 
                 </div> 
                 <div class="Text">
-                    <p>Дата рождения: </p>
-                    <input id="birthdate" type="date" required class="inputDate"> 
+                    <p>Дата проведения меропрития: </p>
+                    <input id="birthdate" type="datetime-local" required class="inputDate"> 
                 </div>
                 <div class="Text">
                     <p>Описание: </p>
-                    <input id="description" type="text" minlength="2" maxlength="150" class="inputBig">
+                    <textarea form="content" minlength="2" maxlength="100" rows="1" class="inputBig">
+                    </textarea>
                 </div> 
 
             </div>
-            <input type="submit" value="Зарегистрироваться" class="button">
+            <input type="submit" value="Создать пост" class="button">
             <hr style="width: 90%; visibility: hidden;"> 
         </form>
     </div>
