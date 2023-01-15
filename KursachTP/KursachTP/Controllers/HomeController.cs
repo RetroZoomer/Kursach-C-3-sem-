@@ -85,11 +85,11 @@ namespace KursachTP.Controllers
             //Вывод пользователей от определенного id
 
         }
-        public IActionResult IndexSpecName(string name)
+        public IActionResult IndexSpecName(string namesuser)
         {
-            //Вывод
-            return View("IndexSpecName", dataDao.RecordOprName(name));
-            //return View(dataDao.RecordOprName(name));
+            //Вывод пользователей по имени
+            //return View("IndexSpecName", dataDao.RecordOprName(namesuser));
+            return View(dataDao.RecordOprName(namesuser));
 
         }
 

@@ -61,7 +61,7 @@ namespace KursachTP.DAO
         {
             Connect();
             string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
-                "password,phone FROM User where name LIKE @name";
+                "password,phone FROM User where name = @name";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("name", name);
