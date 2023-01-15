@@ -156,6 +156,26 @@ namespace KursachTP.DAO
             comanda.ExecuteNonQuery();
             Disconnect();
         }
+
+        public void GetPost(Post post)
+        {
+            // Доработать InsertPost и PostView !!!
+            Connect();
+            string sql = "INSERT INTO POST(id_user, posttitle,postdescription,starttime,hide) " +
+                "VALUES (@post.id_user, @post.posttitle,  @post.postdescription, @post.starttime, " +
+                "@post.hide)";
+            MySqlCommand comanda = new MySqlCommand(sql, connection);
+
+            comanda.Parameters.AddWithValue("post.id_user", post.UserID);
+            comanda.Parameters.AddWithValue("post.posttitle", post.PostTitle);
+            comanda.Parameters.AddWithValue("post.postdescription", post.PostDescription);
+            comanda.Parameters.AddWithValue("post.starttime", post.StartTime);
+            comanda.Parameters.AddWithValue("post.hide", post.Hide);
+
+            comanda.ExecuteNonQuery();
+            Disconnect();
+        }
+
         public void DeleteById(int id)
         {
             Connect();

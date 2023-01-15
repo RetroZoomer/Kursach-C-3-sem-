@@ -56,7 +56,7 @@ namespace KursachTP.Controllers
             return View("Reg", user);
             //Ссылка на создание нового знатока
         }
-        // Пока что не работает
+
         public IActionResult DeletePerson(int id)
         {
             dataDao.DeleteById(id);
@@ -100,7 +100,18 @@ namespace KursachTP.Controllers
             return View("PostView", dataDao.ListPost());
         }
 
+        public IActionResult NewPost(Post post)
+        {
+            //Создание нового поста
+            dataDao.GetPost(post);
+            return View("PostView", dataDao.ListPost());
+        }
 
+        public IActionResult CreatePost(Post post)
+        {
+            return View("InsertPost", post);
+            //Ссылка на создание нового поста
+        }
 
         /*public IActionResult Create()
         {
