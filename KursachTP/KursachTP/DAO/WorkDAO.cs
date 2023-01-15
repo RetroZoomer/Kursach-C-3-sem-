@@ -33,7 +33,7 @@ namespace KursachTP.DAO
             Disconnect();
             return Users.users;
         }
-        public List<User> RecordOpr(int id_user)
+        public List<User> RecordOprId(int id_user)
         {
             Connect();
             string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
@@ -41,6 +41,30 @@ namespace KursachTP.DAO
             MySqlCommand command = new MySqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("id_user", id_user);
+
+            MySqlDataReader reader = command.ExecuteReader();
+
+            Users.users.Clear();
+
+            while (reader.Read())
+            {
+                Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                    reader.GetString(8)));
+            }
+
+            Disconnect();
+            return Users.users;
+        }
+        public List<User> RecordOprName(string names)
+        {
+            Connect();
+            string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
+                "password,phone FROM User where name LIKE @names";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("names", names);
 
             MySqlDataReader reader = command.ExecuteReader();
 
