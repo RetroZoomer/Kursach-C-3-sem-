@@ -82,21 +82,21 @@ namespace KursachTP.Controllers
             // Подробный Вывод
             return View("InfoUserView", dataDao.UserInfo(id));
         }
-        public IActionResult IndexSpecID(int usersid, int usersid2)
+        public IActionResult IndexID(int usersid, int usersid2)
         {
             //dataDao.DeleteById(id);
-            return View("IndexSpecID", dataDao.RecordOprId(usersid, usersid2));
+            return View("Index", dataDao.RecordOprId(usersid, usersid2));
             //return View("Index", dataDao.UsersInfoIndex(usersid));
             //Вывод пользователей от определенного id
 
         }
-        public IActionResult IndexSpecName(string namesuser)
+        public IActionResult IndexName(string namesuser)
         {
             //Вывод пользователей по имени
-            return View(dataDao.RecordOprName(namesuser));
+            return View("Index" , dataDao.RecordOprName(namesuser));
         }
 
-        //public IActionResult PostIndex()
+        //public IActionResult PostView()
         //{
             //Пока что Стартовая страница
             //return View(dataDao.ListPost());
