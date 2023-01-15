@@ -144,3 +144,4 @@ C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\H
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\IndexSpecName.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\IndexSpecID.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\IndexSpecName.cshtml.g.cs
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\LogIn.cshtml.g.cs

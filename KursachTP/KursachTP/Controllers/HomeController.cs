@@ -38,6 +38,11 @@ namespace KursachTP.Controllers
             //Пока что Стартовая страница
             return View(dataDao.Record());
         }
+        public IActionResult LogIn()
+        {
+            //Пока что Стартовая страница
+            return View("LogIn");
+        }
 
         public IActionResult NewPerson(User user)
         {
