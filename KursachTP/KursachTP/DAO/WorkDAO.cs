@@ -11,12 +11,37 @@ namespace KursachTP.DAO
 {
     public class WorkDAO : ConnectDAO
     {
-        public List<User> Record()
+        public List<User> Record(int vbr, int id_user, int id_user2, string name)
         {
+            string sql;
             Connect();
-            string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
+            MySqlCommand command;
+            if (vbr == 1)
+            {
+                sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
                 "password,phone FROM User";
-            MySqlCommand command = new MySqlCommand(sql, connection);
+                command = new MySqlCommand(sql, connection);
+            }
+            else if (vbr == 2)
+            {
+                sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
+                "password,phone FROM User where id_user BETWEEN @id_user and @id_user2";
+                command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("id_user", id_user);
+                if (id_user2 < 1)
+                {
+                    id_user2 = id_user + 100;
+                }
+                command.Parameters.AddWithValue("id_user2", id_user2);
+            }
+            else
+            {
+                sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
+                "password,phone FROM User where name LIKE @name or Login LIKE @name";
+                command = new MySqlCommand(sql, connection);
+
+                command.Parameters.AddWithValue("name", "%" + name + "%");
+            }
 
             MySqlDataReader reader = command.ExecuteReader();
 
@@ -29,7 +54,6 @@ namespace KursachTP.DAO
                     reader.GetString(5), reader.GetString(6), reader.GetString(7), 
                     reader.GetString(8)));
             }
-
             Disconnect();
             return Users.users;
         }
@@ -87,35 +111,29 @@ namespace KursachTP.DAO
             return Users.users;
         }
         
-        /*public List<Post> ListPost()
+        public List<Post> ListPost()
         {
-            Connect();/*
-            string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
-                "password,phone FROM User where id_user BETWEEN @id_user and @id_user2";
+            Connect();
+            string sql = "SELECT id_post,id_user, posttitle,postdescription,starttime,hide " +
+                "FROM Post"; // where id_user BETWEEN @id_user and @id_user2";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("id_user", id_user);
-            if (id_user2 < 1)
-            {
-                id_user2 = id_user + 100;
-            }
-            command.Parameters.AddWithValue("id_user2", id_user2);
+            //command.Parameters.AddWithValue("id_user", id_user);
 
             MySqlDataReader reader = command.ExecuteReader();
 
-            Users.users.Clear();
+            Posts.posts.Clear();
 
             while (reader.Read())
             {
-                Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
+                Posts.posts.Add(new Post(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
-                    reader.GetString(8)));
+                    reader.GetString(5)));
             }
 
             Disconnect();
-            //return Users.users;
-        }*/
+            return Posts.posts;
+        }
 
         [HttpGet]
         public void GetPerson(User user)

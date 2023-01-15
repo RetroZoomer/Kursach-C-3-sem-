@@ -34,54 +34,7 @@ namespace KursachTP.Models
             }
         }*/
         //private  photo;
-        private Boolean sex;
-        /*public static String Pol
-        {
-            get
-            {
-                return Pol;
-            }
-            set
-            {
-                Pol = value;
-            }
-        }*/
-        /*private string login;
-        public static string Login
-        {
-            get
-            {
-                return Login;
-            }
-            set
-            {
-                Login = value;
-            }
-        }
-        private string password;
-        public static string Password
-        {
-            get
-            {
-                return Password;
-            }
-            set
-            {
-                Password = value;
-            }
-        }
-        private string phone;
-        public static string Phone
-        {
-            get
-            {
-                return Phone;
-            }
-            set
-            {
-                Phone = value;
-            }
-        }*/
+        
 
         public User(string f0, string f1, string f2, string f3, string f4, string f5, string f6, string f7, string f8)
         {

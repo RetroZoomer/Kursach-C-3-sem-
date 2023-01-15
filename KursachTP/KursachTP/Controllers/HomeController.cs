@@ -36,7 +36,7 @@ namespace KursachTP.Controllers
         public IActionResult Index()
         {
             //Пока что Стартовая страница
-            return View(dataDao.Record());
+            return View(dataDao.Record(1,0,0,null));
         }
         public IActionResult LogIn()
         {
@@ -48,7 +48,7 @@ namespace KursachTP.Controllers
         {
             //Создание нового пользователя
             dataDao.GetPerson(user);
-            return View("Index", dataDao.Record());
+            return View("Index", dataDao.Record(1, 0, 0, null));
         }
 
         public IActionResult CreatePerson(User user)
@@ -60,47 +60,47 @@ namespace KursachTP.Controllers
         public IActionResult DeletePerson(int id)
         {
             dataDao.DeleteById(id);
-            return View("Index", dataDao.Record());
+            return View("Index", dataDao.Record(1, 0, 0, null));
             //Удаление пользователя
         }
 
         public IActionResult EditPerson(int id)
         {
             return View("UpdateUser", dataDao.UserInfo(id));
-            // Ссылка на редактуру
+            // Ссылка на страницу редактуры
         }
 
         public IActionResult UpdatePerson(User user)
         // Редактура
         {
             dataDao.UpZn(user);
-            return View("Index", dataDao.Record());
+            return View("Index", dataDao.Record(1, 0, 0, null));
         }
 
         public IActionResult InfoPerson(int id)
+
         {
             // Подробный Вывод
             return View("InfoUserView", dataDao.UserInfo(id));
         }
         public IActionResult IndexID(int usersid, int usersid2)
         {
-            //dataDao.DeleteById(id);
-            return View("Index", dataDao.RecordOprId(usersid, usersid2));
-            //return View("Index", dataDao.UsersInfoIndex(usersid));
             //Вывод пользователей от определенного id
-
+            return View("Index", dataDao.Record(2, usersid, usersid2, null));
         }
         public IActionResult IndexName(string namesuser)
         {
             //Вывод пользователей по имени
-            return View("Index" , dataDao.RecordOprName(namesuser));
+            return View("Index" , dataDao.Record(3,0,0,namesuser));
         }
 
-        //public IActionResult PostView()
-        //{
-            //Пока что Стартовая страница
-            //return View(dataDao.ListPost());
-        //}
+        public IActionResult PostView()
+        {
+            //Страница постов
+            return View("PostView", dataDao.ListPost());
+        }
+
+
 
         /*public IActionResult Create()
         {
