@@ -77,20 +77,20 @@ namespace KursachTP.Controllers
             // Подробный Вывод
             return View("InfoUserView", dataDao.UserInfo(id));
         }
-        public IActionResult Vr()
+        public IActionResult IndexSpec(int usersid)
+        {
+            //dataDao.DeleteById(id);
+            return View("IndexSpec", dataDao.RecordOpr(usersid));
+            //return View("Index", dataDao.UsersInfoIndex(usersid));
+            //Вывод пользователей от определенного id
+
+        }
+       /* public IActionResult Vr()
         {
             //Вывод
             return View(dataDao.Record());
 
-        }
-        public IActionResult IndexSpec(int usersid)
-        {
-            //dataDao.DeleteById(id);
-            return View("Index", dataDao.UsersInfoIndex(usersid));
-            //Вывод пользователей от определенного id
-
-        }
-
+        }*/
 
         /*public IActionResult Create()
         {
