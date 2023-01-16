@@ -170,7 +170,7 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("post.posttitle", post.PostTitle);
             comanda.Parameters.AddWithValue("post.postdescription", post.PostDescription);
             comanda.Parameters.AddWithValue("post.starttime", post.StartTime);
-            comanda.Parameters.AddWithValue("post.hide", post.Hide);
+            comanda.Parameters.AddWithValue("post.hide", true);
 
             comanda.ExecuteNonQuery();
             Disconnect();

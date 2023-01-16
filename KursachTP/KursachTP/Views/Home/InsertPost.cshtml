@@ -1,4 +1,5 @@
-﻿@model KursachTP.Models.User
+﻿@using KursachTP.Models
+@model KursachTP.Models.Post
 <style>
     body {
         font: 'Roboto', sans-serif;
@@ -175,7 +176,6 @@
         text-decoration: none;
         color: #FFFFFF;
     }
-
 </style>
 
 <head>
@@ -198,51 +198,31 @@
 </header>
 
 <div class="main">
-    <form class="content" method="post" asp-antiforgery="true" asp-action="NewPerson" asp-controller="Home">
+    <form class="content" method="post" asp-antiforgery="true" asp-action="NewPost" asp-controller="Home">
         <div class="title">
-            Регистрация:
+            Добавление поста:
         </div>
 
-        <div class="mainInf">
+        <div class="mainInf2">
             <div class="Text" asp-for="LastName">
                 <p>ID_User'a': </p>
-                <input asp-for="UserID" id="UserID" type="text" required minlength="2" maxlength="20" class="input">
+                <input asp-for="UserID" id="UserID" type="number" minlength="2" maxlength="20" class="input">
             </div>
-            <div class="Text" asp-for="Name">
-                <p>Имя: </p>
-                <input asp-for="Name" id="Name" type="text" required minlength="2" maxlength="20" class="input">
+            <div class="Text" asp-for="PostTitle">
+                <p>Название поста: </p>
+                <input asp-for="PostTitle" id="PostTitle" type="text" required minlength="2" maxlength="20" class="input">
             </div>
             <div class="Text" asp-for="Birthday">
-                <p>Дата рождения: </p>
-                <input asp-for="Birthday" id="birthdate" type="date" required class="inputDate">
+                <p>Дата выпуска: </p>
+                <input asp-for="StartTime" id="StartTime" type="date" required class="inputDate">
             </div>
             <div class="Text">
-                <p>Пол: </p>
-                <input id="pol" name="pol" type="radio" value="true" class="pol">
-                Мужской
-                <br>
-                <input id="pol" name="pol" type="radio" value="false" class="pol">
-                Женский
-            </div>
-            <div class="Text">
-                <p>Логин: </p>
-                <input asp-for="Login" id="Login" type="text" required minlength="2" maxlength="20" class="input">
-            </div>
-            <div class="Text">
-                <p>Пароль: </p>
-                <input asp-for="Password" id="Password" type="password" required minlength="2" maxlength="50" class="input">
-            </div>
-            <div class="Text">
-                <p>Телефон: </p>
-                <input asp-for="Phone" id="phone" type="tel" required minlength="11" maxlength="11" value="8" class="input">
-            </div>
-            <div class="Text">
-                <p>Описание: </p>
-                <textarea asp-for="UserDescription" name="UserDescription" required minlength="2" maxlength="100" rows="1" class="inputBig"> </textarea>
+                <p>Содержание поста: </p>
+                <textarea asp-for="PostDescription" name="PostDescription" required minlength="2" maxlength="200" rows="1" class="inputBig"> </textarea>
             </div>
 
         </div>
-        <input type="submit" value="Зарегистрироваться" class="button">
+        <input type="submit" value="Добавить пост" class="button">
         <hr style="width: 90%; visibility: hidden;">
     </form>
 </div>
