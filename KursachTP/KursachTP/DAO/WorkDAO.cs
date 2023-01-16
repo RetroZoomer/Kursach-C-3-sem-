@@ -19,13 +19,13 @@ namespace KursachTP.DAO
             if (vbr == 1)
             {
                 sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
-                "password,phone FROM User";
+                "password,phone,rol FROM User";
                 command = new MySqlCommand(sql, connection);
             }
             else if (vbr == 2)
             {
                 sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
-                "password,phone FROM User where id_user BETWEEN @id_user and @id_user2";
+                "password,phone,rol FROM User where id_user BETWEEN @id_user and @id_user2";
                 command = new MySqlCommand(sql, connection);
                 command.Parameters.AddWithValue("id_user", id_user);
                 if (id_user2 < 1)
@@ -37,7 +37,7 @@ namespace KursachTP.DAO
             else
             {
                 sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
-                "password,phone FROM User where name LIKE @name or Login LIKE @name";
+                "password,phone,rol FROM User where name LIKE @name or Login LIKE @name";
                 command = new MySqlCommand(sql, connection);
 
                 command.Parameters.AddWithValue("name", "%" + name + "%");
@@ -51,13 +51,13 @@ namespace KursachTP.DAO
             {
                 Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7), 
-                    reader.GetString(8)));
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                    reader.GetString(8), reader.GetString(9)));
             }
             Disconnect();
             return Users.users;
         }
-        public List<User> RecordOprId(int id_user,int id_user2)
+        /*public List<User> RecordOprId(int id_user,int id_user2)
         {
             Connect();
             string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
@@ -80,7 +80,7 @@ namespace KursachTP.DAO
                 Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
                     reader.GetString(5), reader.GetString(6), reader.GetString(7),
-                    reader.GetString(8)));
+                    reader.GetString(8), reader.GetString(9)));
             }
 
             Disconnect();
@@ -104,12 +104,12 @@ namespace KursachTP.DAO
                 Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
                     reader.GetString(5), reader.GetString(6), reader.GetString(7),
-                    reader.GetString(8)));
+                    reader.GetString(8), reader.GetString(9)));
             }
 
             Disconnect();
             return Users.users;
-        }
+        }*/
         
         public List<Post> ListPost()
         {
@@ -140,8 +140,8 @@ namespace KursachTP.DAO
         {
             Connect();
             string sql = "INSERT INTO USER(name,lastname,userdescription,birthday,pol,login," +
-                "password,phone) VALUES (@user.name, @user.lastname,  @user.userdescription, @user.birthday, " +
-                "@user.pol, @user.login, @user.password, @user.phone)";
+                "password,phone,rol) VALUES (@user.name, @user.lastname,  @user.userdescription, @user.birthday, " +
+                "@user.pol, @user.login, @user.password, @user.phone, @user.rol)";
             MySqlCommand comanda = new MySqlCommand(sql, connection);
 
             comanda.Parameters.AddWithValue("user.name", user.Name);
@@ -152,6 +152,7 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("user.login", user.Login);
             comanda.Parameters.AddWithValue("user.password", user.Password);
             comanda.Parameters.AddWithValue("user.phone", user.Phone);
+            comanda.Parameters.AddWithValue("user.rol", "UserIS");
 
             comanda.ExecuteNonQuery();
             Disconnect();
@@ -216,7 +217,7 @@ namespace KursachTP.DAO
                 person = new User(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
                     reader.GetString(5), reader.GetString(6), reader.GetString(7),
-                    reader.GetString(8));
+                    reader.GetString(8), reader.GetString(9));
             }
 
             Disconnect();
@@ -241,7 +242,7 @@ namespace KursachTP.DAO
                 person = new User(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
                     reader.GetString(5), reader.GetString(6), reader.GetString(7),
-                    reader.GetString(8));
+                    reader.GetString(8), reader.GetString(9));
             }
 
             Disconnect();
@@ -251,7 +252,8 @@ namespace KursachTP.DAO
         {
             Connect();
             string sql = "UPDATE USER SET id_user = @id_user, name = @name, lastname = @lastname, userdescription = @userdescription," +
-                " birthday = @birthday, pol = @pol, login = @login, password = @password, phone=@phone WHERE id_user = @id_user ;";
+                " birthday = @birthday, pol = @pol, login = @login, password = @password, phone=@phone, rol=@rol" +
+                " WHERE id_user = @id_user ;";
 
             MySqlCommand comanda = new MySqlCommand(sql, connection);
 
@@ -264,6 +266,7 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("login", user.Login);
             comanda.Parameters.AddWithValue("password", user.Password);
             comanda.Parameters.AddWithValue("phone", user.Phone);
+            comanda.Parameters.AddWithValue("rol", user.Rol);
 
             comanda.ExecuteNonQuery();
 

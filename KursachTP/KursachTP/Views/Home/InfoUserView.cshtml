@@ -18,6 +18,10 @@
     <form>
         <table class="table table-striped" width="200" border="1" style="display: inline-block;">
             <tr>
+                Фото:
+                <img src="C:/Users/photo.jpeg" width="296" height="229" />
+                <img src="../image/photo.jpeg" width="296" height="229" />
+                <img src="https://html5css.ru/images/picture.jpg" alt="Mountain" style="width:300px">
                 <p>ID:              @Model.UserID   </p>
                 <p>Имя:              @Model.Name   </p>
                 <p>Фамилия:          @Model.LastName   </p>
@@ -27,17 +31,18 @@
                     Пол:
                     @if (@Model.Pol == true)
                     {
-                <p>Мужской</p>
+                    <p>Мужской</p>
                 }
                 else
                 {
-                <p>Женский</p>
+                    <p>Женский</p>
                 }
-                </p>
-                <p>Логин:            @Model.Login    </p>
-                <p>Пароль:           @Model.Password   </p>
-                <p>Номер телефона:   @Model.Phone   </p>
-            </tr>
+                    </p>
+                    <p>Логин:            @Model.Login    </p>
+                    <p>Пароль:           @Model.Password   </p>
+                    <p>Номер телефона:   @Model.Phone   </p>
+                    <p>Роль:   @Model.Rol   </p>
+                </tr>
         </table>
         <a class="btn btn-outline-dark" asp-action="Index">Список пользователей</a>
     </form>

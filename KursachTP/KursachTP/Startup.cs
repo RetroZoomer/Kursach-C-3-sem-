@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KursachTP.Models; // пространство имен контекста данных UserContext
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace KursachTP
 {
@@ -20,6 +22,16 @@ namespace KursachTP
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //string connection = Configuration.GetConnectionString("DefaultConnection");
+            //services.AddDbContext<UserContext>(options => options.UseSqlServer(connection));
+
+            // установка конфигурации подключения
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                { //                                                                Путь???
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
             services.AddControllersWithViews();
         }
 
@@ -41,6 +53,7 @@ namespace KursachTP
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

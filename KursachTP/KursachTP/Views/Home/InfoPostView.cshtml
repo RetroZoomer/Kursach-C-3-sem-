@@ -18,21 +18,22 @@
     <form>
         <table class="table table-striped" width="200" border="1" style="display: inline-block;">
             <tr>
+
                 <p>ID поста:              @Model.PostID   </p>
                 <p>ID пользователя:       @Model.UserID   </p>
                 <p>Название поста:              @Model.PostTitle   </p>
                 <p>Содержание:          @Model.PostDescription   </p>
                 <p>Дата выхода:         @Model.StartTime </p>
-                    Видимость:
-                    @if (@Model.Hide == true)
-                    {
+                Видимость:
+                @if (@Model.Hide == true)
+                {
                     <p>Виден</p>
                 }
                 else
                 {
                     <p>Не виден</p>
                 }
-                </tr>
+            </tr>
             </table>
             <a class="btn btn-outline-dark" asp-action="PostView">Список постов</a>
         </form>
