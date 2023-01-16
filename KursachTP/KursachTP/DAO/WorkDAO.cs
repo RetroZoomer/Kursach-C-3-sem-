@@ -181,13 +181,20 @@ namespace KursachTP.DAO
             Connect();
             string sql = "DELETE FROM User WHERE id_user = @id;";
 
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("id", id);
+            command.ExecuteNonQuery();
+            Disconnect();
+        }
+
+        public void DeleteByIdPost(int id)
+        {
+            Connect();
+            string sql = "DELETE FROM Post WHERE id_post = @id;";
 
             MySqlCommand command = new MySqlCommand(sql, connection);
-
             command.Parameters.AddWithValue("id", id);
-
             command.ExecuteNonQuery();
-
             Disconnect();
         }
         public User UserInfo(int userid) 
@@ -263,5 +270,50 @@ namespace KursachTP.DAO
             Disconnect();
         }
 
+        public void UpPost(Post post)
+        {
+            Connect();
+            string sql = "UPDATE POST SET id_post = @id_post,id_user = @id_user, posttitle = @posttitle," +
+                " postdescription = @postdescription," +
+                " starttime = @starttime, hide = @hide  WHERE id_post = @id_post ;";
+
+            MySqlCommand comanda = new MySqlCommand(sql, connection);
+            comanda.Parameters.AddWithValue("id_post", post.PostID);
+            comanda.Parameters.AddWithValue("id_user", post.UserID);
+            comanda.Parameters.AddWithValue("posttitle", post.PostTitle);
+            comanda.Parameters.AddWithValue("postdescription", post.PostDescription);
+            comanda.Parameters.AddWithValue("starttime", post.StartTime);
+            comanda.Parameters.AddWithValue("hide", post.Hide);
+           
+
+            comanda.ExecuteNonQuery();
+
+            Disconnect();
+        }
+
+        public Post PostInfo(int userid)
+        {
+            Connect();
+
+            string sql = "SELECT * FROM Post WHERE id_post like (@userid);";
+            Post postic = null;
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("userid", userid);
+
+            command.ExecuteNonQuery();
+
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                postic = new Post(reader.GetString(0), reader.GetString(1),
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5));
+            }
+
+            Disconnect();
+            return postic;
+        }
     }
 }

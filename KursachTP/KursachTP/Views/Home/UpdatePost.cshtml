@@ -1,0 +1,65 @@
+﻿@using KursachTP.DAO
+@model KursachTP.Models.Post
+
+<style>
+    body {
+        background-color: #3870ff;
+        color: white
+    }
+
+    form {
+        font-size: 15px;
+        display: inline-block;
+        background-color: white;
+        padding: 10px 60px;
+        border-radius: 8px;
+    }
+</style>
+
+<div style="text-align: center;"
+    <table class="table table-striped" width="454" border="4" style="display: inline-block;">
+        <form method="post" asp-antiforgery="true" asp-action="UpdatePost" asp-controller="Home">
+            <div>
+                <div>
+                    <label asp-for="PostID"></label><br />
+                    <input value="@Model.PostID" type="text" asp-for="PostID" />
+                    <span asp-validation-for="PostID"></span>
+                </div>
+                <div>
+                    <label asp-for="UserID"></label><br />
+                    <input value="@Model.UserID" type="text" asp-for="UserID" />
+                    <span asp-validation-for="UserID"></span>
+                </div>
+                <div>
+                    <label asp-for="PostTitle"></label><br />
+                    <input value="@Model.PostTitle" type="text" asp-for="PostTitle" />
+                    <span asp-validation-for="PostTitle"></span>
+                </div>
+                <div>
+                    <label asp-for="PostDescription"></label><br />
+                    <input value="@Model.PostDescription" type="text" asp-for="PostDescription" />
+                    <span asp-validation-for="PostDescription"></span>
+                </div>
+                <div>
+                    <label asp-for="StartTime"></label><br />
+                    <input value="@Model.StartTime" asp-for="StartTime" type="datetime" />
+                    <span asp-validation-for="StartTime"></span>
+                </div>
+                <div>
+                    <label asp-for="Hide"></label><br />
+                    <input value="@Model.Hide" asp-for="Hide" />
+                    <span asp-validation-for="Hide"></span>
+                </div>
+           
+                <div>
+                    <input type="submit" class="btn btn-outline-dark" value="Изменить" />
+                </div>
+            </div>
+        </form>
+    </table>
+</div>
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+

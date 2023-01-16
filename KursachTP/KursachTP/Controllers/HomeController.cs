@@ -112,6 +112,30 @@ namespace KursachTP.Controllers
             return View("InsertPost", post);
             //Ссылка на создание нового поста
         }
+        public IActionResult DeletePost(int id)
+        {
+            dataDao.DeleteByIdPost(id);
+            return View("PostView", dataDao.ListPost());
+            //Удаление поста
+        }
+        public IActionResult EditPost(int id)
+        {
+            return View("UpdatePost", dataDao.PostInfo(id));
+            // Ссылка на страницу редактуры
+        }
+
+        public IActionResult UpdatePost(Post post)
+        // Редактура
+        {
+            dataDao.UpPost(post);
+            return View("PostView", dataDao.ListPost());
+        }
+        public IActionResult InfoPost(int id)
+
+        {
+            // Подробный Вывод return View("InfoUserView", dataDao.UserInfo(id));
+            return View("InfoPostView", dataDao.PostInfo(id));
+        }
 
         /*public IActionResult Create()
         {
