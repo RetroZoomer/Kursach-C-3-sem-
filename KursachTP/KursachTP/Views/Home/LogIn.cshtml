@@ -155,7 +155,7 @@
 </header>
 
 <div class="main">
-    <form class="content" method="post" asp-antiforgery="true" asp-action="" asp-controller="Home">
+    <form class="content" method="post" asp-antiforgery="true" asp-action="Logi" asp-controller="Account">
         <div class="login">
             <div class="loginText">
                 Логин:
@@ -163,7 +163,7 @@
             </div>
             <div class="loginText">
                 <p>Пароль: </p>
-                <input asp-for="Password" type="password" required minlength="2" maxlength="50" required class="inputLogin">
+                <input asp-for="Password" type="password" required minlength="2" maxlength="50" class="inputLogin">
             </div>
         </div>
         <input type="submit" value="Войти" class="button">

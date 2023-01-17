@@ -317,6 +317,58 @@ namespace KursachTP.DAO
 
             Disconnect();
             return postic;
+        }/*
+        public Boolean YesNoData(User user)
+        {
+            Connect();
+            string sql = "SELECT * FROM USER WHERE login like (@login) and password like (@password)";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("email", user.Login);
+            command.Parameters.AddWithValue("pass", user.Password);
+
+            MySqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                Disconnect();
+                return (true);
+            }
+            else
+            {
+                Disconnect();
+                return (false);
+            }
         }
+
+        public string GetRole(User user)
+        {
+            Connect();
+            string sql = "SELECT rol FROM USER WHERE login like (@login);";
+
+            user.Rol = null;
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("login", user.Login);
+
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                user.Rol = reader.GetString(0);
+            }
+            Disconnect();
+
+            if (user.Rol == "UserIS")
+            {
+                return ("UserIS");
+            }
+            else
+            {
+                return ("AdminIS");
+            }
+        }*/
+
     }
 }
