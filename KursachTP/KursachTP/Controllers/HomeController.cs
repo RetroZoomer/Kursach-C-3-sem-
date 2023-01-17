@@ -32,17 +32,6 @@ namespace KursachTP.Controllers
             _logger = logger;
         }
 
-        [Authorize(Policy = "OnlyForMicrosoft")]
-        public IActionResult About()
-        {
-            return Content("Only for Microsoft employees");
-        }
-        [Authorize(Policy = "OnlyForLondon")]
-        public IActionResult Zapas()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -66,7 +55,7 @@ namespace KursachTP.Controllers
             return View("Reg", user);
             //Ссылка на создание нового знатока
         }
-        [Authorize(Policy = "OnlyForAdmin")]
+
         public IActionResult DeletePerson(int id)
         {
             dataDao.DeleteById(id);
@@ -74,7 +63,6 @@ namespace KursachTP.Controllers
             //Удаление пользователя
         }
 
-        [Authorize]
         public IActionResult EditPerson(int id)
         {
             return View("UpdateUser", dataDao.UserInfo(id));
@@ -89,7 +77,6 @@ namespace KursachTP.Controllers
         }
 
         public IActionResult InfoPerson(int id)
-
         {
             // Подробный Вывод
             return View("InfoUserView", dataDao.UserInfo(id));
@@ -104,7 +91,6 @@ namespace KursachTP.Controllers
             //Вывод пользователей по имени
             return View("Index" , dataDao.Record(3,0,0,namesuser));
         }
-
         public IActionResult PostView()
         {
             //Страница постов
@@ -142,9 +128,8 @@ namespace KursachTP.Controllers
             return View("PostView", dataDao.ListPost());
         }
         public IActionResult InfoPost(int id)
-
         {
-            // Подробный Вывод return View("InfoUserView", dataDao.UserInfo(id));
+            // Подробный Вывод 
             return View("InfoPostView", dataDao.PostInfo(id));
         }
         /*

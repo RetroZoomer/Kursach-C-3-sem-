@@ -16,7 +16,7 @@ namespace KursachTP.Controllers
             _context = context;
         }*/
 
-        [HttpPost]
+       /* [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterModel model)
         {
@@ -37,7 +37,7 @@ namespace KursachTP.Controllers
                     _context.Users.Add(user);
                     await _context.SaveChangesAsync();*/
 
-
+        /*
                     await Authenticate(user);
 
                     return RedirectToAction("Index", "Home");
@@ -47,7 +47,7 @@ namespace KursachTP.Controllers
             }
             return View(model);
         }
-        
+        */
         
     }
 }

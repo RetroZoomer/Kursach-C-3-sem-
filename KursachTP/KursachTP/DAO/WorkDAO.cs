@@ -123,9 +123,7 @@ namespace KursachTP.DAO
             string sql = "SELECT id_post,id_user, posttitle,postdescription,starttime,hide " +
                 "FROM Post"; // where id_user BETWEEN @id_user and @id_user2";
             MySqlCommand command = new MySqlCommand(sql, connection);
-
             //command.Parameters.AddWithValue("id_user", id_user);
-
             MySqlDataReader reader = command.ExecuteReader();
 
             Posts.posts.Clear();
@@ -160,16 +158,12 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("user.phone", user.Phone);
             comanda.Parameters.AddWithValue("user.rol", "UserIS");
 
-            //await HomeController.Authenticate(user);
             comanda.ExecuteNonQuery();
             Disconnect();
         }
 
-
-        
         public void GetPost(Post post)
         {
-            // Доработать InsertPost и PostView !!!
             Connect();
             string sql = "INSERT INTO POST(id_user, posttitle,postdescription,starttime,hide) " +
                 "VALUES (@post.id_user, @post.posttitle,  @post.postdescription, @post.starttime, " +
@@ -228,7 +222,6 @@ namespace KursachTP.DAO
                     reader.GetString(5), reader.GetString(6), reader.GetString(7),
                     reader.GetString(8), reader.GetString(9));
             }
-
             Disconnect();
             return person;
         }
@@ -253,7 +246,6 @@ namespace KursachTP.DAO
                     reader.GetString(5), reader.GetString(6), reader.GetString(7),
                     reader.GetString(8), reader.GetString(9));
             }
-
             Disconnect();
             return person;
         }
@@ -278,7 +270,6 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("rol", user.Rol);
 
             comanda.ExecuteNonQuery();
-
             Disconnect();
         }
 
@@ -297,9 +288,7 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("starttime", post.StartTime);
             comanda.Parameters.AddWithValue("hide", post.Hide);
            
-
             comanda.ExecuteNonQuery();
-
             Disconnect();
         }
 
@@ -313,7 +302,6 @@ namespace KursachTP.DAO
             MySqlCommand command = new MySqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("userid", userid);
-
             command.ExecuteNonQuery();
 
             MySqlDataReader reader = command.ExecuteReader();

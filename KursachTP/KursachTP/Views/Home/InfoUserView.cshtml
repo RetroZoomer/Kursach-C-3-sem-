@@ -14,14 +14,7 @@
         border-radius: 8px;
     }
 </style>
-<h3>Данные пользователя</h3>
 
-@foreach (var claim in User.Claims.ToList())
-{
-    <p>@claim.Type : @claim.Value</p>
-}
-<div>Город: @User.FindFirst(x => x.Type == ClaimTypes.Locality).Value</div>
-<div>Компания: @User.FindFirst(x => x.Type == "company").Value</div>
 
 
 <div style="text-align: center;">
