@@ -154,7 +154,7 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("user.birthday", user.Birthday);
             comanda.Parameters.AddWithValue("user.pol", user.Pol);
             comanda.Parameters.AddWithValue("user.login", user.Login);
-            comanda.Parameters.AddWithValue("user.password", user.Password);
+            comanda.Parameters.AddWithValue("user.password", HashPasswordHelper.HashPassword(user.Password));
             comanda.Parameters.AddWithValue("user.phone", user.Phone);
             comanda.Parameters.AddWithValue("user.rol", "UserIS");
 
