@@ -1,4 +1,5 @@
-﻿@model KursachTP.Models.User
+﻿@using System.Security.Claims
+@model KursachTP.Models.User
 <style>
     body {
         background-color: #3870ff;
@@ -14,6 +15,15 @@
     }
 </style>
 <h3>Данные пользователя</h3>
+
+@foreach (var claim in User.Claims.ToList())
+{
+    <p>@claim.Type : @claim.Value</p>
+}
+<div>Город: @User.FindFirst(x => x.Type == ClaimTypes.Locality).Value</div>
+<div>Компания: @User.FindFirst(x => x.Type == "company").Value</div>
+
+
 <div style="text-align: center;">
     <form>
         <table class="table table-striped" width="200" border="1" style="display: inline-block;">
@@ -43,12 +53,12 @@
                     <p>Номер телефона:   @Model.Phone   </p>
                     <p>Роль:   @Model.Rol   </p>
                 </tr>
-        </table>
-        <a class="btn btn-outline-dark" asp-action="Index">Список пользователей</a>
-    </form>
-</div>
-@section scripts{
+            </table>
+            <a class="btn btn-outline-dark" asp-action="Index">Список пользователей</a>
+        </form>
+    </div>
+    @section scripts{
 
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-}
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }

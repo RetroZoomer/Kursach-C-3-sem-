@@ -8,6 +8,16 @@ using KursachTP.Models;
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Logging;
 using KursachTP.DAO;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 //namespace ValidationApp.Controllers
 namespace KursachTP.Controllers
@@ -22,6 +32,12 @@ namespace KursachTP.Controllers
             _logger = logger;
         }
 
+        [Authorize(Policy = "OnlyForMicrosoft")]
+        public IActionResult About()
+        {
+            return Content("Only for Microsoft employees");
+        }
+        [Authorize(Policy = "OnlyForLondon")]
         public IActionResult Zapas()
         {
             return View();
@@ -38,12 +54,6 @@ namespace KursachTP.Controllers
             //Пока что Стартовая страница
             return View(dataDao.Record(1,0,0,null));
         }
-        public IActionResult LogIn()
-        {
-            //Пока что Стартовая страница
-            return View("LogIn");
-        }
-
         public IActionResult NewPerson(User user)
         {
             //Создание нового пользователя
@@ -56,7 +66,7 @@ namespace KursachTP.Controllers
             return View("Reg", user);
             //Ссылка на создание нового знатока
         }
-
+        [Authorize(Policy = "OnlyForAdmin")]
         public IActionResult DeletePerson(int id)
         {
             dataDao.DeleteById(id);
@@ -64,6 +74,7 @@ namespace KursachTP.Controllers
             //Удаление пользователя
         }
 
+        [Authorize]
         public IActionResult EditPerson(int id)
         {
             return View("UpdateUser", dataDao.UserInfo(id));
@@ -136,55 +147,67 @@ namespace KursachTP.Controllers
             // Подробный Вывод return View("InfoUserView", dataDao.UserInfo(id));
             return View("InfoPostView", dataDao.PostInfo(id));
         }
+        /*
+        public async Task Authenticate(User user)
+        {
+            // создаем один claim
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login), //mail
+                new Claim(ClaimTypes.Locality, user.Password),//city
+                new Claim("company", user.Phone)//company
+            };
+            // создаем объект ClaimsIdentity
+            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
+                ClaimsIdentity.DefaultRoleClaimType);
+            // установка аутентификационных куки
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+
+        }*/
+
+        /*
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return View("Index");
+        }
+
+
+        public IActionResult Login(string returnURL)
+        {
+            ViewBag.ReturnURL = returnURL;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(User user)
+        {
+            if (dataDao.YesNoData(user))
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.Login), // Возможное место ошибки
+                    new Claim(ClaimTypes.Locality, dataDao.GetRole(user))
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, "Login");
+
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity));
+                return Redirect("/Home");
+            }
+            else
+            {
+                return View();
+            }
+        }*/
 
         /*public IActionResult Create()
         {
             return View();
         }*/
-        /*
-        [HttpPost]
-        public IActionResult Str(User user)
-        {/*
-
-            string conect = "server=localhost;user=root;database=dbkp2;password=root";
-            MySqlConnection connection = new MySqlConnection(conect);
-            connection.Open();
-
-            string sql = "INSERT INTO USER(name,lastname,userdescription,birthday,pol,login," +
-                "password,phone) VALUES (@user.name, @user.lastname,  @user.userdescription, @user.birthday, " +
-                "@user.pol, @user.login, @user.password, @user.phone)";
-
-            MySqlCommand comanda = new MySqlCommand(sql, connection);
-
-            comanda.Parameters.AddWithValue("user.name", user.Name);
-            comanda.Parameters.AddWithValue("user.lastname", user.LastName);
-            comanda.Parameters.AddWithValue("user.userdescription", user.UserDescription);
-            comanda.Parameters.AddWithValue("user.birthday", user.Birthday);
-            comanda.Parameters.AddWithValue("user.pol", user.Pol);
-            comanda.Parameters.AddWithValue("user.login", user.Login);
-            comanda.Parameters.AddWithValue("user.password", user.Password);
-            comanda.Parameters.AddWithValue("user.phone", user.Phone);
-
-            comanda.ExecuteNonQuery();
-            
-            Users.users.Clear();
-
-            sql = "SELECT name,lastname,userdescription,birthday,pol,login," +
-                "password,phone FROM user";
-
-            comanda = new MySqlCommand(sql, connection);
-
-            MySqlDataReader reader = comanda.ExecuteReader();
-
-            while (reader.Read())
-            {
-                Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
-                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7)));
-            }
-            return View(Users.users);
-        }*/
-
 
     }
 }

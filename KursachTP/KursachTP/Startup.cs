@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using KursachTP.Models; // пространство имен контекста данных UserContext
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -29,10 +30,18 @@ namespace KursachTP
             // установка конфигурации подключения
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
-                { //                                                                Путь???
-                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                { //                                                                
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Home/Reg");
                 });
             services.AddControllersWithViews();
+            services.AddAuthorization(opts => {
+                opts.AddPolicy("OnlyForAdmin", policy => { // !!!!!!!!!!!!!!!!!!!!!!
+                    policy.RequireClaim(ClaimTypes.Locality, "AdminIS");
+                });
+                /*opts.AddPolicy("OnlyForMicrosoft", policy => { // тип company со значениями:
+                    policy.RequireClaim("company", "Microsoft", "AdminIS");
+                });*/
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

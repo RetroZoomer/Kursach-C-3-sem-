@@ -6,6 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
 using KursachTP.Models;
+using KursachTP.Controllers;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+
 
 namespace KursachTP.DAO
 {
@@ -136,7 +142,7 @@ namespace KursachTP.DAO
         }
 
         [HttpGet]
-        public void GetPerson(User user)
+        public async void GetPerson(User user)
         {
             Connect();
             string sql = "INSERT INTO USER(name,lastname,userdescription,birthday,pol,login," +
@@ -154,10 +160,13 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("user.phone", user.Phone);
             comanda.Parameters.AddWithValue("user.rol", "UserIS");
 
+            //await HomeController.Authenticate(user);
             comanda.ExecuteNonQuery();
             Disconnect();
         }
 
+
+        
         public void GetPost(Post post)
         {
             // Доработать InsertPost и PostView !!!
@@ -317,6 +326,58 @@ namespace KursachTP.DAO
 
             Disconnect();
             return postic;
+        }/*
+        public Boolean YesNoData(User user)
+        {
+            Connect();
+            string sql = "SELECT * FROM USER WHERE login like (@login) and password like (@password)";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("email", user.Login);
+            command.Parameters.AddWithValue("pass", user.Password);
+
+            MySqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                Disconnect();
+                return (true);
+            }
+            else
+            {
+                Disconnect();
+                return (false);
+            }
         }
+
+        public string GetRole(User user)
+        {
+            Connect();
+            string sql = "SELECT rol FROM USER WHERE login like (@login);";
+
+            user.Rol = null;
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("login", user.Login);
+
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                user.Rol = reader.GetString(0);
+            }
+            Disconnect();
+
+            if (user.Rol == "UserIS")
+            {
+                return ("UserIS");
+            }
+            else
+            {
+                return ("AdminIS");
+            }
+        }*/
+
     }
 }
