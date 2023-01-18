@@ -140,8 +140,6 @@ Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Reg.cshtml.
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Reg.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\InfoUserView.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\InfoUserView.cshtml.g.cs
-Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\IndexSpecID.cshtml.g.cs
-Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\IndexSpecName.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\LogIn.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\LogIn.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\PostView.cshtml.g.cs
@@ -149,3 +147,9 @@ C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\H
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\UpdatePost.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\InfoPostView.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\UnLogIn.cshtml.g.cs
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\UnLogIn.cshtml.g.cs
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\InfoPostView.cshtml.g.cs
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\InsertPost.cshtml.g.cs
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\PostView.cshtml.g.cs
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\UpdatePost.cshtml.g.cs
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\PostViewA.cshtml.g.cs

@@ -50,6 +50,12 @@ namespace KursachTP.Controllers
             return View("Index", dataDao.Record(1, 0, 0, null));
         }
 
+        public IActionResult LogInView() 
+        {
+            //Ссылка на страницу входа
+            return View("LogIn");
+        }
+
         public IActionResult CreatePerson(User user)
         {
             return View("Reg", user);

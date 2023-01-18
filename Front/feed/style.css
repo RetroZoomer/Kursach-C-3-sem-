@@ -1,5 +1,5 @@
 body {
-    font: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     background: #7CA8FF;
     width: 70%;
@@ -135,26 +135,42 @@ body {
     text-align: center;
     color: #FFFFFF;
     font-size: 26px;
-    padding: 3% 5% 3% 5%;
+    padding: 3% 5% 0% 5%;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.choice{
+
+
+
+}
+
 .titleNiz {
     text-align: center;
     color: #FFFFFF;
     font-size: 22px;
-    padding: 3% 0% 0% 5%;
+    padding: 0% 5% 0% 5%;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: baseline;
 }
 
 .dateTime {
+    text-align: left;
     padding-left: 1%;
+    padding-bottom: 2%;
+    font-size: 16px;
+    color: #d6d6d6;
+}
+
+.dateTimePost {
+    text-align: left;
+    padding-left: 5%;
+    padding-bottom: 3%;
     font-size: 16px;
     color: #d6d6d6;
 }
@@ -163,7 +179,7 @@ body {
     text-align: left;
     color: #FFFFFF;
     font-size: 21px;
-    padding: 1% 5% 2% 5%;
+    padding: 1% 5% 1% 5%;
 }
 
 .hobby {
@@ -173,28 +189,23 @@ body {
     padding: 1% 5% 2% 5%;
 }
 
-.description {
-    width: 90%;
-    height: 50%;
-    margin: 0 auto;
-    padding: 1%;
-
-    text-align: left;
-
-    background: #AAC4FF;
-    border-radius: 10px;
-}
-
 .textDescription {
     text-align: left;
     color: #FFFFFF;
     font-size: 18px;
-    padding: 1% 5% 2% 5%;
+
+    margin: 0% auto 2% auto;
+    padding: 1% 2% 1% 2%;
+
+    background: #AAC4FF;
+    border-radius: 10px;
+
+    width: 86%;
 }
 
 .button {
     float: right;
-    margin: 3% 5% 3% 0%;
+    margin: 1% 5% 3% 0%;
     border-radius: 51px; 
     border: 2px solid white; 
     background: white; 
