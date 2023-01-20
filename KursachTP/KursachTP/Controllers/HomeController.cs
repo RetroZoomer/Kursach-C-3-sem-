@@ -50,25 +50,19 @@ namespace KursachTP.Controllers
             return View("Index", dataDao.Record(1, 0, 0, null));
         }
 
-        public IActionResult LogInView() 
-        {
-            //Ссылка на страницу входа
-            return View("LogIn");
-        }
-
         public IActionResult CreatePerson(User user)
         {
-            return View("Reg", user);
+            return View("Register", user);
             //Ссылка на создание нового знатока
         }
-
+        [Authorize(Policy ="OnlyForAdmin")]
         public IActionResult DeletePerson(int id)
         {
             dataDao.DeleteById(id);
             return View("Index", dataDao.Record(1, 0, 0, null));
             //Удаление пользователя
         }
-
+        [Authorize]
         public IActionResult EditPerson(int id)
         {
             return View("UpdateUser", dataDao.UserInfo(id));
@@ -138,6 +132,12 @@ namespace KursachTP.Controllers
             // Подробный Вывод 
             return View("InfoPostView", dataDao.PostInfo(id));
         }
+
+        public IActionResult Zapas()
+        {
+            // Подробный Вывод 
+            return View("Zapas");
+        }
         /*
         public async Task Authenticate(User user)
         {
@@ -153,15 +153,18 @@ namespace KursachTP.Controllers
                 ClaimsIdentity.DefaultRoleClaimType);
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-
         }*/
+        public IActionResult UnLogin()
+        {
+            return View();
+        }
 
-        /*
-        [HttpPost]
+        //[HttpPost]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return View("Index");
+            return View("UnLogin");
+            //return View("Index",dataDao.Record(2, 1, 5, null));
         }
 
 
@@ -178,7 +181,7 @@ namespace KursachTP.Controllers
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.Login), // Возможное место ошибки
+                    new Claim(ClaimTypes.Name, user.Login), 
                     new Claim(ClaimTypes.Locality, dataDao.GetRole(user))
                 };
 
@@ -193,12 +196,7 @@ namespace KursachTP.Controllers
             {
                 return View();
             }
-        }*/
-
-        /*public IActionResult Create()
-        {
-            return View();
-        }*/
+        }
 
     }
 }

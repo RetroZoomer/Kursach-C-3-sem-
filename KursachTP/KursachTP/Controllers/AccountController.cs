@@ -63,7 +63,7 @@ namespace KursachTP.Controllers
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }*/
-        }
+        
         
         
     }

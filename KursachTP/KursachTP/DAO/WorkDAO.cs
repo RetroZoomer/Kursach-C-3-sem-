@@ -314,15 +314,15 @@ namespace KursachTP.DAO
 
             Disconnect();
             return postic;
-        }/*
+        }
         public Boolean YesNoData(User user)
         {
             Connect();
             string sql = "SELECT * FROM USER WHERE login like (@login) and password like (@password)";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("email", user.Login);
-            command.Parameters.AddWithValue("pass", user.Password);
+            command.Parameters.AddWithValue("login", user.Login);
+            command.Parameters.AddWithValue("password", HashPasswordHelper.HashPassword(user.Password));
 
             MySqlDataReader reader = command.ExecuteReader();
 
@@ -365,7 +365,7 @@ namespace KursachTP.DAO
             {
                 return ("AdminIS");
             }
-        }*/
+        }
 
     }
 }

@@ -16,7 +16,7 @@ using KursachTP.Models;
 using KursachTP.Controllers;
 
 namespace KursachTP.Models
-{
+{/*
     public class AccountService
     {
         private readonly ILogger<AccountService> _logger;
@@ -116,5 +116,5 @@ namespace KursachTP.Models
             return new ClaimsIdentity(claims, "ApplicationCookie",
                 ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
         }
-    }
+    }*/
 }

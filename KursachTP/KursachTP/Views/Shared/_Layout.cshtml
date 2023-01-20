@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -28,7 +30,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="PostView">Post</a>
                         </li>
-                    </ul>
+                        @try
+                         {
+                            <div>Пользователь: @User.FindFirst(x => x.Type == ClaimTypes.Name).Value</div>
+                         }
+                        catch(NullReferenceException ex)
+                         {
+                        <div>не указан</div>
+                         }
+
+                     </ul>
                 </div>
             </div>
         </nav>

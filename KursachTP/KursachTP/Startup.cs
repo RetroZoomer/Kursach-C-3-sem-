@@ -31,8 +31,16 @@ namespace KursachTP
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
                 { //                                                                
-                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Home/Reg");
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Home/Login");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Home/UnLogin");
                 });
+            services.AddAuthorization(opts =>
+            {
+                opts.AddPolicy("OnlyForAdmin", policy =>
+                {
+                    policy.RequireClaim(ClaimTypes.Locality, "AdminIS");
+                });
+            });
             services.AddControllersWithViews();
         }
 
