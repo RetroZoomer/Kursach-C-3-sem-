@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace KursachTP.Models
 {
-    public class RegisterModel
+    public class RegisterViewModel
     {
-        [Required(ErrorMessage = "Не указан Email")]
+        [Required(ErrorMessage = "Не указан логин")]
         public string Login { get; set; }
 
         [Required(ErrorMessage = "Не указан пароль")]
@@ -21,11 +21,30 @@ namespace KursachTP.Models
     }
     public class LoginModel
     {
-        [Required(ErrorMessage = "Не указан Email")]
-        public string Email { get; set; }
+        [Required(ErrorMessage = "Не указан логин")]
+        public string Login { get; set; }
 
         [Required(ErrorMessage = "Не указан пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+    }
+    public class RegisterViewModel2
+    {
+        [Required]
+        public string? Name { get; set; }
+        [Required]
+        public string? LastName { get; set; }
+        [Required]
+        public string? UserDescription { get; set; }
+        [Required]
+        public DateTime? Birthday { get; set; }
+        [Required]
+        public bool? Pol { get; set; }
+        [Required]
+        public string? Login { get; set; }
+        [Required]
+        public string? Password { get; set; }
+        [Required]
+        public string? Phone { get; set; }
     }
 }

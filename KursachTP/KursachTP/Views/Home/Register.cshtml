@@ -1,5 +1,4 @@
-﻿@using KursachTP.Models
-@model List<User>
+﻿@model KursachTP.Models.User
 <style>
     body {
         font: 'Roboto', sans-serif;
@@ -176,6 +175,7 @@
         text-decoration: none;
         color: #FFFFFF;
     }
+
 </style>
 
 <head>
@@ -191,80 +191,63 @@
         <div class="logo">Logo</div>
         <nav class="nav">
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Login">Вход</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="LogIn">Вход</a>
             <a class="nav_link" href="#">О нас</a>
         </nav>
     </div>
 </header>
 
+<div class="main">
+    <form class="content" method="post" asp-antiforgery="true" asp-action="NewPerson" asp-controller="Home">
+        <div class="title">
+            Регистрация:
+        </div>
 
+        <div class="mainInf">
+            <div class="Text" asp-for="LastName">
+                <p>Фамилия: </p>
+                <input asp-for="LastName" id="LastName" type="text" required minlength="2" maxlength="20" class="input">
+            </div>
+            <div class="Text" asp-for="Name">
+                <p>Имя: </p>
+                <input asp-for="Name" id="Name" type="text" required minlength="2" maxlength="20" class="input">
+            </div>
+            <div class="Text" asp-for="Birthday">
+                <p>Дата рождения: </p>
+                <input asp-for="Birthday" id="birthdate" type="date" required class="inputDate">
+            </div>
+            <div class="Text">
+                <p>Пол: </p>
+                <input id="pol" name="pol" type="radio" value="true" class="pol">
+                Мужской
+                <br>
+                <input id="pol" name="pol" type="radio" value="false" class="pol">
+                Женский
+            </div>
+            <div class="Text">
+                <p>Логин: </p>
+                <input asp-for="Login" id="Login" type="text" required minlength="2" maxlength="20" class="input">
+            </div>
+            <div class="Text">
+                <p>Пароль: </p>
+                <input asp-for="Password" id="Password" type="password" required minlength="2" maxlength="50" class="input">
+            </div>
+            <div class="Text">
+                <p>Телефон: </p>
+                <input asp-for="Phone" id="phone" type="tel" required minlength="11" maxlength="11" value="8" class="input">
+            </div>
+            <div class="Text">
+                <p>Описание: </p>
+                <textarea asp-for="UserDescription" name="UserDescription" required minlength="2" maxlength="100" rows="1" class="inputBig"> </textarea>
+            </div>
 
-
-<form method="post" asp-action="IndexID">
-    <table class="table table-striped">
-        <tr>
-            <td>Показать пользователей от</td>
-            <td><input name="usersid" type="number" /></td>
-            <td><input name="usersid2" type="number" /></td>
-            <td><input type="submit" id="btnA" class="btn btn-info" value="Найти пользователя" /></td>
-        </tr>
-    </table>
-</form>
-<form method="post" asp-action="IndexName">
-    <table class="table table-striped">
-        <tr>
-            Введите данные пользователя (фрагмент имени или логина):
-            <td><input name="namesuser" type="text" /></td>
-            <td><input type="submit" id="btnB" class="btn btn-info" value="Найти пользователя" /></td>
-        </tr>
-    </table>
-</form>
-
-<h2>Все пользователи</h2>
-<div class="tb1">
-    <table class="table table-striped">
-        <tr>
-            <td>ID</td>
-            <td>Имя</td>
-            <td>Фамилия</td>
-            <td>Описание</td>
-            <td>Дата рождения</td>
-            <td>Пол</td>
-            <td>Логин</td>
-            <td>Пароль</td>
-            <td>Телефон</td>
-            <td>Роль</td>
-        </tr>
-        @foreach (var usr in Model)
-        {
-            <tr>
-                <td>@usr.UserID</td>
-                <td>@usr.Name</td>
-                <td>@usr.LastName</td>
-                <td>@usr.UserDescription</td>
-                <td>@usr.Birthday</td>
-                <td>
-                    @if (@usr.Pol == true)
-                    {<p>Мужской</p>}
-                    else
-                    {<p>Женский</p>}
-                </td>
-                <td>@usr.Login</td>
-                <td>@usr.Password</td>
-                <td>@usr.Phone</td>
-                <td>@usr.Rol</td>
-                <td>
-                    <a class="btn btn-warning" asp-action="DeletePerson" asp-route-id="@usr.UserID">Удалить</a>
-                    <a class="btn btn-primary" asp-action="EditPerson" asp-route-id="@usr.UserID">Редактировать</a>
-                    <a class="btn btn-info" asp-action="InfoPerson" asp-route-id="@usr.UserID">i</a>
-            </tr>
-        }
-    </table>
+        </div>
+        <input type="submit" value="Зарегистрироваться" class="button">
+        <hr style="width: 90%; visibility: hidden;">
+    </form>
 </div>
-<a class="btn btn-warning" asp-action="CreatePerson">Добавить нового пользователя</a>
 
-
+<hr style="margin-top: 15%;">
 @section scripts{
 
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
