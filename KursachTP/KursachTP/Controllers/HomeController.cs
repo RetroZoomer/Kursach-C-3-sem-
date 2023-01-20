@@ -1,8 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using KursachTP.Models;
+using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Logging;
 using KursachTP.DAO;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 //namespace ValidationApp.Controllers
 namespace KursachTP.Controllers
@@ -15,17 +30,6 @@ namespace KursachTP.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }
-
-        [Authorize(Policy = "OnlyForMicrosoft")]
-        public IActionResult About()
-        {
-            return Content("Only for Microsoft employees");
-        }
-        [Authorize(Policy = "OnlyForLondon")]
-        public IActionResult Zapas()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -46,12 +50,18 @@ namespace KursachTP.Controllers
             return View("Index", dataDao.Record(1, 0, 0, null));
         }
 
+        public IActionResult LogInView() 
+        {
+            //Ссылка на страницу входа
+            return View("LogIn");
+        }
+
         public IActionResult CreatePerson(User user)
         {
             return View("Reg", user);
             //Ссылка на создание нового знатока
         }
-        [Authorize(Policy = "OnlyForAdmin")]
+
         public IActionResult DeletePerson(int id)
         {
             dataDao.DeleteById(id);
@@ -59,7 +69,6 @@ namespace KursachTP.Controllers
             //Удаление пользователя
         }
 
-        [Authorize]
         public IActionResult EditPerson(int id)
         {
             return View("UpdateUser", dataDao.UserInfo(id));
@@ -74,7 +83,6 @@ namespace KursachTP.Controllers
         }
 
         public IActionResult InfoPerson(int id)
-
         {
             // Подробный Вывод
             return View("InfoUserView", dataDao.UserInfo(id));
@@ -89,7 +97,6 @@ namespace KursachTP.Controllers
             //Вывод пользователей по имени
             return View("Index" , dataDao.Record(3,0,0,namesuser));
         }
-
         public IActionResult PostView()
         {
             //Страница постов
@@ -127,16 +134,28 @@ namespace KursachTP.Controllers
             return View("PostView", dataDao.ListPost());
         }
         public IActionResult InfoPost(int id)
-
         {
-            // Подробный Вывод return View("InfoUserView", dataDao.UserInfo(id));
+            // Подробный Вывод 
             return View("InfoPostView", dataDao.PostInfo(id));
         }
-
-        /*public IActionResult Create()
+        /*
+        public async Task Authenticate(User user)
         {
-            return View();
+            // создаем один claim
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login), //mail
+                new Claim(ClaimTypes.Locality, user.Password),//city
+                new Claim("company", user.Phone)//company
+            };
+            // создаем объект ClaimsIdentity
+            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
+                ClaimsIdentity.DefaultRoleClaimType);
+            // установка аутентификационных куки
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+
         }*/
+
         /*
         [HttpPost]
         public async Task<IActionResult> Logout()
@@ -152,25 +171,18 @@ namespace KursachTP.Controllers
             return View();
         }
 
-            MySqlCommand comanda = new MySqlCommand(sql, connection);
+        [HttpPost]
+        public async Task<IActionResult> Login(User user)
+        {
+            if (dataDao.YesNoData(user))
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.Login), // Возможное место ошибки
+                    new Claim(ClaimTypes.Locality, dataDao.GetRole(user))
+                };
 
-            comanda.Parameters.AddWithValue("user.name", user.Name);
-            comanda.Parameters.AddWithValue("user.lastname", user.LastName);
-            comanda.Parameters.AddWithValue("user.userdescription", user.UserDescription);
-            comanda.Parameters.AddWithValue("user.birthday", user.Birthday);
-            comanda.Parameters.AddWithValue("user.pol", user.Pol);
-            comanda.Parameters.AddWithValue("user.login", user.Login);
-            comanda.Parameters.AddWithValue("user.password", user.Password);
-            comanda.Parameters.AddWithValue("user.phone", user.Phone);
-
-            comanda.ExecuteNonQuery();
-            
-            Users.users.Clear();
-
-            sql = "SELECT name,lastname,userdescription,birthday,pol,login," +
-                "password,phone FROM user";
-
-            comanda = new MySqlCommand(sql, connection);
+                var claimsIdentity = new ClaimsIdentity(claims, "Login");
 
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
@@ -183,6 +195,10 @@ namespace KursachTP.Controllers
             }
         }*/
 
+        /*public IActionResult Create()
+        {
+            return View();
+        }*/
 
     }
 }
