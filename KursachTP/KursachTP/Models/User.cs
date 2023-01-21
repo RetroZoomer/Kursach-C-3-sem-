@@ -60,13 +60,16 @@ namespace KursachTP.Models
         [Required]
         public string? LastName { get; set; }
         [Required]
+
         public string? UserDescription { get; set; }
         [Required]
         public DateTime? Birthday { get; set; }
         [Required]
         public bool? Pol { get; set; }
+
         [Required]
         public string? Login { get; set; }
+
         [Required]
         public string? Password { get; set; }
         [Required]

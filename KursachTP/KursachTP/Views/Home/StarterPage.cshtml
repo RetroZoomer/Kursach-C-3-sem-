@@ -1,5 +1,5 @@
 ﻿@using KursachTP.Models
-@model KursachTP.Models.Post
+@model List<User>
 <style>
     body {
         font: 'Roboto', sans-serif;
@@ -178,7 +178,6 @@
     }
 </style>
 
-
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
@@ -191,45 +190,17 @@
     <div class="header-intro">
         <div class="logo">Logo</div>
         <nav class="nav">
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="LogInView">Вход</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Login">Вход</a>
             <a class="nav_link" href="#">О нас</a>
         </nav>
     </div>
 </header>
 
-<div class="main">
-    <form class="content" method="post" asp-antiforgery="true" asp-action="NewPost" asp-controller="Home">
-        <div class="title">
-            Добавление поста:
-        </div>
 
-        <div class="mainInf2">
-            <div class="Text" asp-for="LastName">
-                <p>ID_User'a': </p>
-                <input asp-for="UserID" id="UserID" type="number" minlength="2" maxlength="20" class="input">
-            </div>
-            <div class="Text" asp-for="PostTitle">
-                <p>Название поста: </p>
-                <input asp-for="PostTitle" id="PostTitle" type="text" required minlength="2" maxlength="20" class="input">
-            </div>
-            <div class="Text" asp-for="Birthday">
-                <p>Дата выпуска: </p>
-                <input asp-for="StartTime" id="StartTime" type="date" required class="inputDate">
-            </div>
-            <div class="Text">
-                <p>Содержание поста: </p>
-                <textarea asp-for="PostDescription" name="PostDescription" required minlength="2" maxlength="200" rows="1" class="inputBig"> </textarea>
-            </div>
 
-        </div>
-        <input type="submit" value="Добавить пост" class="button">
-        <hr style="width: 90%; visibility: hidden;">
-    </form>
-</div>
 
-<hr style="margin-top: 15%;">
+
+
 @section scripts{
 
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>

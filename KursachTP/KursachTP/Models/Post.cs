@@ -34,7 +34,7 @@ namespace KursachTP.Models
         }
         List<string> comments = new List<string>();
 
-        public Post(string f0, string f1, string f2, string f3, string f4, string f5)
+        public Post(string f0, string f1, string f2, string f3, string f4, string f5, string f6, string f7)
         {
             PostID = Convert.ToInt32(f0);
             UserID = Convert.ToInt32(f1);
@@ -42,6 +42,8 @@ namespace KursachTP.Models
             PostDescription = f3;
             StartTime = Convert.ToDateTime(f4);
             Hide = Convert.ToBoolean(f5);
+            Name = f6;
+            LastName = f7;
         }
         public Post()
         {
@@ -59,7 +61,10 @@ namespace KursachTP.Models
         public DateTime? StartTime { get; set; }
         [Required]
         public bool? Hide { get; set; }
-
+        [Required]
+        public string? Name { get; set; }
+        [Required]
+        public string? LastName { get; set; }
         //[Range(1, 150, ErrorMessage = "Incorrect age")]
         //public int Age { get; set; }
     }

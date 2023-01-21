@@ -43,6 +43,7 @@ namespace KursachTP.Controllers
             //Пока что Стартовая страница
             return View(dataDao.Record(1,0,0,null));
         }
+
         public IActionResult NewPerson(User user)
         {
             //Создание нового пользователя

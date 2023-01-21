@@ -120,8 +120,8 @@ namespace KursachTP.DAO
         public List<Post> ListPost()
         {
             Connect();
-            string sql = "SELECT id_post,id_user, posttitle,postdescription,starttime,hide " +
-                "FROM Post"; // where id_user BETWEEN @id_user and @id_user2";
+            string sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname " +
+                "FROM post " + "INNER JOIN user ON post.id_user = user.id_user;"; // where id_user BETWEEN @id_user and @id_user2";
             MySqlCommand command = new MySqlCommand(sql, connection);
             //command.Parameters.AddWithValue("id_user", id_user);
             MySqlDataReader reader = command.ExecuteReader();
@@ -132,7 +132,7 @@ namespace KursachTP.DAO
             {
                 Posts.posts.Add(new Post(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5)));
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7)));
             }
 
             Disconnect();
@@ -265,7 +265,7 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("birthday", user.Birthday);
             comanda.Parameters.AddWithValue("pol", user.Pol);
             comanda.Parameters.AddWithValue("login", user.Login);
-            comanda.Parameters.AddWithValue("password", user.Password);
+            comanda.Parameters.AddWithValue("password", HashPasswordHelper.HashPassword(user.Password));
             comanda.Parameters.AddWithValue("phone", user.Phone);
             comanda.Parameters.AddWithValue("rol", user.Rol);
 
@@ -309,7 +309,7 @@ namespace KursachTP.DAO
             {
                 postic = new Post(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5));
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7));
             }
 
             Disconnect();

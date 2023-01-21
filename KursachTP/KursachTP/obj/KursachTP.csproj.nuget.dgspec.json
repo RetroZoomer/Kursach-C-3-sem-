@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\root\\source\\repos\\KP — копия\\KursachTP\\KursachTP\\KursachTP.csproj": {}
+    "Z:\\FindFriends\\KursachTP\\KursachTP\\KursachTP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\root\\source\\repos\\KP — копия\\KursachTP\\KursachTP\\KursachTP.csproj": {
+    "Z:\\FindFriends\\KursachTP\\KursachTP\\KursachTP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\root\\source\\repos\\KP — копия\\KursachTP\\KursachTP\\KursachTP.csproj",
+        "projectUniqueName": "Z:\\FindFriends\\KursachTP\\KursachTP\\KursachTP.csproj",
         "projectName": "KursachTP",
-        "projectPath": "C:\\Users\\root\\source\\repos\\KP — копия\\KursachTP\\KursachTP\\KursachTP.csproj",
-        "packagesPath": "C:\\Users\\root\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\root\\source\\repos\\KP — копия\\KursachTP\\KursachTP\\obj\\",
+        "projectPath": "Z:\\FindFriends\\KursachTP\\KursachTP\\KursachTP.csproj",
+        "packagesPath": "C:\\Users\\SilentArt\\.nuget\\packages\\",
+        "outputPath": "Z:\\FindFriends\\KursachTP\\KursachTP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\root\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SilentArt\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }
