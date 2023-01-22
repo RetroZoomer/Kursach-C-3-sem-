@@ -43,6 +43,11 @@ namespace KursachTP.Controllers
             //Пока что Стартовая страница
             return View(dataDao.Record(1,0,0,null));
         }
+        public IActionResult StarterPage()
+        {
+            //Пока что Стартовая страница
+            return View("StarterPage");
+        }
 
         public IActionResult NewPerson(User user)
         {
@@ -191,7 +196,7 @@ namespace KursachTP.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity));
-                return Redirect("/Home");
+                return Redirect("/Home/Index");
             }
             else
             {

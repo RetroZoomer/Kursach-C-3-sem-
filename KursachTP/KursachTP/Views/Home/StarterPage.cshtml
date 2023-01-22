@@ -2,11 +2,13 @@
 @model List<User>
 <style>
     body {
-        font: 'Roboto', sans-serif;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
         font-size: 16px;
         background: #7CA8FF;
         width: 70%;
-        margin: 0 auto;
+        margin-left: 15%;
+        margin-right: 15%;
     }
 
     .header {
@@ -61,98 +63,55 @@
     }
 
     .main {
-        align-items: center;
-        margin: 13% auto 0 auto;
-        min-width: 50%;
-    }
-
-    .content {
-        text-align: center;
-        padding-top: 2%;
-        padding-bottom: 2%;
-        margin: 0 auto;
-        width: 40%;
-        background: #6296E4;
-        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-    }
-
-    .title {
-        color: #FFFFFF;
-        font-size: 26px;
-    }
-
-    .mainInf {
-        color: #FFFFFF;
-        font-size: 21px;
         display: flex;
-        flex-direction: column;
-        flex-flow: column wrap;
-        align-items: stretch;
-        justify-content: flex-start;
-        padding: 2% 4% 0% 4%;
+        align-items: center;
+        margin-top: 8%;
+        min-width: 50%;
+        min-height: 100%;
     }
 
-    .Text {
-        text-align: left;
-        font: 'Roboto', sans-serif;
-    }
-
-    .input {
-        background: #5389DA;
-        border-radius: 51px;
-        border: 2px solid #4876bb;
+    .main_title {
+        text-decoration: none;
         color: white;
-        width: 96%;
-        height: 30px;
-        padding: 0% 2% 0 2%;
+        font: 'Roboto';
+        font-size: 45pt;
+        margin-bottom: 10%;
+        line-height: 150.02%;
     }
 
-    .inputDate {
-        background: #5389DA;
-        border-radius: 51px;
-        border: 2px solid #4876bb;
-        color: white;
-        padding-left: 2%;
-        padding-right: 2%;
-        width: 110px;
-        height: 30px;
+    .main_button {
+        text-decoration: none;
+        align-items: center;
+        text-align: center;
+        margin-top: 10%;
+        padding: 15px;
     }
 
-    /* Должно масштабироваться в зависимости сколько хобби */
-    .inputMed {
-        background: #5389DA;
-        border-radius: 51px;
-        border: 2px solid #4876bb;
-        color: white;
-        width: 100%;
-        height: 30px;
-    }
-
-    .inputBig {
-        background: #5389DA;
-        border-radius: 18px;
-        border: 2px solid #4876bb;
-        color: white;
-        padding: 5%;
-        resize: none;
-        width: 90%;
-        min-height: 50px;
-    }
-
-    .button {
-        margin: 10% 3% 0% auto;
-        width: 250px;
-        float: right;
+    .main_link {
+        margin: 10% auto 0% auto;
+        padding: 5px 20px 5px 20px;
+        height: auto;
         border-radius: 51px;
         border: 2px solid white;
         background: white;
         color: #6296E4;
-        font-size: 24px;
+        font-size: 36px;
+        text-decoration: none;
     }
 
+    .main_image {
+        /* margin-left: 25%; */
+        float: right;
+        width: 70%;
+        min-width: 60%;
+        height: 100%;
+        min-height: 55%;
+        border-radius: 0px 254px 254px 0px;
+        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+        object-fit: cover;
+    }
 
-    .contentF {
+    .content {
         justify-content: space-between;
         max-width: 100%;
         margin-right: 0;
@@ -165,7 +124,6 @@
         color: #FFFFFF;
         width: 100%;
         margin-top: 2%;
-        margin-bottom: 5%;
     }
 
     .aboutF {
@@ -176,6 +134,7 @@
         text-decoration: none;
         color: #FFFFFF;
     }
+
 </style>
 
 <head>
@@ -185,6 +144,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Поиск друзей</title>
 </head>
+
 
 <header class="header">
     <div class="header-intro">
@@ -197,8 +157,18 @@
 </header>
 
 
+<div class="main">
+    <div class="content">
+        <div class="main_title">Найди друзей по интересам!</div>
+        <a class="main_link" asp-action="CreatePerson">Начать!</a>
+    </div>
+    <div class="content">
+        <img class="main_image" src="https://sun9-87.userapi.com/impg/JPkYQXbtvi8jLRfiOPc5UrMHoFyEwEjZtYwhUw/dFfjcdjQPjE.jpg?size=1000x667&quality=96&sign=c11e00d855e85408e1d092e21a5c13ab&type=album" runat="server" alt="Фото друзей">
+    </div>
+</div>
 
 
+<hr style="margin-top: 15%;">
 
 
 @section scripts{

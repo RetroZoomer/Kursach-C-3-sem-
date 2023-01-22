@@ -1,7 +1,5 @@
 ﻿@using System.Security.Claims
 
-<h2>Все посты</h2>
-
 <style>
     body {
         font-family: 'Roboto', sans-serif;
@@ -321,25 +319,26 @@
 </header>
 
 <div class="main">
-    <div>
+    <div style="margin: 0% auto; visibility: hidden;"> </div>
 
+    <div>
         @foreach (var pst in Model)
         {
             <div class="post">
                 <div class="title">
                     <div>
-                        <b>Название мероприятия</b>
+                        <b>@pst.PostTitle</b>
                     </div>
 
                 </div>
                 <div class="dateTimePost">
-                    Время поста
+                    @pst.StartTime
                 </div>
                 <div class="titleD">
                     <b>Описание:</b>
                 </div>
                 <div class="textDescription">
-                    Какое-то описаине Какое-то описаине Какое-то описаине Какое-то описаине Какое-то описаине Какое-то описаине Какое-то описаине
+                    @pst.PostDescription
                 </div>
                 <div class="hobby">
                     Хобби: #Спорт #АПОЖ
