@@ -296,7 +296,8 @@ namespace KursachTP.DAO
         {
             Connect();
 
-            string sql = "SELECT * FROM Post WHERE id_post like (@userid);";
+            string sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname FROM Post " +
+                "INNER JOIN user ON post.id_user = user.id_user WHERE post.id_post like (@userid);";
             Post postic = null;
 
             MySqlCommand command = new MySqlCommand(sql, connection);
