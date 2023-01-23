@@ -219,6 +219,28 @@
         cursor: pointer;
     }
 
+    .bMenu {
+        margin: 0% auto;
+        display: flex;
+        padding: 1% 5% 2% 5%;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: start;
+    }
+
+    .buttonMenu {
+        float: right;
+        margin: 1% 0% 3% 0%;
+        border-radius: 51px;
+        border: 2px solid white;
+        background: white;
+        color: #6296E4;
+        text-decoration: none;
+        font-size: 24px;
+        width: 180px;
+        cursor: pointer;
+    }
+
     .buttonRight {
         margin: 0% auto 30px auto;
         border-radius: 51px;
@@ -354,38 +376,11 @@
                 <input type="submit" value="Участвовать" class="button">
 
                 <hr style="width: 90%; visibility: hidden;">
-                <table>
-                    <tr>
-                        <td>ID</td>
-                        <td>ID_User(Имя)</td>
-                        <td>Название</td>
-                        <td>Содержание</td>
-                        <td>Время выхода поста</td>
-                        <td>Видимость</td>
-                        <td>Пользователь</td>
-
-                    </tr>
-                    <tr>
-                        <td>@pst.PostID</td>
-                        <td>@pst.UserID</td>
-                        <td>@pst.PostTitle</td>
-                        <td>@pst.PostDescription</td>
-                        <td>@pst.StartTime</td>
-
-                        <td>
-                            @if (@pst.Hide == true)
-                            {<p>Виден</p>}
-                            else
-                            {<p>Не виден</p>}
-                        </td>
-                        <td>@pst.Name @pst.LastName</td>
-                        <td>
-                        <td>
-                            <a class="btn btn-warning" asp-action="DeletePost" asp-route-id="@pst.PostID">Удалить</a>
-                            <a class="btn btn-primary" asp-action="EditPost" asp-route-id="@pst.PostID">Редактировать</a>
-                            <a class="btn btn-info" asp-action="InfoPost" asp-route-id="@pst.PostID">i</a>
-                    </tr>
-                </table>
+                <div class="bMenu">
+                    <a class="buttonMenu" asp-action="DeletePost" asp-route-id="@pst.PostID">Удалить</a>
+                    <a class="buttonMenu" asp-action="EditPost" asp-route-id="@pst.PostID">Редактировать</a>
+                    <a class="buttonMenu" asp-action="InfoPost" asp-route-id="@pst.PostID">Информация</a>
+                </div>
             </div>
         }
 
