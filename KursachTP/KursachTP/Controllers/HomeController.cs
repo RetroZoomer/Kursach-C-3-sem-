@@ -103,6 +103,12 @@ namespace KursachTP.Controllers
             return View("PostView", dataDao.ListPost());
         }
 
+        public IActionResult ProfileView()
+        {
+            //Страница профиля
+            return View("Profile");
+        }
+
         public IActionResult NewPost(Post post)
         {
             //Создание нового поста

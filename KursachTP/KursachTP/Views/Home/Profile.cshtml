@@ -316,6 +316,75 @@
         color: #FFFFFF;
     }
 
+    .profileMainWindow {
+        margin: 0 auto;
+        height: 420px;
+        width: 35%;
+        background: #6296E4;
+        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+    }
+
+    /* .title {
+    color: #FFFFFF;
+    font-size: 26px;
+    padding: 5% 0 3% 0;
+} */
+
+    .styleWindow {
+        color: #FFFFFF;
+        font-size: 21px;
+        /* display: flex; */
+        /* flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: flex-start; */
+
+        padding: 8% 8% 0% 8%;
+    }
+
+    .styleOtherWindow {
+        color: #FFFFFF;
+        font-size: 21px;
+        /* display: flex; */
+        /* flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: flex-start; */
+
+        padding: 3% 3% 0% 3%;
+    }
+
+    .profileImg {
+        width: 200px;
+        min-width: 200px;
+    }
+
+    .styleImg {
+        display: block;
+        margin: auto;
+        padding: 8% 8% 0% 8%;
+    }
+
+    .profileText {
+        text-align: left;
+        padding-left: 5%;
+    }
+
+    .profileInf {
+        background: #5389DA;
+        border-radius: 51px;
+        border: 2px solid #4876bb;
+        width: 100%;
+        height: 30px;
+    }
+
+    .profileOtherWindow {
+        margin: 0 0 0 3%;
+        height: 420px;
+        width: 100%;
+        background: #6296E4;
+        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+    }
 </style>
 
 
@@ -344,57 +413,34 @@
 </header>
 
 <div class="main">
-    <div style="margin: 0% auto; visibility: hidden;"> </div>
+    <div class="profileMainWindow">
+        <div class="styleImg">
+            <!-- <img src="/Front/profile/img/user.png" alt="фото пользователя" class="profileImg"> -->
+        </div>
+        <div class="styleWindow">
+            <div class="profileText">
 
-    <div>
-        @foreach (var pst in Model)
-        {
-            <div class="post">
-                <div class="title">
-                    <div>
-                        <b>@pst.PostTitle</b>
-                    </div>
-
-                </div>
-                <div class="dateTimePost">
-                    @pst.StartTime
-                </div>
-                <div class="titleD">
-                    <b>Описание:</b>
-                </div>
-                <div class="textDescription">
-                    @pst.PostDescription
-                </div>
-                <div class="hobby">
-                    Хобби: #Спорт #АПОЖ
-                </div>
-                <div class="titleNiz">
-                    Дата проведения:
-                    <div class="dateTime">
-                        2023-02-01 06:30
-                    </div>
-                </div>
-                <input type="submit" value="Участвовать" class="button">
-
-                <hr style="width: 90%; visibility: hidden;">
-                <div class="bMenu">
-                    <a class="buttonMenu" asp-action="DeletePost" asp-route-id="@pst.PostID">Удалить</a>
-                    <a class="buttonMenu" asp-action="EditPost" asp-route-id="@pst.PostID">Редактировать</a>
-                    <a class="buttonMenu" asp-action="InfoPost" asp-route-id="@pst.PostID">Информация</a>
-                </div>
+                Фамилия:
+                <p></p>
+                Имя:
+                <p></p>
+                Возраст:
             </div>
-        }
-
+        </div>
     </div>
-    <div class="right">
-        <form class="createPost" action="" method="post">
-            <input type="submit" value="Создать пост" class="buttonRight" asp-action="CreatePost">
-        </form>
-        <form class="createPost" action="" method="post">
-            <input type="submit" value="Найти друзей" class="findFriends">
-        </form>
+
+    <div class="profileOtherWindow">
+        <div class="styleOtherWindow">
+            <div class="profileText">
+                Обо мне:
+                <p></p>
+                Хобби:
+            </div>
+        </div>
     </div>
 </div>
+
+<hr style="margin-top: 15%;">
 
 
 @section scripts{
@@ -402,22 +448,3 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }
-
-@*<tr>
-        <td>@pst.PostID</td>
-        <td>@pst.UserID</td>
-        <td>@pst.PostTitle</td>
-        <td>@pst.PostDescription</td>
-        <td>@pst.StartTime</td>
-        <td>
-            @if (@pst.Hide == true)
-            {<p>Виден</p>}
-            else
-            {<p>Не виден</p>}
-        </td>
-        <td>
-        <td>
-            <a class="btn btn-warning" asp-action="DeletePost" asp-route-id="@pst.PostID">Удалить</a>
-            <a class="btn btn-primary" asp-action="EditPost" asp-route-id="@pst.PostID">Редактировать</a>
-            <a class="btn btn-info" asp-action="InfoPost" asp-route-id="@pst.PostID">i</a>
-    </tr>*@

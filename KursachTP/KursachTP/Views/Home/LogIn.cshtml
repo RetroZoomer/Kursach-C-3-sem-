@@ -1,4 +1,5 @@
 ﻿@model KursachTP.Models.User
+@using System.Security.Claims
 
 <style>
     body {
@@ -140,7 +141,6 @@
         text-decoration: none;
         color: #FFFFFF;
     }
-
 </style>
 
 <header class="header">
@@ -149,12 +149,22 @@
         <nav class="nav">
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="LogIn">Вход</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
+                @try
+                {
+                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
+                }
+                catch (NullReferenceException ex)
+                {
+
+                }
+            </a>
         </nav>
     </div>
 </header>
 
 <div class="main">
-    <form class="content" method="post" >
+    <form class="content" method="post">
         <div class="login">
             <div class="loginText">
                 Логин:
