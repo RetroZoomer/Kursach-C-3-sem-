@@ -233,3 +233,5 @@ C:\Users\root\source\repos\KP — копия\KursachTP\KursachTP\obj\Debug\net5.
 C:\Users\root\source\repos\KP — копия\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.genruntimeconfig.cache
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Register.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\StarterPage.cshtml.g.cs
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\StarterPage.cshtml.g.cs
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\UserView\PostViewU.cshtml.g.cs

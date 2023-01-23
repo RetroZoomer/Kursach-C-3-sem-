@@ -14,15 +14,7 @@
     <header style="margin-top: 8%">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-            
-                        @try
-                         {
-                            <div>Пользователь: @User.FindFirst(x => x.Type == ClaimTypes.Name).Value</div>
-                         }
-                        catch(NullReferenceException ex)
-                         {
-                        <div>не указан</div>
-                         }
+               
             </div>
         </nav>
     </header>

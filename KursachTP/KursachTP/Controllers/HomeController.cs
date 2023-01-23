@@ -37,7 +37,7 @@ namespace KursachTP.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
+        [Authorize(Policy = "OnlyForAdmin")]
         public IActionResult Index()
         {
             //Пока что Стартовая страница
@@ -53,7 +53,7 @@ namespace KursachTP.Controllers
         {
             //Создание нового пользователя
             dataDao.GetPerson(user);
-            return View("Index", dataDao.Record(1, 0, 0, null));
+            return View("Login");
         }
 
         public IActionResult CreatePerson(User user)
@@ -144,22 +144,6 @@ namespace KursachTP.Controllers
             // Подробный Вывод 
             return View("Zapas");
         }
-        /*
-        public async Task Authenticate(User user)
-        {
-            // создаем один claim
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login), //mail
-                new Claim(ClaimTypes.Locality, user.Password),//city
-                new Claim("company", user.Phone)//company
-            };
-            // создаем объект ClaimsIdentity
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
-                ClaimsIdentity.DefaultRoleClaimType);
-            // установка аутентификационных куки
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-        }*/
         public IActionResult UnLogin()
         {
             return View();
@@ -196,7 +180,11 @@ namespace KursachTP.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity));
-                return Redirect("/Home/Index");
+                if (dataDao.GetRole(user) == "AdminIS")
+                {
+                    return Redirect("/Home/Index");
+                }
+                else { return Redirect("/Home/PostView"); }
             }
             else
             {
