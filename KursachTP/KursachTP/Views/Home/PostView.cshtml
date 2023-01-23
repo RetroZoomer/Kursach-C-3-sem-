@@ -216,6 +216,7 @@
         color: #6296E4;
         font-size: 24px;
         width: 200px;
+        cursor: pointer;
     }
 
     .buttonRight {
@@ -228,6 +229,7 @@
         width: 250px;
         box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
+        cursor: pointer;
     }
 
     .commentSection {
@@ -303,17 +305,17 @@
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="LogInView">Вход</a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
             <a class="nav_link" href="#">О нас</a>
-            <div class="container-fluid">
-
+            <a class="nav_link">
                 @try
                 {
-                    <div class="nav_link">@User.FindFirst(x => x.Type == ClaimTypes.Name).Value</div> 
+                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
                 }
                 catch (NullReferenceException ex)
                 {
-                    
+
                 }
-            </div>
+            </a> 
+
         </nav>
     </div>
 </header>

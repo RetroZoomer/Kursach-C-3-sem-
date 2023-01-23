@@ -1,46 +1,286 @@
 ﻿@model KursachTP.Models.Post
+@using System.Security.Claims
+
 <style>
     body {
-        background-color: #3870ff;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        background: #7CA8FF;
+        width: 70%;
+        margin: 0 auto;
     }
 
-    form {
-        font-size: 15px;
+    .header {
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        left: 0px;
+        top: 0px;
+        min-width: 20%;
+        background: #6296E4;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        min-width: 20%;
+        min-height: 50%;
+    }
+
+    .header-intro {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1.3%;
+        margin-left: 15%;
+        margin-right: 15%;
+        min-width: none;
+    }
+
+    .logo {
+        text-decoration: none;
+        color: white;
+        font: 'Roboto';
+        font-size: 24pt;
+        min-width: 20%;
+        min-height: 100%;
+    }
+
+    .nav_link_find {
         display: inline-block;
-        background-color: white;
-        color: black;
-        padding: 10px 60px;
-        border-radius: 8px;
+        text-decoration: none;
+        color: #6296E4;
+        font: 'Roboto';
+        font-size: 24pt;
+        background-color: #FFFFFF;
+        border-radius: 51px;
+        padding: 0 15px 0 15px;
+    }
+
+    .nav_link {
+        display: inline-block;
+        margin-left: 10%;
+        text-decoration: none;
+        color: white;
+        font: 'Roboto';
+        font-size: 24pt;
+        white-space: nowrap;
+        max-height: 100%;
+        min-width: auto;
+        min-height: 100%;
+    }
+
+    .main {
+        align-items: center;
+        margin: 5% auto 0 auto;
+    }
+
+    .title {
+        text-align: center;
+        color: #FFFFFF;
+        font-size: 26px;
+        padding: 0% 5% 5% 5%;
+    }
+
+    .dateTime {
+        font-size: 16px;
+        color: #d6d6d6;
+    }
+
+    .content {
+        text-align: center;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        margin: 0 auto;
+        width: 40%;
+        background: #6296E4;
+        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+    }
+
+    .mainInf {
+        color: #FFFFFF;
+        font-size: 21px;
+        display: flex;
+        flex-direction: column;
+        flex-flow: column nowrap;
+        align-items: stretch;
+        justify-content: normal;
+        height: auto;
+        padding: 2% 4% 0% 4%;
+    }
+
+    .Text {
+        text-align: left;
+        padding: 0% 0% 3% 0%;
+    }
+
+    .input {
+        background: #8aaaf3;
+        border-radius: 10px;
+        color: white;
+        width: 96%;
+        height: auto;
+        padding: 1% 2% 1% 2%;
+        word-break: break-word;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
+
+    .inputDate {
+        background: #8aaaf3;
+        border-radius: 10px;
+        color: white;
+        padding-left: 2%;
+        padding-right: 2%;
+        width: 160px;
+        height: 30px;
+    }
+
+    .inputBig {
+        background: #5389DA;
+        border-radius: 18px;
+        border: 2px solid #4876bb;
+        font-size: 21px;
+        color: white;
+        padding: 0% 2% 0 2%;
+        resize: none;
+        width: 96%;
+        min-height: 30px;
+    }
+
+    .button {
+        margin: 10% auto 0% auto;
+        padding: 1px 1px 1px 1px;
+        width: 280px;
+        border-radius: 51px;
+        border: 2px solid white;
+        background: white;
+        color: #6296E4;
+        font-size: 24px;
+        text-decoration: none;
+    }
+
+
+    .contentF {
+        justify-content: space-between;
+        max-width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        color: #FFFFFF;
+        width: 100%;
+        margin-top: 2%;
+        margin-bottom: 5%;
+    }
+
+    .aboutF {
+        float: right;
+    }
+
+    .footerA {
+        text-decoration: none;
+        color: #FFFFFF;
     }
 </style>
-<h3>Данные о посте:</h3>
-<div style="text-align: center;">
-    <form>
-        <table class="table table-striped" width="200" border="1" style="display: inline-block;">
-            <tr>
 
-                <p>ID поста:              @Model.PostID   </p>
-                <p>ID пользователя:       @Model.UserID   </p>
-                <p>Название поста:              @Model.PostTitle   </p>
-                <p>Содержание:          @Model.PostDescription   </p>
-                <p>Дата выхода:         @Model.StartTime </p>
-                Видимость:
-                @if (@Model.Hide == true)
-                {
-                    <p>Виден</p>
-                }
-                else
-                {
-                    <p>Не виден</p>
-                }
-            </tr>
-            </table>
-            <a class="btn btn-outline-dark" asp-action="PostView">Список постов</a>
-        </form>
+<header class="header">
+    <div class="header-intro">
+        <div class="logo">Logo</div>
+        <nav class="nav">
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Login">Вход</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
+            <a class="nav_link" href="#">О нас</a>
+        </nav>
     </div>
-    @section scripts{
+</header>
 
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    }
+<div class="main">
+    <div class="content">
 
+        <div class="title">
+            Информация о посте:
+        </div>
+
+        <div class="mainInf">
+
+            <div class="Text">
+                ID пользователя создавшего пост:
+                <div class="input">
+                    @Model.UserID
+                </div>
+            </div>
+
+            <div class="Text">
+                Фамилия и имя пользователя:
+                <div class="input">
+                    @Model.LastName @Model.Name
+                </div>
+            </div>
+
+            <br />
+
+            <div class="Text">
+                ID поста:
+                <div class="input">
+                    @Model.PostID
+                </div>
+            </div>
+
+            <div class="Text">
+                Название поста:
+                <div class="input">
+                    @Model.PostTitle
+                </div>
+            </div>
+
+            <div class="Text">
+                Основной текст поста:
+                <div class="input">
+                    @Model.PostDescription
+                </div>
+            </div>
+
+            <div class="Text">
+                Дата и время публикации:
+                <div class="input">
+                    @Model.StartTime
+                </div>
+            </div>
+
+            <div class="Text">
+                Видимость:
+                <div class="input">
+                    @if (@Model.Hide == true)
+                    {
+                        <div>Виден</div> }
+                    else
+                    {
+                        <div>Не виден</div> }
+                </div>
+            </div>
+
+
+            <a class="button" asp-action="PostView">Список постов</a>
+        </div>
+    </div>
+</div>
+
+<hr style="margin-top: 15%;">
+
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
