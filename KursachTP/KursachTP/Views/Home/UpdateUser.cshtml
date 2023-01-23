@@ -1,82 +1,282 @@
-@using KursachTP.DAO
+﻿@using KursachTP.DAO
 @model KursachTP.Models.User
 
 <style>
     body {
-        background-color: #3870ff;
-        color: white
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        background: #7CA8FF;
+        width: 70%;
+        margin: 0 auto;
     }
 
-    form {
-        font-size: 15px;
+    .header {
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        left: 0px;
+        top: 0px;
+        min-width: 20%;
+        background: #6296E4;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        min-width: 20%;
+        min-height: 50%;
+    }
+
+    .header-intro {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1.3%;
+        margin-left: 15%;
+        margin-right: 15%;
+        min-width: none;
+    }
+
+    .logo {
+        text-decoration: none;
+        color: white;
+        font: 'Roboto';
+        font-size: 24pt;
+        min-width: 20%;
+        min-height: 100%;
+    }
+
+    .nav_link_find {
         display: inline-block;
-        background-color: white;
-        padding: 10px 60px;
-        border-radius: 8px;
+        text-decoration: none;
+        color: #6296E4;
+        font: 'Roboto';
+        font-size: 24pt;
+        background-color: #FFFFFF;
+        border-radius: 51px;
+        padding: 0 15px 0 15px;
+    }
+
+    .nav_link {
+        display: inline-block;
+        margin-left: 10%;
+        text-decoration: none;
+        color: white;
+        font: 'Roboto';
+        font-size: 24pt;
+        white-space: nowrap;
+        max-height: 100%;
+        min-width: auto;
+        min-height: 100%;
+    }
+
+    .main {
+        align-items: center;
+        margin: 5% auto 0 auto;
+    }
+
+    .title {
+        text-align: center;
+        color: #FFFFFF;
+        font-size: 26px;
+        padding: 0% 5% 5% 5%;
+    }
+
+    .dateTime {
+        font-size: 16px;
+        color: #d6d6d6;
+    }
+
+    .content {
+        text-align: center;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        margin: 0 auto;
+        width: 40%;
+        background: #6296E4;
+        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+    }
+
+    .mainInf {
+        color: #FFFFFF;
+        font-size: 21px;
+        display: flex;
+        flex-direction: column;
+        flex-flow: column nowrap;
+        align-items: stretch;
+        justify-content: normal;
+        height: auto;
+        padding: 2% 4% 0% 4%;
+    }
+
+    .Text {
+        text-align: left;
+        padding: 0% 0% 3% 0%;
+    }
+
+    .input {
+        background: #5389DA;
+        border-radius: 10px;
+        border: 2px solid #4876bb;
+        font-size: 21px;
+        color: white;
+        width: 96%;
+        height: auto;
+        padding: 1% 2% 1% 2%;
+        word-break: break-word;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
+
+    .inputDate {
+        background: #5389DA;
+        border-radius: 10px;
+        border: 2px solid #4876bb;
+        font-size: 21px;
+        color: white;
+        padding-left: 2%;
+        padding-right: 2%;
+        width: 160px;
+        height: 30px;
+    }
+
+    .inputBig {
+        background: #5389DA;
+        border-radius: 18px;
+        border: 2px solid #4876bb;
+        font-size: 21px;
+        color: white;
+        padding: 0% 2% 0 2%;
+        resize: none;
+        width: 96%;
+        min-height: 30px;
+    }
+
+    .button {
+        margin: 10% auto 0% auto;
+        padding: 1px 1px 1px 1px;
+        width: 280px;
+        border-radius: 51px;
+        border: 2px solid white;
+        background: white;
+        color: #6296E4;
+        font-size: 24px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+    .contentF {
+        justify-content: space-between;
+        max-width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+        color: #FFFFFF;
+        width: 100%;
+        margin-top: 2%;
+        margin-bottom: 5%;
+    }
+
+    .aboutF {
+        float: right;
+    }
+
+    .footerA {
+        text-decoration: none;
+        color: #FFFFFF;
     }
 </style>
 
-<div style="text-align: center;"
-    <table class="table table-striped" width="454" border="4" style="display: inline-block;">
-        <form method="post" asp-antiforgery="true" asp-action="UpdatePerson" asp-controller="Home">
-            <div>
-                <div>
-                    <label asp-for="UserID"></label><br />
-                    <input value="@Model.UserID" type="text" asp-for="UserID" />
-                    <span asp-validation-for="UserID"></span>
-                </div>
-                <div>
-                    <label asp-for="Name"></label><br />
-                    <input value="@Model.Name" type="text" asp-for="Name" />
-                    <span asp-validation-for="Name"></span>
-                </div>
-                <div>
-                    <label asp-for="LastName"></label><br />
-                    <input value="@Model.LastName" type="text" asp-for="LastName" />
-                    <span asp-validation-for="LastName"></span>
-                </div>
-                <div>
-                    <label asp-for="UserDescription"></label><br />
-                    <input value="@Model.UserDescription" asp-for="UserDescription" />
-                    <span asp-validation-for="UserDescription"></span>
-                </div>
-                <div>
-                    <label asp-for="Birthday"></label><br />
-                    <input value="@Model.Birthday" asp-for="Birthday" type="datetime" />
-                    <span asp-validation-for="Birthday"></span>
-                </div>
-                <div>
-                    <label asp-for="Pol"></label><br />
-                    <input value="@Model.Pol" asp-for="Pol" />
-                    <span asp-validation-for="Pol"></span>
-                </div>
-                <div>
-                    <label asp-for="Login"></label><br />
-                    <input value="@Model.Login" asp-for="Login" />
-                    <span asp-validation-for="Login"></span>
-                </div>
-                <div>
-                    <label asp-for="Password"></label><br />
-                    <input value="@Model.Password" asp-for="Password" type="password" />
-                    <span asp-validation-for="Password"></span>
-                </div>
-                <div>
-                    <label asp-for="Phone"></label><br />
-                    <input value="@Model.Phone" asp-for="Phone" />
-                    <span asp-validation-for="Phone"></span>
-                </div>
-                <div>
-                    <label asp-for="Rol"></label><br />
-                    <input value="@Model.Rol" asp-for="Rol" />
-                    <span asp-validation-for="Rol"></span>
-                </div>
-                <div>
-                    <input type="submit" class="btn btn-outline-dark" value="��������" />
-                </div>
+<header class="header">
+    <div class="header-intro">
+        <div class="logo">Logo</div>
+        <nav class="nav">
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Login">Вход</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
+            <a class="nav_link" href="#">О нас</a>
+        </nav>
+    </div>
+</header>
+
+<div class="main">
+    <form method="post" asp-antiforgery="true" asp-action="UpdatePerson" asp-controller="Home" class="content">
+
+        <div class="title">
+            Редактирование пользователя:
+        </div>
+
+        <div class="mainInf">
+
+            <div class="Text">
+                ID:
+                <input value="@Model.UserID" type="text" asp-for="UserID" class="input" />
             </div>
-        </form>
-    </table>
+
+            <div class="Text">
+                Имя:
+                <input value="@Model.Name" type="text" asp-for="Name" class="input" />
+
+            </div>
+
+            <div class="Text">
+                Фамилия:
+                <input value="@Model.LastName" type="text" asp-for="LastName" class="input" />
+            </div>
+
+            <div class="Text">
+                Дата рождения:
+                <input value="@Model.Birthday" type="text" asp-for="Birthday" class="input" />
+            </div>
+
+            <div class="Text">
+                Пол:
+                <input value="@Model.Pol" type="text" asp-for="Pol" class="input" />
+            </div>
+
+            <div class="Text">
+                Описпание:
+                <input value="@Model.UserDescription" type="text" asp-for="UserDescription" class="input" />
+            </div>
+
+            <div class="Text">
+                Логин:
+                <input value="@Model.Login" type="text" asp-for="Login" class="input" />
+            </div>
+
+            <div class="Text">
+                Хеш-пароль:
+                <input value="@Model.Password" type="text" asp-for="Password" class="input" />
+            </div>
+
+            <div class="Text">
+                Номер телефона:
+                <input value="@Model.Phone" type="text" asp-for="Phone" class="input" />
+            </div>
+
+            <div class="Text">
+                Роль:
+                <input value="@Model.Rol" type="text" asp-for="Rol" class="input" />
+            </div>
+            <input type="submit" class="button" value="Изменить" />
+            <a class="button" asp-action="Index">Список пользователей</a>
+        </div>
+    </form>
 </div>
+
+<hr style="margin-top: 15%;">
+
 @section scripts{
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
