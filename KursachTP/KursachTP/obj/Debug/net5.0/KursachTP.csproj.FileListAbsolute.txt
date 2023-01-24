@@ -81,3 +81,4 @@ Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\ref\KursachTP.dll
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.pdb
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.genruntimeconfig.cache
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.csproj.AssemblyReference.cache
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\InsertPostU.cshtml.g.cs
