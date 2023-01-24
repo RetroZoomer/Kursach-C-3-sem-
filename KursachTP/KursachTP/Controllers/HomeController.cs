@@ -201,9 +201,8 @@ namespace KursachTP.Controllers
             }
             else
             {
-                return View();
+                return View("Login2");
             }
         }
-
     }
 }
