@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using KursachTP.Models;
-using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Logging;
 using KursachTP.DAO;
 using Microsoft.AspNetCore.Authentication.Cookies;
