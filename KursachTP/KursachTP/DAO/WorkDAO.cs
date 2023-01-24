@@ -67,7 +67,7 @@ namespace KursachTP.DAO
         public List<Profile> RecordOprName(string name)
         {
             Connect();
-            string sql = "SELECT name,lastname,userdescription,birthday FROM User where name LIKE @name or Login LIKE @name";
+            string sql = "SELECT name,lastname,userdescription,birthday,pol FROM User where name LIKE @name or Login LIKE @name";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("name", name);
@@ -79,7 +79,7 @@ namespace KursachTP.DAO
             while (reader.Read())
             {
                 Profiles.profiles.Add(new Profile(reader.GetString(0), reader.GetString(1),
-                    reader.GetString(2), reader.GetString(3)));
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4)));
             }
 
             Disconnect();

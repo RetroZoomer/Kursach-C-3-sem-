@@ -8,12 +8,13 @@ namespace KursachTP.Models
 {
     public class Profile
     {
-        public Profile(string f0, string f1, string f2, string f3)
+        public Profile(string f0, string f1, string f2, string f3, string f4)
         {
             Name = f0;
             LastName = f1;
             UserDescription = f2;
             Birthday = Convert.ToDateTime(f3);
+            Pol = Convert.ToBoolean(f4);
         }
         public Profile()
         {
@@ -27,6 +28,8 @@ namespace KursachTP.Models
         public string? UserDescription { get; set; }
         [Required]
         public DateTime? Birthday { get; set; }
+        [Required]
+        public bool? Pol { get; set; }
     }
 
     public static class Profiles

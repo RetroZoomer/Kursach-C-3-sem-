@@ -4,389 +4,478 @@
 @model List<Profile>
 
 <style>
-    body {
-        font-family: 'Roboto', sans-serif;
-        font-size: 16px;
-        background: #7CA8FF;
-        width: 70%;
-        margin: 0 auto;
-    }
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            background: #7CA8FF;
+            width: 70%;
+            margin: 0 auto;
+        }
 
-    .header {
-        position: absolute;
-        width: 100%;
-        height: 10%;
-        left: 0px;
-        top: 0px;
-        min-width: 20%;
-        background: #6296E4;
-        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
-    }
+        .header {
+            position: absolute;
+            width: 100%;
+            height: 10%;
+            left: 0px;
+            top: 0px;
+            min-width: 20%;
+            background: #6296E4;
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+        }
 
-    .nav {
-        display: flex;
-        align-items: center;
-        justify-content: end;
-        min-width: 20%;
-        min-height: 50%;
-    }
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            min-width: 20%;
+            min-height: 50%;
+        }
 
-    .header-intro {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 1.3%;
-        margin-left: 15%;
-        margin-right: 15%;
-        min-width: none;
-    }
+        .header-intro {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.3%;
+            margin-left: 15%;
+            margin-right: 15%;
+            min-width: none;
+        }
 
-    .logo {
-        text-decoration: none;
-        color: white;
-        font-size: 24pt;
-        min-width: 20%;
-        min-height: 100%;
-    }
+        .logo {
+            text-decoration: none;
+            color: white;
+            font-size: 24pt;
+            min-width: 20%;
+            min-height: 100%;
+        }
 
-    .nav_link_find {
-        display: inline-block;
-        text-decoration: none;
-        color: #6296E4;
-        font-size: 24pt;
-        background-color: #FFFFFF;
-        border-radius: 51px;
-        padding: 0 15px 0 15px;
-    }
+        .nav_link_find {
+            display: inline-block;
+            text-decoration: none;
+            color: #6296E4;
+            font-size: 24pt;
+            background-color: #FFFFFF;
+            border-radius: 51px;
+            padding: 0 15px 0 15px;
+        }
 
-    .nav_link {
-        display: inline-block;
-        margin-left: 10%;
-        text-decoration: none;
-        color: white;
-        font: 'Roboto';
-        font-size: 24pt;
-        white-space: nowrap;
-        max-height: 100%;
-        min-width: auto;
-        min-height: 100%;
-    }
+        .nav_link {
+            display: inline-block;
+            margin-left: 10%;
+            text-decoration: none;
+            color: white;
+            font-size: 24pt;
+            white-space: nowrap;
+            max-height: 100%;
+            min-width: auto;
+            min-height: 100%;
+        }
 
-    .main {
-        align-items: center;
-        margin: 13% auto 0 auto;
-        min-width: 50%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
+        .nav_link_p {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            font-size: 24pt;
+            white-space: nowrap;
+            max-height: 100%;
+            min-width: auto;
+            min-height: 100%;
+        }
 
-    .right {
-        margin: 0% 0% 3% auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
+        .profileHref {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
 
-    .createPost {
-        font-size: 24px;
-    }
+            margin-left: 10%;
+        }
 
-    .post {
-        text-align: center;
-        margin: 0% auto 5% auto;
-        width: 700px;
-        background: #6296E4;
-        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-    }
+        .main {
+            align-items: center;
+            margin: 13% auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
-    .findFriends {
-        text-align: center;
-        border-radius: 51px;
-        border: 2px solid white;
-        background: white;
-        color: #6296E4;
-        font-size: 24px;
-        font-family: Arial, Helvetica, sans-serif;
-        width: 250px;
-        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-    }
+        .right {
+            margin: 0% 0% 3% auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
 
-    .title {
-        text-align: center;
-        color: #FFFFFF;
-        font-size: 26px;
-        padding: 3% 5% 0% 5%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        .createPost {
+            font-size: 24px;
+        }
 
-    .menu {
-        background-color: #000000;
-        width: 25px;
-        height: 5px;
-    }
+        .post {
+            text-align: center;
+            margin: 0% auto 5% auto;
+            width: 700px;
+            background: #6296E4;
+            box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+        }
 
-    .topmenu > li {
-        display: inline-block;
-        position: relative;
-        margin: 0;
-        padding: 0;
-    }
+        .findFriends {
+            text-align: center;
+            border-radius: 51px;
+            border: 2px solid white;
+            background: white;
+            color: #6296E4;
+            font-size: 24px;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 250px;
+            box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+        }
 
-    .submenu {
-        z-index: 4;
-        width: 200px;
-        padding: 15px 10px 15px 10px;
-        text-align: left;
-        background: #5e91dd;
-        border-radius: 5px;
-        box-shadow: 0 0 30px rgba(0,0,0,.2);
-        box-sizing: border-box;
-        visibility: hidden;
-        opacity: 0;
-        transform: translate(-50%, 20px);
-        transition: .2s;
-        list-style-type: none;
-    }
+        .title {
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 26px;
+            padding: 3% 5% 0% 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .ali {
-        text-decoration: none;
-        color: #FFFFFF;
-    }
+        .menu {
+            background-color: #000000;
+            width: 25px;
+            height: 5px;
+        }
 
-    .titleNiz {
-        text-align: center;
-        color: #FFFFFF;
-        font-size: 22px;
-        padding: 0% 5% 0% 5%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: baseline;
-    }
+        .topmenu > li {
+            display: inline-block;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
 
-    .dateTime {
-        text-align: left;
-        padding-left: 1%;
-        padding-bottom: 2%;
-        font-size: 16px;
-        color: #d6d6d6;
-    }
+        .submenu {
+            z-index: 4;
+            width: 200px;
+            padding: 15px 10px 15px 10px;
+            text-align: left;
+            background: #5e91dd;
+            border-radius: 5px;
+            box-shadow: 0 0 30px rgba(0,0,0,.2);
+            box-sizing: border-box;
+            visibility: hidden;
+            opacity: 0;
+            transform: translate(-50%, 20px);
+            transition: .2s;
+            list-style-type: none;
+        }
 
-    .dateTimePost {
-        text-align: left;
-        padding-left: 5%;
-        padding-bottom: 3%;
-        font-size: 16px;
-        color: #d6d6d6;
-    }
+        .ali {
+            text-decoration: none;
+            color: #FFFFFF;
+        }
 
-    .titleD {
-        text-align: left;
-        color: #FFFFFF;
-        font-size: 21px;
-        padding: 1% 5% 1% 5%;
-    }
+        .titleNiz {
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 22px;
+            padding: 0% 5% 0% 5%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: baseline;
+        }
 
-    .hobby {
-        text-align: left;
-        color: #FFFFFF;
-        font-size: 21px;
-        padding: 1% 5% 2% 5%;
-    }
+        .dateTime {
+            text-align: left;
+            padding-left: 1%;
+            padding-bottom: 2%;
+            font-size: 16px;
+            color: #d6d6d6;
+        }
 
-    .textDescription {
-        text-align: left;
-        color: #FFFFFF;
-        font-size: 18px;
-        margin: 0% auto 2% auto;
-        padding: 1% 2% 1% 2%;
-        background: #AAC4FF;
-        border-radius: 10px;
-        width: 86%;
-    }
+        .dateTimePost {
+            text-align: left;
+            padding-left: 5%;
+            padding-bottom: 3%;
+            font-size: 16px;
+            color: #d6d6d6;
+        }
 
-    .button {
-        float: right;
-        margin: 1% 5% 3% 0%;
-        border-radius: 51px;
-        border: 2px solid white;
-        background: white;
-        color: #6296E4;
-        font-size: 24px;
-        width: 200px;
-        cursor: pointer;
-    }
+        .titleD {
+            text-align: left;
+            color: #FFFFFF;
+            font-size: 21px;
+            padding: 1% 5% 1% 5%;
+        }
 
-    .bMenu {
-        margin: 0% auto;
-        display: flex;
-        padding: 1% 5% 2% 5%;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        align-items: start;
-    }
+        .hobby {
+            text-align: left;
+            color: #FFFFFF;
+            font-size: 21px;
+            padding: 1% 5% 2% 5%;
+        }
 
-    .buttonMenu {
-        float: right;
-        margin: 1% 0% 3% 0%;
-        border-radius: 51px;
-        border: 2px solid white;
-        background: white;
-        color: #6296E4;
-        text-decoration: none;
-        font-size: 24px;
-        width: 180px;
-        cursor: pointer;
-    }
+        .textDescription {
+            text-align: left;
+            color: #FFFFFF;
+            font-size: 18px;
+            margin: 0% auto 2% auto;
+            padding: 1% 2% 1% 2%;
+            background: #AAC4FF;
+            border-radius: 10px;
+            width: 86%;
+        }
 
-    .buttonRight {
-        margin: 0% auto 30px auto;
-        border-radius: 51px;
-        border: 2px solid white;
-        background: white;
-        color: #6296E4;
-        font-size: 24px;
-        width: 250px;
-        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-        cursor: pointer;
-    }
+        .button {
+            float: right;
+            margin: 1% 5% 3% 0%;
+            border-radius: 51px;
+            border: 2px solid white;
+            background: white;
+            color: #6296E4;
+            font-size: 24px;
+            width: 200px;
+            cursor: pointer;
+        }
 
-    .commentSection {
-        padding-bottom: 3%;
-    }
+        .bMenu {
+            margin: 0% auto;
+            display: flex;
+            padding: 1% 5% 2% 5%;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: start;
+        }
 
-    .comment {
-        width: 90%;
-        margin: 2% auto;
-        padding: 1% 1% 1% 1%;
-        text-align: left;
-        background: #AAC4FF;
-        border-radius: 10px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-    }
+        .buttonMenu {
+            float: right;
+            margin: 1% 0% 3% 0%;
+            border-radius: 51px;
+            border: 2px solid white;
+            background: white;
+            color: #6296E4;
+            text-decoration: none;
+            font-size: 24px;
+            width: 180px;
+            cursor: pointer;
+        }
 
-    .textComment {
-        color: #FFFFFF;
-        font-size: 18px;
-        padding: 1% 2% 1% 2%;
-        width: 362px;
-    }
+        .buttonRight {
+            margin: 0% auto 30px auto;
+            border-radius: 51px;
+            border: 2px solid white;
+            background: white;
+            color: #6296E4;
+            font-size: 24px;
+            width: 250px;
+            box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            cursor: pointer;
+        }
 
-    .timeComment {
-        float: right;
-        color: #FFFFFF;
-        font-size: 18px;
-        padding: 1% 2% 1% 0%;
-    }
+        .commentSection {
+            padding-bottom: 3%;
+        }
 
-    .userComment {
-        text-align: left;
-        color: #FFFFFF;
-        font-size: 18px;
-        padding: 1% 0% 1% 2%;
-    }
+        .comment {
+            width: 90%;
+            margin: 2% auto;
+            padding: 1% 1% 1% 1%;
+            text-align: left;
+            background: #AAC4FF;
+            border-radius: 10px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
 
-    .contentF {
-        justify-content: space-between;
-        max-width: 100%;
-        margin-right: 0;
-        margin-left: 0;
-    }
+        .textComment {
+            color: #FFFFFF;
+            font-size: 18px;
+            padding: 1% 2% 1% 2%;
+            width: 362px;
+        }
 
-    footer {
-        display: flex;
-        justify-content: space-between;
-        color: #FFFFFF;
-        width: 100%;
-        margin-top: 2%;
-        margin-bottom: 5%;
-    }
+        .timeComment {
+            float: right;
+            color: #FFFFFF;
+            font-size: 18px;
+            padding: 1% 2% 1% 0%;
+        }
 
-    .aboutF {
-        float: right;
-    }
+        .userComment {
+            text-align: left;
+            color: #FFFFFF;
+            font-size: 18px;
+            padding: 1% 0% 1% 2%;
+        }
 
-    .footerA {
-        text-decoration: none;
-        color: #FFFFFF;
-    }
+        .contentF {
+            justify-content: space-between;
+            max-width: 100%;
+            margin-right: 0;
+            margin-left: 0;
+        }
 
-    .profileMainWindow {
-        margin: 0 auto;
-        height: 420px;
-        width: 35%;
-        background: #6296E4;
-        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-    }
+        footer {
+            display: flex;
+            justify-content: space-between;
+            color: #FFFFFF;
+            width: 100%;
+            margin-top: 2%;
+            margin-bottom: 5%;
+        }
+
+        .aboutF {
+            float: right;
+        }
+
+        .footerA {
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+
+        .profileMainWindow {
+            margin: 0 auto;
+            height: 420px;
+            width: 35%;
+            background: #6296E4;
+            box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+        }
 
     /* .title {
-        color: #FFFFFF;
-        font-size: 26px;
-        padding: 5% 0 3% 0;
-    } */
+    color: #FFFFFF;
+    font-size: 26px;
+    padding: 5% 0 3% 0;
+} */
 
-    .styleWindow {
-        color: #FFFFFF;
-        font-size: 21px;
-        /* display: flex; */
-        /* flex-direction: row;
+        .styleWindow {
+            color: #FFFFFF;
+            font-size: 21px;
+            /* display: flex; */
+            /* flex-direction: row;
         flex-flow: row wrap;
         justify-content: flex-start; */
 
-        padding: 8% 8% 0% 8%;
-    }
+            padding: 8% 8% 0% 8%;
+        }
 
-    .styleOtherWindow {
-        color: #FFFFFF;
-        font-size: 21px;
-        /* display: flex; */
-        /* flex-direction: row;
+        .styleOtherWindow {
+            color: #FFFFFF;
+            font-size: 21px;
+            /* display: flex; */
+            /* flex-direction: row;
         flex-flow: row wrap;
         justify-content: flex-start; */
 
-        padding: 3% 3% 0% 3%;
+            padding: 3% 3% 0% 3%;
+        }
+
+        .profileImg {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+    
+        .navImg {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            padding: 0% 5%;
+            /*cursor: pointer;*/
+        }
+
+        .styleImg {
+            display: block;
+            margin: auto;
+        }
+
+        .profileText {
+            text-align: left;
+        }
+
+        .profileInf {
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            margin-bottom: 5%;
+
+            margin-bottom: 5%;
+        }
+
+        .profileOtherWindow {
+            margin: 0 0 0 3%;
+            height: auto;
+            width: 100%;
+            background: #6296E4;
+            box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+        }
+
+        .Text {
+            text-align: left;
+            padding: 0% 0% 3% 0%;
+        }
+
+    .input {
+        background: #8aaaf3;
+        border-radius: 10px;
+        color: white;
+        width: 95%;
+        min-height: 10px;
+        height: auto;
+        padding: 5px 10px;
+        word-break: break-word;
     }
 
-    .profileImg {
-        width: 200px;
-        min-width: 200px;
-    }
-
-    .styleImg {
-        display: block;
-        margin: auto;
-        padding: 8% 8% 0% 8%;
-    }
-
-    .profileText {
-        text-align: left;
-        padding-left: 5%;
-    }
-
-    .profileInf {
-        background: #5389DA;
-        border-radius: 51px;
-        border: 2px solid #4876bb;
-        width: 100%;
-        height: 30px;
-    }
-
-    .profileOtherWindow {
-        margin: 0 0 0 3%;
-        height: 420px;
-        width: 100%;
+    .content {
+        text-align: center;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        margin: 0 0 0 auto;
+        width: 30%;
         background: #6296E4;
-        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 12px 15px rgb(0 0 0 / 25%);
         border-radius: 20px;
+    }
+
+    .input1 {
+        background: #8aaaf3;
+        border-radius: 10px;
+        color: white;
+        width: 97%;
+        min-height: 10px;
+        height: auto;
+        padding: 5px 10px;
+        word-break: break-word;
+    }
+
+    .content1 {
+        text-align: center;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        margin: 0 auto;
+        width: 50%;
+        background: #6296E4;
+        box-shadow: 0px 12px 15px rgb(0 0 0 / 25%);
+        border-radius: 20px;
+    }
+
+    .mainInf {
+        color: #FFFFFF;
+        font-size: 21px;
+        display: flex;
+        flex-direction: column;
+        flex-flow: column nowrap;
+        align-items: stretch;
+        justify-content: normal;
+        height: auto;
+        padding: 2% 4% 0% 4%;
     }
 </style>
 
@@ -400,52 +489,105 @@
 
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
             <a class="nav_link" href="#">О нас</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView"></a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
-             @try
-              {
-                   @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
-              }
-               catch (NullReferenceException ex)
-              {
+            <div class="profileHref">
+                <a class="nav_link_p" asp-area="" asp-controller="Home" asp-action="ProfileView">
+                    @try
+                    {
+                        @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
+                    }
+                    catch (NullReferenceException ex)
+                    {
 
-              }   
-            </a>
+                    }
+                </a>
 
-</nav>
+                <a asp-area="" asp-controller="Home" asp-action="ProfileView">
+                    <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="navImg">
+                </a>
+                
+            </div>
+            
+        </nav>
     </div>
 </header>
-@foreach (var pr in Model)
-{
-    <div class="main">
-        <div class="profileMainWindow">
-            <div class="styleImg">
-                <!-- <img src="/Front/profile/img/user.png" alt="фото пользователя" class="profileImg"> -->
-            </div>
-            <div class="styleWindow">
-                <div class="profileText">
 
-                    Фамилия:
-                    <p> @pr.LastName</p>
-                    Имя:
-                    <p> @pr.Name</p>
-                    Дата рождения:  @pr.Birthday
+<div class="main">
+
+    @foreach (var pr in Model)
+    {
+        <div class="profileInf">
+
+            <div class="content">
+
+                <div class="mainInf">
+
+                    <div class="styleImg">
+                         <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg"> 
+                    </div>
+
+                    <div class="Text">
+                        Имя:
+                        <div class="input">
+                            @pr.Name
+                        </div>
+                    </div>
+
+                    <div class="Text">
+                        Фамилия:
+                        <div class="input">
+                            @pr.LastName
+                        </div>
+                    </div>
+
+                    <div class="Text">
+                        Пол:
+                        <div class="input">
+                            @if (pr.Pol == true)
+                            {
+                                <div>Мужской</div> }
+                            else
+                            {
+                                <div>Женский</div>}
+                        </div>
+                    </div>
+
+                    <div class="Text">
+                        День рождения:
+                        <div class="input">
+                            @pr.Birthday
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="profileOtherWindow">
-            <div class="styleOtherWindow">
-                <div class="profileText">
-                    Обо мне:
-                    <p> @pr.UserDescription</p>
-                    Хобби:
+            <div class="content1">
+                <div class="mainInf">
+
+                    <div class="Text">
+                        Обо мне:
+                        <div class="input1">
+                            @pr.UserDescription
+                        </div>
+                    </div>
+
+                    <div class="Text">
+                        Хобби:
+                        <div class="input1">
+                            
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
         </div>
+    }
+        <div>
+
+        </div>
+
     </div>
-}
 
 <hr style="margin-top: 15%;">
 
