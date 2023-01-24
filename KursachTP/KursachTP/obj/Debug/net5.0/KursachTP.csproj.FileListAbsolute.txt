@@ -150,7 +150,7 @@ Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\InfoPostVie
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\InsertPost.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\PostView.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\UpdatePost.cshtml.g.cs
-Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\PostViewA.cshtml.g.cs
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\PostViewA.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Register.cshtml.g.cs
 C:\Users\root\source\repos\KP — копия\KursachTP\KursachTP\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\root\source\repos\KP — копия\KursachTP\KursachTP\bin\Debug\net5.0\appsettings.json
@@ -233,10 +233,15 @@ C:\Users\root\source\repos\KP — копия\KursachTP\KursachTP\obj\Debug\net5.
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Register.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\StarterPage.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\StarterPage.cshtml.g.cs
-Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\UserView\PostViewU.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\PostViewU.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\LogIn2.cshtml.g.cs
+<<<<<<< HEAD
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\ProfileU.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\WarningU.cshtml.g.cs
+=======
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\LogIn2.cshtml.g.cs
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\PostViewU.cshtml.g.cs
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\ProfileU.cshtml.g.cs
+>>>>>>> d5e5cea2d55520c58965a09346e0d3003030397c
