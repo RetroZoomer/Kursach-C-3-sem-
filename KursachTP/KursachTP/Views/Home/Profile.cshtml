@@ -1,4 +1,7 @@
 ﻿@using System.Security.Claims
+@using KursachTP.Models
+
+@model List<Profile>
 
 <style>
     body {
@@ -326,18 +329,18 @@
     }
 
     /* .title {
-    color: #FFFFFF;
-    font-size: 26px;
-    padding: 5% 0 3% 0;
-} */
+        color: #FFFFFF;
+        font-size: 26px;
+        padding: 5% 0 3% 0;
+    } */
 
     .styleWindow {
         color: #FFFFFF;
         font-size: 21px;
         /* display: flex; */
         /* flex-direction: row;
-    flex-flow: row wrap;
-    justify-content: flex-start; */
+        flex-flow: row wrap;
+        justify-content: flex-start; */
 
         padding: 8% 8% 0% 8%;
     }
@@ -347,8 +350,8 @@
         font-size: 21px;
         /* display: flex; */
         /* flex-direction: row;
-    flex-flow: row wrap;
-    justify-content: flex-start; */
+        flex-flow: row wrap;
+        justify-content: flex-start; */
 
         padding: 3% 3% 0% 3%;
     }
@@ -394,51 +397,56 @@
         <nav class="nav">
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="LogInView">Вход</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
+
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
             <a class="nav_link" href="#">О нас</a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
-                @try
-                {
-                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
-                }
-                catch (NullReferenceException ex)
-                {
+                <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
+                <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
+                    @try
+                    {
+                        @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
+                    }
+                    catch (NullReferenceException ex)
+                    {
 
-                }
-            </a>
+                    }
+                    </a>
+                </a>
 
-        </nav>
+</nav>
     </div>
 </header>
+@foreach (var pr in Model)
+{
+    <div class="main">
+        <div class="profileMainWindow">
+            <div class="styleImg">
+                <!-- <img src="/Front/profile/img/user.png" alt="фото пользователя" class="profileImg"> -->
+            </div>
+            <div class="styleWindow">
+                <div class="profileText">
 
-<div class="main">
-    <div class="profileMainWindow">
-        <div class="styleImg">
-            <!-- <img src="/Front/profile/img/user.png" alt="фото пользователя" class="profileImg"> -->
+                    Фамилия:
+                    <p> @pr.LastName</p>
+                    Имя:
+                    <p> @pr.Name</p>
+                    Дата рождения:  @pr.Birthday
+                </div>
+            </div>
         </div>
-        <div class="styleWindow">
-            <div class="profileText">
 
-                Фамилия:
-                <p></p>
-                Имя:
-                <p></p>
-                Возраст:
+        <div class="profileOtherWindow">
+            <div class="styleOtherWindow">
+                <div class="profileText">
+                    Обо мне:
+                    <p> @pr.UserDescription</p>
+                    Хобби:
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="profileOtherWindow">
-        <div class="styleOtherWindow">
-            <div class="profileText">
-                Обо мне:
-                <p></p>
-                Хобби:
-            </div>
-        </div>
-    </div>
-</div>
+}
 
 <hr style="margin-top: 15%;">
 
