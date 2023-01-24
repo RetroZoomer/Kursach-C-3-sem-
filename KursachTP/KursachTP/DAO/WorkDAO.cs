@@ -98,7 +98,7 @@ namespace KursachTP.DAO
             else
             {
                 sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname " +
-                "FROM post " + "INNER JOIN user ON post.id_user = user.id_user where hide = true order by starttime desc;";
+                "FROM post " + "INNER JOIN user ON post.id_user = user.id_user where hide = true order by starttime;";
             }
 
             MySqlCommand command = new MySqlCommand(sql, connection);
