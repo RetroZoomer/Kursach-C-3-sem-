@@ -64,7 +64,6 @@
     .main {
         align-items: center;
         margin: 13% auto 0 auto;
-        min-width: 50%;
     }
 
     .content {
@@ -90,23 +89,31 @@
         flex-direction: column;
         flex-flow: column wrap;
         align-items: stretch;
-        justify-content: flex-start;
+        justify-content: normal;
+        height: auto;
         padding: 2% 4% 0% 4%;
     }
 
     .Text {
         text-align: left;
-        font: 'Roboto', sans-serif;
+        padding: 0% 0% 3% 0%;
+        color: white;
     }
 
     .input {
         background: #5389DA;
-        border-radius: 51px;
+        border-radius: 10px;
         border: 2px solid #4876bb;
+        font-size: 21px;
         color: white;
         width: 96%;
-        height: 30px;
-        padding: 0% 2% 0 2%;
+        height: auto;
+        padding: 1% 2% 1% 2%;
+        word-break: break-word;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
     }
 
     .inputDate {
@@ -116,7 +123,7 @@
         color: white;
         padding-left: 2%;
         padding-right: 2%;
-        width: 110px;
+        width: 160px;
         height: 30px;
     }
 
@@ -134,22 +141,38 @@
         background: #5389DA;
         border-radius: 18px;
         border: 2px solid #4876bb;
+        font-size: 21px;
         color: white;
-        padding: 5%;
+        padding: 0% 2% 0 2%;
         resize: none;
-        width: 90%;
-        min-height: 50px;
+        width: 96%;
+        min-height: 30px;
     }
 
     .button {
-        margin: 10% 3% 0% auto;
-        width: 250px;
-        float: right;
+        margin: 0% 0% 0% auto;
+        padding: 1px 1px 1px 1px;
+        width: 210px;
         border-radius: 51px;
         border: 2px solid white;
         background: white;
         color: #6296E4;
         font-size: 24px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .button1 {
+        margin: 0% auto 0% 0%;
+        padding: 1px 1px 1px 1px;
+        width: 106px;
+        border-radius: 51px;
+        border: 2px solid white;
+        background: white;
+        color: #6296E4;
+        font-size: 24px;
+        text-decoration: none;
+        cursor: pointer;
     }
 
 
@@ -216,22 +239,29 @@
             Добавление поста:
         </div>
 
-        <div class="mainInf2">
-            <div class="Text" asp-for="PostTitle">
+        <div class="mainInf">
+            <div class="Text">
                 <p>Название поста: </p>
                 <input asp-for="PostTitle" id="PostTitle" type="text" required minlength="2" maxlength="20" class="input">
             </div>
-            <div class="Text" asp-for="Birthday">
-                <p>Дата выпуска: </p>
-                <input asp-for="StartTime" id="StartTime" type="date" required class="inputDate">
-            </div>
+
             <div class="Text">
                 <p>Содержание поста: </p>
                 <textarea asp-for="PostDescription" name="PostDescription" required minlength="2" maxlength="200" rows="1" class="inputBig"> </textarea>
             </div>
 
+            <div class="Text">
+                <p>Дата выпуска: </p>
+                <input asp-for="StartTime" id="StartTime" type="date" required class="inputDate">
+            </div>
+
+            <div style=" display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%; margin-top: 10%; ">
+                <a class="button1" asp-action="PostView">Назад</a>
+                <input type="submit" class="button" value="Создать пост" />
+            </div>
+
         </div>
-        <input type="submit" value="Добавить пост" class="button">
+
         <hr style="width: 90%; visibility: hidden;">
     </form>
 </div>
