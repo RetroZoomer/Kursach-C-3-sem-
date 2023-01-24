@@ -32,9 +32,9 @@ namespace KursachTP.Controllers
         }
 
         // GET: UserController/Create
-        public ActionResult Create()
+        public ActionResult WarningU()
         {
-            return View();
+            return View("WarningU");
         }
 
         // POST: UserController/Create

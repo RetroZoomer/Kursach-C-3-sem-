@@ -8,33 +8,8 @@ namespace KursachTP.Models
 {
     public class User : Person
     {
-        /*private int userID;
-        public static int UserID
-        {
-            get
-            {
-                return UserID;
-            }
-            set
-            {
-                UserID = value;
-            }
-        }*/
 
-        /*private string userdescription;
-        public static string UserDescription
-        {
-            get
-            {
-                return UserDescription;
-            }
-            set
-            {
-                UserDescription = value;
-            }
-        }*/
         //private  photo;
-        
 
         public User(string f0, string f1, string f2, string f3, string f4, string f5, string f6, string f7, string f8, string f9)
         {
