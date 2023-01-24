@@ -1,4 +1,6 @@
 ﻿@using KursachTP.Models
+@using System.Security.Claims
+@model List<Post>
 <h2>Все посты</h2>
 <style>
     body {
@@ -262,49 +264,72 @@
     <div class="header-intro">
         <div class="logo">Logo</div>
         <nav class="nav">
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="LogInView">Вход</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
-            <a class="nav_link" href="#">О нас</a>
+            <a class="nav_link" asp-area="" asp-controller="User" asp-action="PostView">Посты</a>
+            <a class="nav_link" asp-area="" asp-controller="User" asp-action="ProfileView">
+                @try
+                {
+                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
+                }
+                catch (NullReferenceException ex)
+                {
+
+                }
+            </a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
         </nav>
     </div>
 </header>
 
 
 
-<div class="tb1">
-    <table class="table table-striped">
-        <tr>
-            <td>ID</td>
-            <td>ID_User(Имя)</td>
-            <td>Название</td>
-            <td>Содержание</td>
-            <td>Время выхода поста</td>
-            <td>Видимость</td>
-        </tr>
-        @foreach (var pst in Model)
-        {
-            <tr>
-                <td>@pst.PostID</td>
-                <td>@pst.UserID</td>
-                <td>@pst.PostTitle</td>
-                <td>@pst.PostDescription</td>
-                <td>@pst.StartTime</td>
-                <td>
-                    @if (@pst.Hide == true)
-                    {<p>Виден</p>}
-                    else
-                    {<p>Не виден</p>}
-                </td>
-                <td>
-                <td>
-                    <a class="btn btn-warning" asp-action="DeletePost" asp-route-id="@pst.PostID">Удалить</a>
-                    <a class="btn btn-primary" asp-action="EditPost" asp-route-id="@pst.PostID">Редактировать</a>
-                    <a class="btn btn-info" asp-action="InfoPost" asp-route-id="@pst.PostID">i</a>
-            </tr>
-        }
-    </table>
+<div>
+    @foreach (var pst in Model)
+    {
+        <div class="post">
+            <div class="title">
+                <div>
+                    <b>@pst.PostTitle</b>
+                </div>
+
+            </div>
+            <div class="dateTimePost">
+                @pst.StartTime
+            </div>
+            <div class="titleD">
+                <b>Описание:</b>
+            </div>
+            <div class="textDescription">
+                @pst.PostDescription
+            </div>
+            <div class="hobby">
+                Хобби: #Спорт #АПОЖ
+            </div>
+            <div class="titleNiz">
+                Дата проведения:
+                <div class="dateTime">
+                    2023-02-01 06:30
+                </div>
+            </div>
+            <input type="submit" value="Участвовать" class="button">
+
+            <hr style="width: 90%; visibility: hidden;">
+            <div class="bMenu">
+                <a class="buttonMenu" asp-action="DeletePost" asp-route-id="@pst.PostID">Удалить</a>
+                <a class="buttonMenu" asp-action="EditPost" asp-route-id="@pst.PostID">Редактировать</a>
+                <a class="buttonMenu" asp-action="InfoPost" asp-route-id="@pst.PostID">Информация</a>
+            </div>
+        </div>
+    }
+
 </div>
-<a class="btn btn-warning" asp-action="CreatePost">Добавить новый пост</a>
+<div class="right">
+    <form class="createPost" action="" method="post">
+        <input type="submit" value="Создать пост" class="buttonRight" asp-action="CreatePost">
+    </form>
+    <form class="createPost" action="" method="post">
+        <input type="submit" value="Найти друзей" class="findFriends">
+    </form>
+</div>
 
 
 @section scripts{

@@ -194,7 +194,7 @@ namespace KursachTP.Controllers
                 {
                     return Redirect("/Home/Index");
                 }
-                else { return Redirect("/Home/PostView"); }
+                else { return Redirect("/User/PostViewU"); }
             }
             else
             {
