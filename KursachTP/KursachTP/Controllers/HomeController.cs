@@ -18,6 +18,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using System.Threading;
 
 //namespace ValidationApp.Controllers
 namespace KursachTP.Controllers
@@ -115,7 +116,9 @@ namespace KursachTP.Controllers
         public IActionResult NewPost(Post post)
         {
             //Создание нового поста
-            dataDao.GetPost(post);
+            string nameAuthor = HttpContext.User.Identity.Name;
+            int id = Convert.ToInt32(dataDao.GetID(nameAuthor));
+            dataDao.GetPost(post,id);
             return View("PostView", dataDao.ListPost());
         }
 
@@ -178,11 +181,11 @@ namespace KursachTP.Controllers
         {
             if (dataDao.YesNoData(user))
             {
-                var claims = new List<Claim>
+                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Login), 
                     new Claim(ClaimTypes.Locality, dataDao.GetRole(user)),
-                    new Claim("UserID", user.UserID.ToString())
+                    new Claim("userid", user.UserID.ToString())
                 };
                 string nm = user.Login;
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");
@@ -198,9 +201,8 @@ namespace KursachTP.Controllers
             }
             else
             {
-                return View();
+                return View("Login2");
             }
         }
-
     }
 }
