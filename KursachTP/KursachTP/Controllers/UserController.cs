@@ -18,18 +18,12 @@ namespace KursachTP.Controllers
             return View("PostViewU", dataDao2.ListPost());
         }
         
-        public IActionResult PostView()
-        {
-            //Страница постов
-            return View("PostView", dataDao2.ListPost());
-        }
-
-        public IActionResult ProfileView()
+        public IActionResult ProfileU()
         {
             //Страница профиля
             //static ClaimsPrincipal.FindFirst(string);
             string namesuser = HttpContext.User.Identity.Name;
-            return View("Profile", dataDao2.RecordOprName(namesuser));
+            return View("ProfileU", dataDao2.RecordOprName(namesuser));
         }
         // GET: UserController/Details/5
         public ActionResult Details(int id)

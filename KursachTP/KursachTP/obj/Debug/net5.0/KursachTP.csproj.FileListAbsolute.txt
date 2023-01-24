@@ -151,7 +151,6 @@ Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\InsertPost.
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\PostView.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\UpdatePost.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\PostViewA.cshtml.g.cs
-C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\PostViewA.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Register.cshtml.g.cs
 C:\Users\root\source\repos\KP — копия\KursachTP\KursachTP\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\root\source\repos\KP — копия\KursachTP\KursachTP\bin\Debug\net5.0\appsettings.json
@@ -239,3 +238,4 @@ Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Profile.csh
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\Profile.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\PostViewU.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\LogIn2.cshtml.g.cs
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\ProfileU.cshtml.g.cs

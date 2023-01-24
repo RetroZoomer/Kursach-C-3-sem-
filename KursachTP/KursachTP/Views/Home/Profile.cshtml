@@ -503,7 +503,7 @@
             <a class="nav_link" href="#">О нас</a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
             <div class="profileHref">
-                <a class="nav_link_p" asp-area="" asp-controller="Home" asp-action="ProfileView">
+                <a class="nav_link_p" asp-area="" asp-controller="User" asp-action="ProfileU">
                     @try
                     {
                         @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
