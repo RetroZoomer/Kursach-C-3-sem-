@@ -131,7 +131,7 @@ namespace KursachTP.DAO
             Disconnect();
         }
 
-        public void GetPost(Post post)
+        public void GetPost(Post post, int id)
         {
             Connect();
             string sql = "INSERT INTO POST(id_user, posttitle,postdescription,starttime,hide) " +
@@ -139,7 +139,7 @@ namespace KursachTP.DAO
                 "@post.hide)";
             MySqlCommand comanda = new MySqlCommand(sql, connection);
 
-            comanda.Parameters.AddWithValue("post.id_user", post.UserID);
+            comanda.Parameters.AddWithValue("post.id_user", id);
             comanda.Parameters.AddWithValue("post.posttitle", post.PostTitle);
             comanda.Parameters.AddWithValue("post.postdescription", post.PostDescription);
             comanda.Parameters.AddWithValue("post.starttime", post.StartTime);
@@ -336,6 +336,27 @@ namespace KursachTP.DAO
                 return ("AdminIS");
             }
         }
+        public string GetID(string login)
+        {
+            Connect();
+            string sql = "SELECT id_user FROM USER WHERE login like (@login);";
 
+            string id = null;
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("login", login);
+
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                login = reader.GetString(0);
+            }
+            Disconnect();
+            //string ib = Convert.ToString(id);
+            return login;
+
+        }
     }
 }

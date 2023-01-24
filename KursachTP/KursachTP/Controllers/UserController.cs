@@ -16,7 +16,8 @@ namespace KursachTP.Controllers
         public ActionResult PostViewU()
         {
             return View("PostViewU", dataDao2.ListPost());
-        }/*
+        }
+        
         public IActionResult PostView()
         {
             //Страница постов
@@ -29,7 +30,7 @@ namespace KursachTP.Controllers
             //static ClaimsPrincipal.FindFirst(string);
             string namesuser = HttpContext.User.Identity.Name;
             return View("Profile", dataDao2.RecordOprName(namesuser));
-        }*/
+        }
         // GET: UserController/Details/5
         public ActionResult Details(int id)
         {
