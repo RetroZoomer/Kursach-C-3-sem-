@@ -86,13 +86,23 @@ namespace KursachTP.DAO
             return Profiles.profiles;
         }
         
-        public List<Post> ListPost()
+        public List<Post> ListPost(bool vbr)
         {
             Connect();
-            string sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname " +
-                "FROM post " + "INNER JOIN user ON post.id_user = user.id_user;"; // where id_user BETWEEN @id_user and @id_user2";
+            string sql = null;
+            if (vbr == true)
+            {
+                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname " +
+                                "FROM post " + "INNER JOIN user ON post.id_user = user.id_user;";
+            }
+            else
+            {
+                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname " +
+                "FROM post " + "INNER JOIN user ON post.id_user = user.id_user where hide = true;";
+            }
+
             MySqlCommand command = new MySqlCommand(sql, connection);
-            //command.Parameters.AddWithValue("id_user", id_user);
+
             MySqlDataReader reader = command.ExecuteReader();
 
             Posts.posts.Clear();

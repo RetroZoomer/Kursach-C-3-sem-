@@ -14,8 +14,8 @@ namespace KursachTP.Controllers
         WorkDAO dataDao2 = new WorkDAO();
         // GET: UserController
         public ActionResult PostViewU()
-        {
-            return View("PostViewU", dataDao2.ListPost());
+        { // Посты для пользователя
+            return View("PostViewU", dataDao2.ListPost(false));
         }
         
         public IActionResult ProfileU()

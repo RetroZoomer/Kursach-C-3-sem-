@@ -102,7 +102,7 @@ namespace KursachTP.Controllers
         public IActionResult PostView()
         {
             //Страница постов
-            return View("PostView", dataDao.ListPost());
+            return View("PostView", dataDao.ListPost(true));
         }
 
         public IActionResult ProfileView()
@@ -119,7 +119,7 @@ namespace KursachTP.Controllers
             string nameAuthor = HttpContext.User.Identity.Name;
             int id = Convert.ToInt32(dataDao.GetID(nameAuthor));
             dataDao.GetPost(post,id);
-            return View("PostView", dataDao.ListPost());
+            return View("PostView", dataDao.ListPost(true));
         }
 
         public IActionResult CreatePost(Post post)
@@ -130,7 +130,7 @@ namespace KursachTP.Controllers
         public IActionResult DeletePost(int id)
         {
             dataDao.DeleteByIdPost(id);
-            return View("PostView", dataDao.ListPost());
+            return View("PostView", dataDao.ListPost(true));
             //Удаление поста
         }
         public IActionResult EditPost(int id)
@@ -143,7 +143,7 @@ namespace KursachTP.Controllers
         // Редактура
         {
             dataDao.UpPost(post);
-            return View("PostView", dataDao.ListPost());
+            return View("PostView", dataDao.ListPost(true));
         }
         public IActionResult InfoPost(int id)
         {
