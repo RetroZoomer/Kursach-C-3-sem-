@@ -240,6 +240,18 @@
             cursor: pointer;
         }
 
+        .buttonExit {
+            margin: 5% auto 0% auto;
+            border-radius: 51px;
+            border: 2px solid white;
+            background: white;
+            color: #6296E4;
+            font-size: 24px;
+            width: 125px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
         .bMenu {
             margin: 0% auto;
             display: flex;
@@ -523,7 +535,7 @@
                 <div class="mainInf">
 
                     <div class="styleImg">
-                         <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg"> 
+                        <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
                     </div>
 
                     <div class="Text">
@@ -558,6 +570,9 @@
                             @pr.Birthday
                         </div>
                     </div>
+
+                    <a class="buttonExit" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
+
                 </div>
             </div>
 
