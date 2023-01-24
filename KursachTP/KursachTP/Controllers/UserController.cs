@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using KursachTP.Controllers;
 using KursachTP.DAO;
+using KursachTP.Models;
 
 namespace KursachTP.Controllers
 {
@@ -32,8 +33,12 @@ namespace KursachTP.Controllers
         }
 
         // GET: UserController/Create
-        public ActionResult WarningU()
+        public ActionResult WarningU(Warning warning, int id_post)
         {
+            /* // Добавление в БД*/
+            string nameAuthor = HttpContext.User.Identity.Name;
+            int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
+            dataDao2.GetWarning(warning,id_post,id_user);
             return View("WarningU");
         }
 
