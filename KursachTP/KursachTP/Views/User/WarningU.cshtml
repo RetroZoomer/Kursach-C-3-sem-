@@ -486,3 +486,90 @@
         padding: 2% 4% 0% 4%;
     }
 </style>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск друзей</title>
+</head>
+
+<header class="header">
+    <div class="header-intro">
+        <div class="logo">Logo</div>
+        <nav class="nav">
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Login">Вход</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
+            <a class="nav_link" href="#">О нас</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
+                @try
+                {
+                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
+                }
+                catch (NullReferenceException ex)
+                {
+
+                }
+            </a>
+        </nav>
+    </div>
+</header>
+
+<div class="content">
+    <h2>Все пользователи</h2>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Имя</td>
+            <td>Фамилия</td>
+            <td>Описание</td>
+            <td>Дата рождения</td>
+            <td>Пол</td>
+            <td>Логин</td>
+            <td class="td">Пароль</td>
+            <td>Телефон</td>
+            <td>Роль</td>
+            <td>Действия</td>
+        </tr>
+        @foreach (var usr in Model)
+        {
+            <tr>
+                <td>@usr.UserID</td>
+                <td>@usr.Name</td>
+                <td>@usr.LastName</td>
+                <td>@usr.UserDescription</td>
+                <td>@usr.Birthday</td>
+                <td>
+                    @if (@usr.Pol == true)
+                    {<p>Мужской</p>}
+                    else
+                    {<p>Женский</p>}
+                </td>
+                <td>@usr.Login</td>
+                <td>@usr.Password</td>
+                <td>@usr.Phone</td>
+                <td>@usr.Rol</td>
+                <td>
+                    <a class="button" asp-action="DeletePerson" asp-route-id="@usr.UserID">Удалить</a>
+                    <a class="button" asp-action="EditPerson" asp-route-id="@usr.UserID">Редактировать</a>
+                    <a class="button" asp-action="InfoPerson" asp-route-id="@usr.UserID">Информация</a>
+            </tr>
+        }
+    </table>
+</div>
+</div>
+
+
+<a class="btn btn-warning" asp-action="CreatePerson">Добавить нового пользователя</a>
+
+<hr style="margin-top: 15%;">
+
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
