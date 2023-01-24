@@ -496,18 +496,13 @@
     <div class="header-intro">
         <div class="logo">Logo</div>
         <nav class="nav">
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="LogInView">Вход</a>
-
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
             <a class="nav_link" href="#">О нас</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
             <div class="profileHref">
                 <a class="nav_link_p" asp-area="" asp-controller="Home" asp-action="ProfileView">
                     @try
                     {
-                        @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
-                    }
+        @User.FindFirst(x => x.Type == ClaimTypes.Name).Value}
                     catch (NullReferenceException ex)
                     {
 
@@ -517,9 +512,8 @@
                 <a asp-area="" asp-controller="Home" asp-action="ProfileView">
                     <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="navImg">
                 </a>
-                
             </div>
-            
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
         </nav>
     </div>
 </header>
