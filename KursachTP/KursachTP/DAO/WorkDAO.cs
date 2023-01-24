@@ -92,13 +92,13 @@ namespace KursachTP.DAO
             string sql = null;
             if (vbr == true)
             {
-                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname " +
-                                "FROM post " + "INNER JOIN user ON post.id_user = user.id_user;";
+                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname FROM post " +
+                    "INNER JOIN user ON post.id_user = user.id_user order by starttime;";
             }
             else
             {
                 sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname " +
-                "FROM post " + "INNER JOIN user ON post.id_user = user.id_user where hide = true;";
+                "FROM post " + "INNER JOIN user ON post.id_user = user.id_user where hide = true order by starttime desc;";
             }
 
             MySqlCommand command = new MySqlCommand(sql, connection);
