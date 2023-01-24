@@ -449,6 +449,7 @@
         justify-content: normal;
         height: auto;
         padding: 2% 4% 0% 4%;
+    }
 </style>
 
 
@@ -461,9 +462,8 @@
 
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
             <a class="nav_link" href="#">О нас</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
-                <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
-                <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
                     @try
                     {
                         @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
@@ -472,112 +472,87 @@
                     {
 
                     }
-                    </a>
-                </a>
-
-</nav>
+            </a>
+        </nav>
     </div>
 </header>
-@foreach (var pr in Model)
-{
-    <div class="main">
-        <div class="profileMainWindow">
-            <div class="styleImg">
-                <!-- <img src="/Front/profile/img/user.png" alt="фото пользователя" class="profileImg"> -->
-            </div>
-            <div class="styleWindow">
-                <div class="profileText">
 
 <div class="main">
-    
-    <div class="profileInf">
-        <div class="content">
-            <div class="styleImg">
-                <!-- <img src="/Front/profile/img/user.png" alt="фото пользователя" class="profileImg"> -->
-            </div>
 
-            <div class="mainInf">
+    @foreach (var pr in Model)
+    {
+        <div class="profileInf">
 
-                <div class="Text">
-                    Имя:
-                    <div class="input">
-                        @*@Model.Name*@
+            <div class="content">
+
+                <div class="mainInf">
+
+                    <div class="styleImg">
+                        <!-- <img src="/Front/profile/img/user.png" alt="фото пользователя" class="profileImg"> -->
+                    </div>
+
+                    <div class="Text">
+                        Имя:
+                        <div class="input">
+                            @pr.Name
+                        </div>
+                    </div>
+
+                    <div class="Text">
+                        Фамилия:
+                        <div class="input">
+                            @pr.LastName
+                        </div>
+                    </div>
+
+                    <div class="Text">
+                        Пол:
+                        <div class="input">
+                            @*@if (pr.Pol == true)
+                                {
+                                    <div>Мужской</div> }
+                                else
+                                {
+                                    <div>Женский</div>}*@
+                        </div>
+                    </div>
+
+                    <div class="Text">
+                        День рождения:
+                        <div class="input">
+                            @pr.Birthday
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                    Фамилия:
-                    <p> @pr.LastName</p>
-                    Имя:
-                    <p> @pr.Name</p>
-                    Дата рождения:  @pr.Birthday
+            <div class="content1">
+                <div class="mainInf">
+
+                    <div class="Text">
+                        Обо мне:
+                        <div class="input1">
+                            @pr.UserDescription
+                        </div>
+                    </div>
+
+                    <div class="Text">
+                        Хобби:
+                        <div class="input1">
+                            
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
         </div>
-                <div class="Text">
-                    Фамилия:
-                    <div class="input">
-                        @*@Model.LastName*@
-                    </div>
-                </div>
+    }
+        <div>
 
-                <div class="Text">
-                    Пол:
-                    <div class="input">
-                        @*@if (@Model.Pol == true)
-                        {
-                            <div>Мужской</div> }
-                        else
-                        {
-                            <div>Женский</div>}*@
-                    </div>
-                </div>
-
-                <div class="Text">
-                    День рождения:
-                    <div class="input">
-                        @*@Model.Birthday*@
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <div class="profileOtherWindow">
-            <div class="styleOtherWindow">
-                <div class="profileText">
-                    Обо мне:
-                    <p> @pr.UserDescription</p>
-                    Хобби:
-                </div>
-            </div>
-        </div>
     </div>
-}
-        <div class="content1">
-            <div class="mainInf">
-
-                <div class="Text">
-                    Обо мне:
-                    <div class="input1">
-                        @*@Model.UserDescription*@
-                    </div>
-                </div>
-
-                <div class="Text">
-                    Хобби:
-                    <div class="input1">
-                        @*@Model.UserDescription*@
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    
-    <div>
-        
-    </div>
-    
-</div>
 
 <hr style="margin-top: 15%;">
 
