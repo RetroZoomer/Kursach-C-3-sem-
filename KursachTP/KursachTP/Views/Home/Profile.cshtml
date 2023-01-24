@@ -1,5 +1,5 @@
 ﻿@using System.Security.Claims
-@using KursachTP.Models
+
 
 @model List<Profile>
 
@@ -400,19 +400,18 @@
 
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
             <a class="nav_link" href="#">О нас</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView"></a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
-                <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
-                <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
-                    @try
-                    {
-                        @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
-                    }
-                    catch (NullReferenceException ex)
-                    {
+             @try
+              {
+                   @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
+              }
+               catch (NullReferenceException ex)
+              {
 
-                    }
-                    </a>
-                </a>
+              }   
+            </a>
 
 </nav>
     </div>
