@@ -7,7 +7,7 @@ namespace KursachTP.Models
 {
     public class Hobby
     {
-        List<string> hobbys = new List<string>();
+        
         public static void EditHobby()
         {
             //Console.WriteLine("Работает2");

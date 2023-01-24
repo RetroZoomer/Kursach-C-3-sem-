@@ -63,59 +63,28 @@ namespace KursachTP.DAO
             Disconnect();
             return Users.users;
         }
-        /*public List<User> RecordOprId(int id_user,int id_user2)
+        
+        public List<Profile> RecordOprName(string name)
         {
             Connect();
-            string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
-                "password,phone FROM User where id_user BETWEEN @id_user and @id_user2";
+            string sql = "SELECT name,lastname,userdescription,birthday FROM User where name LIKE @name or Login LIKE @name";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("id_user", id_user);
-            if (id_user2 < 1)
-            {
-                id_user2 = id_user + 100;
-            }
-            command.Parameters.AddWithValue("id_user2", id_user2);
+            command.Parameters.AddWithValue("name", name);
 
             MySqlDataReader reader = command.ExecuteReader();
 
-            Users.users.Clear();
+            Profiles.profiles.Clear();
 
             while (reader.Read())
             {
-                Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
-                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
-                    reader.GetString(8), reader.GetString(9)));
+                Profiles.profiles.Add(new Profile(reader.GetString(0), reader.GetString(1),
+                    reader.GetString(2), reader.GetString(3)));
             }
 
             Disconnect();
-            return Users.users;
+            return Profiles.profiles;
         }
-        public List<User> RecordOprName(string name)
-        {
-            Connect();
-            string sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
-                "password,phone FROM User where name LIKE @name or Login LIKE @name";
-            MySqlCommand command = new MySqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("name", "%" + name + "%");
-
-            MySqlDataReader reader = command.ExecuteReader();
-
-            Users.users.Clear();
-
-            while (reader.Read())
-            {
-                Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
-                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
-                    reader.GetString(8), reader.GetString(9)));
-            }
-
-            Disconnect();
-            return Users.users;
-        }*/
         
         public List<Post> ListPost()
         {

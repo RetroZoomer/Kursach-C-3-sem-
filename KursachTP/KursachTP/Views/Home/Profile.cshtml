@@ -1,5 +1,7 @@
 ﻿@using System.Security.Claims
-@model KursachTP.Models.User
+@using KursachTP.Models
+
+@model List<Profile>
 
 <style>
         body {
@@ -325,11 +327,11 @@
             border-radius: 20px;
         }
 
-        /* .title {
-        color: #FFFFFF;
-        font-size: 26px;
-        padding: 5% 0 3% 0;
-    } */
+    /* .title {
+    color: #FFFFFF;
+    font-size: 26px;
+    padding: 5% 0 3% 0;
+} */
 
         .styleWindow {
             color: #FFFFFF;
@@ -456,23 +458,35 @@
         <nav class="nav">
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="LogInView">Вход</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
+
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
             <a class="nav_link" href="#">О нас</a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
-                @try
-                {
-                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
-                }
-                catch (NullReferenceException ex)
-                {
+                <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
+                <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
+                    @try
+                    {
+                        @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
+                    }
+                    catch (NullReferenceException ex)
+                    {
 
-                }
-            </a>
+                    }
+                    </a>
+                </a>
 
-        </nav>
+</nav>
     </div>
 </header>
+@foreach (var pr in Model)
+{
+    <div class="main">
+        <div class="profileMainWindow">
+            <div class="styleImg">
+                <!-- <img src="/Front/profile/img/user.png" alt="фото пользователя" class="profileImg"> -->
+            </div>
+            <div class="styleWindow">
+                <div class="profileText">
 
 <div class="main">
     
@@ -491,6 +505,14 @@
                     </div>
                 </div>
 
+                    Фамилия:
+                    <p> @pr.LastName</p>
+                    Имя:
+                    <p> @pr.Name</p>
+                    Дата рождения:  @pr.Birthday
+                </div>
+            </div>
+        </div>
                 <div class="Text">
                     Фамилия:
                     <div class="input">
@@ -519,6 +541,17 @@
             </div>
         </div>
 
+        <div class="profileOtherWindow">
+            <div class="styleOtherWindow">
+                <div class="profileText">
+                    Обо мне:
+                    <p> @pr.UserDescription</p>
+                    Хобби:
+                </div>
+            </div>
+        </div>
+    </div>
+}
         <div class="content1">
             <div class="mainInf">
 

@@ -95,6 +95,7 @@ namespace KursachTP.Controllers
         public IActionResult IndexName(string namesuser)
         {
             //Вывод пользователей по имени
+            
             return View("Index" , dataDao.Record(3,0,0,namesuser));
         }
         public IActionResult PostView()
@@ -106,7 +107,9 @@ namespace KursachTP.Controllers
         public IActionResult ProfileView()
         {
             //Страница профиля
-            return View("Profile");
+            //static ClaimsPrincipal.FindFirst(string);
+            string namesuser = HttpContext.User.Identity.Name;
+            return View("Profile", dataDao.RecordOprName(namesuser));
         }
 
         public IActionResult NewPost(Post post)
@@ -181,7 +184,7 @@ namespace KursachTP.Controllers
                     new Claim(ClaimTypes.Locality, dataDao.GetRole(user)),
                     new Claim("UserID", user.UserID.ToString())
                 };
-
+                string nm = user.Login;
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");
 
 
