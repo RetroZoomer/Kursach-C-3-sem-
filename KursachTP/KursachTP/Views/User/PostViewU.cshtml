@@ -264,8 +264,8 @@
     <div class="header-intro">
         <div class="logo">Logo</div>
         <nav class="nav">
-            <a class="nav_link" asp-area="" asp-controller="User" asp-action="PostView">Посты</a>
-            <a class="nav_link" asp-area="" asp-controller="User" asp-action="ProfileView">
+            <a class="nav_link" asp-area="" asp-controller="User" asp-action="PostViewU">Посты</a>
+            <a class="nav_link" asp-area="" asp-controller="User" asp-action="ProfileU">
                 @try
                 {
                     @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
@@ -314,8 +314,6 @@
 
             <hr style="width: 90%; visibility: hidden;">
             <div class="bMenu">
-                <a class="buttonMenu" asp-action="DeletePost" asp-route-id="@pst.PostID">Удалить</a>
-                <a class="buttonMenu" asp-action="EditPost" asp-route-id="@pst.PostID">Редактировать</a>
                 <a class="buttonMenu" asp-action="InfoPost" asp-route-id="@pst.PostID">Информация</a>
             </div>
         </div>
