@@ -37,6 +37,11 @@ namespace KursachTP.Controllers
             return View("WarningU");
         }
 
+        public ActionResult FriendsU()
+        {
+            return View("FriendsU"/*, dataDao2.ListFriends(false)*/);
+        }
+
         // POST: UserController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
