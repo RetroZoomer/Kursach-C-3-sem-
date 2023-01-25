@@ -18,7 +18,21 @@ namespace KursachTP.Controllers
         { // Посты для пользователя
             return View("PostViewU", dataDao2.ListPost(false));
         }
-        
+        public IActionResult NewPostU(Post post)
+        {
+            //Создание нового поста
+            string nameAuthor = HttpContext.User.Identity.Name;
+            int id = Convert.ToInt32(dataDao2.GetID(nameAuthor));
+            dataDao2.GetPost(post, id);
+            return View("PostViewU", dataDao2.ListPost(true));
+        }
+
+        public IActionResult CreatePostU(Post post)
+        {
+            return View("InsertPostU", post);
+            //Ссылка на создание нового поста
+        }
+
         public IActionResult ProfileU()
         {
             //Страница профиля
@@ -33,14 +47,14 @@ namespace KursachTP.Controllers
         }
 
         // GET: UserController/Create
-        public ActionResult WarningU(Warning warning, int id_post)
-        {
-            /* // Добавление в БД*/
-            string nameAuthor = HttpContext.User.Identity.Name;
-            int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
-            dataDao2.GetWarning(warning,id_post,id_user);
-            return View("WarningU");
-        }
+        //public ActionResult WarningU(Warning warning, int id_post)
+        //{
+        //    /* // Добавление в БД*/
+        //    string nameAuthor = HttpContext.User.Identity.Name;
+        //    int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
+        //    dataDao2.GetWarning(warning,id_post,id_user);
+        //    return View("WarningU");
+        //}
 
         public ActionResult FriendsU()
         {
