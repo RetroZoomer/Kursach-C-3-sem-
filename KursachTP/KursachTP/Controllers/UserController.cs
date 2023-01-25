@@ -33,6 +33,12 @@ namespace KursachTP.Controllers
             //Ссылка на создание нового поста
         }
 
+        public IActionResult FindFriendsU()
+        {
+            return View("FindFriendsU");
+            //Ссылка на страницу с посиском
+        }
+
         public IActionResult ProfileU()
         {
             //Страница профиля

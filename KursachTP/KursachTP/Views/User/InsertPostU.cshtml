@@ -215,17 +215,18 @@
     <div class="header-intro">
         <div class="logo">Logo</div>
         <nav class="nav">
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
+            <a class="nav_link" asp-area="" asp-controller="User" asp-action="PostViewU">Посты</a>
+            <a class="nav_link" asp-area="" asp-controller="User" asp-action="FriendsU">Друзья</a>
+            <a class="nav_link" asp-area="" asp-controller="User" asp-action="ProfileU">
                 @try
                 {
-                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
-                }
+                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value}
                 catch (NullReferenceException ex)
                 {
 
                 }
             </a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
         </nav>
     </div>
 </header>
@@ -248,7 +249,7 @@
             </div>
 
             <div style=" display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%; margin-top: 10%; ">
-                <a class="button1" asp-action="PostView">Назад</a>
+                <a class="button1" asp-action="PostViewU">Назад</a>
                 <input type="submit" class="button" value="Создать пост" />
             </div>
 
