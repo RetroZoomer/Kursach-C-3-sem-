@@ -52,15 +52,15 @@ namespace KursachTP.Controllers
             return View();
         }
 
-        // GET: UserController/Create
-        //public ActionResult WarningU(Warning warning, int id_post)
-        //{
-        //    /* // Добавление в БД*/
-        //    string nameAuthor = HttpContext.User.Identity.Name;
-        //    int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
-        //    dataDao2.GetWarning(warning,id_post,id_user);
-        //    return View("WarningU");
-        //}
+
+        /*public ActionResult WarningU(int id_post)
+        {
+            /* // Добавление в БД*//*
+            string nameAuthor = HttpContext.User.Identity.Name;
+            int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
+            dataDao2.GetWarning(id_post,id_user);
+            return View("WarningU");
+        }*/
 
         public ActionResult FriendsU()
         {

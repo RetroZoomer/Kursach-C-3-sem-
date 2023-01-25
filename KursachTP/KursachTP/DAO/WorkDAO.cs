@@ -11,6 +11,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using System.Data;
 
 
 namespace KursachTP.DAO
@@ -158,24 +159,24 @@ namespace KursachTP.DAO
             comanda.ExecuteNonQuery();
             Disconnect();
         }
-        //public void GetWarning(Warning warning, int id, int id_us)
-        //{
-        //    Connect();
-        //    string sql = "INSERT INTO Warning(id_post, id_user,warningdescription,warningtime) " +
-        //        "VALUES (@warning.id_post, @warning.id_user,  @warning.warningdescription, " +
-        //        "@warning.warningtime)";
-        //    MySqlCommand comanda = new MySqlCommand(sql, connection);
+        /*public void GetWarning(int id, int id_us)
+        {
+            Connect();
+            string sql = "INSERT INTO Warning(id_post, id_user,warningdescription,warningtime) " +
+                "VALUES (@warning.id_post, @warning.id_user,  @warning.warningdescription, " +
+                "@warning.warningtime)";
+            MySqlCommand comanda = new MySqlCommand(sql, connection);
 
-        //    DateTime dateTime = new DateTime();
+            DateTime dateTime = DateTime.Now;
 
-        //    comanda.Parameters.AddWithValue("warning.id_post", id);
-        //    comanda.Parameters.AddWithValue("warning.id_user", id_us);
-        //    comanda.Parameters.AddWithValue("warning.warningdescription", warning.WarningDescription);
-        //    comanda.Parameters.AddWithValue("warning.warningtime", dateTime);
+            comanda.Parameters.AddWithValue("warning.id_post", id);
+            comanda.Parameters.AddWithValue("warning.id_user", id_us);
+            comanda.Parameters.AddWithValue("warning.warningdescription", "Fack");
+            comanda.Parameters.AddWithValue("warning.warningtime", dateTime);
 
-        //    comanda.ExecuteNonQuery(); //Срабатывает исключение
-        //    Disconnect();
-        //}
+            comanda.ExecuteNonQuery(); //Срабатывает исключение
+            Disconnect();
+        }*/
 
         public void DeleteById(int id)
         {
