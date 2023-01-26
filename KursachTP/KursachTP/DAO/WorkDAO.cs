@@ -159,7 +159,7 @@ namespace KursachTP.DAO
             comanda.ExecuteNonQuery();
             Disconnect();
         }
-        /*public void GetWarning(int id, int id_us)
+        public Warning GetWarning(int id_post, int id_us)
         {
             Connect();
             string sql = "INSERT INTO Warning(id_post, id_user,warningdescription,warningtime) " +
@@ -169,14 +169,16 @@ namespace KursachTP.DAO
 
             DateTime dateTime = DateTime.Now;
 
-            comanda.Parameters.AddWithValue("warning.id_post", id);
+            comanda.Parameters.AddWithValue("warning.id_post", id_post);
             comanda.Parameters.AddWithValue("warning.id_user", id_us);
-            comanda.Parameters.AddWithValue("warning.warningdescription", "Fack");
+            comanda.Parameters.AddWithValue("warning.warningdescription", "Fuck");
             comanda.Parameters.AddWithValue("warning.warningtime", dateTime);
 
             comanda.ExecuteNonQuery(); //Срабатывает исключение
             Disconnect();
-        }*/
+
+            return null;
+        }
 
         public void DeleteById(int id)
         {

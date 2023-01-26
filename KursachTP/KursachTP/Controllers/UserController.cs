@@ -53,14 +53,14 @@ namespace KursachTP.Controllers
         }
 
 
-        /*public ActionResult WarningU(int id_post)
+        public IActionResult WarningU(int id)
         {
-            /* // Добавление в БД*//*
+            // Добавление в БД*//*
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
-            dataDao2.GetWarning(id_post,id_user);
+            dataDao2.GetWarning(id, id_user);
             return View("WarningU");
-        }*/
+        }
 
         public ActionResult FriendsU()
         {
