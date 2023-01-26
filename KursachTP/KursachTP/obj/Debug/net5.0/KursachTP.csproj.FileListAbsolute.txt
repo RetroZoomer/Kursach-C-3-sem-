@@ -170,3 +170,4 @@ C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.dll
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\ref\KursachTP.dll
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.pdb
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.genruntimeconfig.cache
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\WarningView.cshtml.g.cs

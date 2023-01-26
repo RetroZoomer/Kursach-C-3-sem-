@@ -334,74 +334,38 @@
 
 
 <div class="main">
-    <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
-        <form method="post" asp-action="IndexID" style="margin-right: 50px">
-            <div class="contentOtAndDo">
-                <div class="titleOtAndDo">Показать пользователей от:</div>
-                <div style="height: 50px;">
-                    <input name="usersid" type="number" class="inputOtAndDo" />
-                    <input name="usersid2" type="number" class="inputOtAndDo" />
-                </div>
-                <input type="submit" id="btnA" class="buttonOtAndDo" value="Найти" />
-            </div>
-        </form>
-
-        <form method="post" asp-action="IndexName">
-            <div class="contentID">
-                <div class="titleID">Введите данные пользователя (фрагмент имени или логина):</div>
-                <input name="namesuser" type="text" class="inputID" />
-                <input type="submit" id="btnB" class="buttonID" value="Найти" />
-            </div>
-        </form>
-    </div>
-
 
     <div class="content">
-        <h2>Все пользователи</h2>
+        <h2>Все жалобы</h2>
         <table>
             <tr>
-                <td>ID</td>
-                <td>Имя</td>
-                <td>Фамилия</td>
+                <td>ID Поста</td>
+                <td>ID Пользователя добав. пост</td>
+                <td>Фамилия и имя</td>
+                <tb>ID Пользователя отправившего жалобу</tb>
+                <td>Фамилия и имя</td>
                 <td>Описание</td>
-                <td>Дата рождения</td>
-                <td>Пол</td>
-                <td>Логин</td>
-                <td class="td">Пароль</td>
-                <td>Телефон</td>
-                <td>Роль</td>
-                <td>Действия</td>
+                <tb>Время жалобы</tb>
+                <td>Действия к посту</td>
             </tr>
-            @foreach (var usr in Model)
-            {
+            
                 <tr>
-                    <td>@usr.UserID</td>
-                    <td>@usr.Name</td>
-                    <td>@usr.LastName</td>
-                    <td>@usr.UserDescription</td>
-                    <td>@usr.Birthday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td>
-                        @if (@usr.Pol == true)
-                        {<p>Мужской</p>}
-                        else
-                        {<p>Женский</p>}
+                        <a class="button" asp-action="InfoPerson" asp-route-id="">Информация</a>
+                        <a class="button" asp-action="EditPerson" asp-route-id="">Редактировать</a>
+                        <a class="button" asp-action="DeletePerson" asp-route-id="">Удалить</a>
                     </td>
-                    <td>@usr.Login</td>
-                    <td>@usr.Password</td>
-                    <td>@usr.Phone</td>
-                    <td>@usr.Rol</td>
-                    <td>
-                        <a class="button" asp-action="DeletePerson" asp-route-id="@usr.UserID">Удалить</a>
-                        <a class="button" asp-action="EditPerson" asp-route-id="@usr.UserID">Редактировать</a>
-                        <a class="button" asp-action="InfoPerson" asp-route-id="@usr.UserID">Информация</a>
                 </tr>
-            }
+            
         </table>
     </div>
 </div>
-
-
-<a class="btn btn-warning" asp-action="CreatePerson">Добавить нового пользователя</a>
 
 <hr style="margin-top: 15%;">
 

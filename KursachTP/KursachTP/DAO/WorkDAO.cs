@@ -86,7 +86,29 @@ namespace KursachTP.DAO
             Disconnect();
             return Profiles.profiles;
         }
-        
+
+        public List<Profile> RecordOprID(int id)
+        {
+            Connect();
+            string sql = "SELECT name,lastname,userdescription,birthday,pol FROM User where id_user LIKE @id";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("id", id);
+
+            MySqlDataReader reader = command.ExecuteReader();
+
+            Profiles.profiles.Clear();
+
+            while (reader.Read())
+            {
+                Profiles.profiles.Add(new Profile(reader.GetString(0), reader.GetString(1),
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4)));
+            }
+
+            Disconnect();
+            return Profiles.profiles;
+        }
+
         public List<Post> ListPost(bool vbr)
         {
             Connect();

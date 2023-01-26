@@ -112,6 +112,12 @@ namespace KursachTP.Controllers
             return View("Profile", dataDao.RecordOprName(namesuser));
         }
 
+        public IActionResult AnotherUser(int id)
+        {
+            //Страница профиля
+            return View("Profile", dataDao.RecordOprID(id));
+        }
+
         public IActionResult NewPost(Post post)
         {
             //Создание нового поста
@@ -155,6 +161,13 @@ namespace KursachTP.Controllers
             // Подробный Вывод 
             return View("Zapas");
         }
+
+        public IActionResult WarningView()
+        {
+            // Подробный Вывод 
+            return View("WarningView");
+        }
+
         public IActionResult UnLogin()
         {
             return View();

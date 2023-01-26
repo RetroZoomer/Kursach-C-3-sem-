@@ -52,6 +52,11 @@ namespace KursachTP.Controllers
             return View();
         }
 
+        public IActionResult AnotherUser(int id)
+        {
+            //Страница профиля
+            return View("ProfileU", dataDao2.RecordOprID(id));
+        }
 
         public IActionResult WarningU(int id)
         {
