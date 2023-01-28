@@ -115,7 +115,7 @@ namespace KursachTP.DAO
             string sql = null;
             if (vbr == true)
             {
-                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname FROM post " +
+                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname,user.login FROM post " +
                     "INNER JOIN user ON post.id_user = user.id_user order by starttime;";
             }
             else
@@ -332,6 +332,22 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("starttime", post.StartTime);
             comanda.Parameters.AddWithValue("hide", post.Hide);
            
+            comanda.ExecuteNonQuery();
+            Disconnect();
+        }
+
+        public void UpPostU(Post post)
+        {
+            Connect();
+            string sql = "UPDATE POST SET posttitle = @posttitle," +
+                " postdescription = @postdescription" +
+                " WHERE id_post = @id;";
+
+            MySqlCommand comanda = new MySqlCommand(sql, connection);
+            comanda.Parameters.AddWithValue("id", post.PostID);
+            comanda.Parameters.AddWithValue("posttitle", post.PostTitle);
+            comanda.Parameters.AddWithValue("postdescription", post.PostDescription);
+
             comanda.ExecuteNonQuery();
             Disconnect();
         }

@@ -403,8 +403,8 @@
                 <a class="buttonMenu" asp-action="WarningU" asp-route-id="@pst.PostID" asp-controller="User">Пожаловаться</a>
                 @if (User.FindFirst(x => x.Type == ClaimTypes.Name).Value == pst.Login)
                 {
-                    <a class="buttonMenu" asp-action="EditPost" asp-route-id="@pst.PostID">Редактировать</a>
-                    <a class="buttonMenu" asp-action="DeletePost" asp-route-id="@pst.PostID">Удалить</a>
+                    <a class="buttonMenu" asp-action="EditPostU" asp-route-id="@pst.PostID" asp-controller="User">Редактировать</a>
+                    <a class="buttonMenu" asp-action="DeletePostU" asp-route-id="@pst.PostID" asp-controller="User">Удалить</a>
                 }
 
             </div>

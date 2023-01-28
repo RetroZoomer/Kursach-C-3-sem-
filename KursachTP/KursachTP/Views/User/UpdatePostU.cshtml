@@ -1,6 +1,6 @@
 ﻿@using KursachTP.DAO
 @using System.Security.Claims
-@model KursachTP.Models.User
+@model KursachTP.Models.Post
 
 <style>
     body {
@@ -212,44 +212,6 @@
         text-decoration: none;
         color: #FFFFFF;
     }
-
-    .profileImg {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-    }
-
-    .navImg {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        padding: 0% 5%;
-        /*cursor: pointer;*/
-    }
-
-    .styleImg {
-        display: block;
-        margin: auto;
-    }
-
-    .nav_link_p {
-        display: inline-block;
-        text-decoration: none;
-        color: white;
-        font-size: 24pt;
-        white-space: nowrap;
-        max-height: 100%;
-        min-width: auto;
-        min-height: 100%;
-    }
-
-    .profileHref {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
-        margin-left: 10%;
-    }
 </style>
 
 <header class="header">
@@ -258,80 +220,44 @@
         <nav class="nav">
             <a class="nav_link" asp-area="" asp-controller="User" asp-action="PostViewU">Посты</a>
             <a class="nav_link" asp-area="" asp-controller="User" asp-action="FriendsU">Друзья</a>
-                <a class="nav_link" asp-area="" asp-controller="User" asp-action="ProfileU">
-                    @try
-                    {
-                        @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
-                    }
-                    catch (NullReferenceException ex)
-                    {
+            <a class="nav_link" asp-area="" asp-controller="User" asp-action="ProfileU">
+                @try
+                {
+                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
+                }
+                catch (NullReferenceException ex)
+                {
 
-                    }
-                </a>
-                <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
+                }
+            </a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
         </nav>
     </div>
 </header>
 
 <div class="main">
-    <form method="post" asp-antiforgery="true" asp-action="UpdateUser" asp-controller="User" class="content">
+    <form method="post" asp-antiforgery="true" asp-action="UpdatePostU" asp-controller="User" class="content">
 
         <div class="title">
-            Редактирование профиля:
+            Редактирование поста:
         </div>
 
         <div class="mainInf">
 
             <div class="Text">
-                Фамилия:
-                <input value="@Model.LastName" type="text" asp-for="LastName" class="input" />
+                Заголовок:
+                <input value="@Model.PostTitle" type="text" asp-for="PostTitle" class="input" />
             </div>
 
             <div class="Text">
-                Имя:
-                <input value="@Model.Name" type="text" asp-for="Name" class="input" />
-
+                Описание:
+                <input value="@Model.PostDescription" type="text" asp-for="PostDescription" class="input" />
             </div>
 
-            <div class="Text">
-                Дата рождения:
-                <input value="@Model.Birthday" type="text" asp-for="Birthday" class="input" />
-            </div>
+            <input value="@Model.PostID" type="text" asp-for="PostID" style="display: none;" />
 
-            <div class="Text">
-                Пол:
-                @*<input value="@Model.Pol" type="text" asp-for="Pol" class="input" />*@
-                <select name="Pol" class="inputSel">
-                    <option value="@Model.Pol">
-                        @if (@Model.Pol == true)
-                        {
-                            <div>Мужской</div> }
-                        else
-                        {
-                            <div>Женский</div>}
-                    </option>
-                    <option value="True">Мужской</option>
-                    <option value="False">Женский</option>
-                </select>
-            </div>
-
-            <div class="Text">
-                Описпание:
-                <input value="@Model.UserDescription" type="text" asp-for="UserDescription" class="input" />
-            </div>
-
-            <div class="Text">
-                Пароль:
-                <input value="@Model.Password" type="text" asp-for="Password" class="input" />
-            </div>
-
-            <div class="Text">
-                Номер телефона:
-                <input value="@Model.Phone" type="text" asp-for="Phone" class="input" />
-            </div>
-            <input value="@Model.UserID" type="text" asp-for="UserID" style="display: none;" />
-            
             <input type="submit" class="button" value="Изменить" />
+            <a class="button" asp-action="PostViewU">Список постов</a>
         </div>
     </form>
 </div>
@@ -342,3 +268,4 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }
+
