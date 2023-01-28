@@ -57,6 +57,18 @@ namespace KursachTP.Controllers
             //Страница профиля
             return View("ProfileU", dataDao2.RecordOprID(id));
         }
+        public IActionResult EditUser(int id)
+        {
+            return View("UpdateUserU", dataDao2.UserInfo(id));
+            // Ссылка на страницу редактуры
+        }
+
+        public IActionResult UpdateUser(User user)
+        // Редактура
+        {
+            dataDao2.UpUserZn(user);
+            return View("FriendsU");  
+        }
 
         public IActionResult WarningU(int id)
         {

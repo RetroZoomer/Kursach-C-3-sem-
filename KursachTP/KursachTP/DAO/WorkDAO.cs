@@ -68,7 +68,7 @@ namespace KursachTP.DAO
         public List<Profile> RecordOprName(string name)
         {
             Connect();
-            string sql = "SELECT name,lastname,userdescription,birthday,pol FROM User where name LIKE @name or Login LIKE @name";
+            string sql = "SELECT name,lastname,userdescription,birthday,pol,id_user FROM User where name LIKE @name or Login LIKE @name";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("name", name);
@@ -80,7 +80,7 @@ namespace KursachTP.DAO
             while (reader.Read())
             {
                 Profiles.profiles.Add(new Profile(reader.GetString(0), reader.GetString(1),
-                    reader.GetString(2), reader.GetString(3), reader.GetString(4)));
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5)));
             }
 
             Disconnect();
@@ -90,7 +90,7 @@ namespace KursachTP.DAO
         public List<Profile> RecordOprID(int id)
         {
             Connect();
-            string sql = "SELECT name,lastname,userdescription,birthday,pol FROM User where id_user LIKE @id";
+            string sql = "SELECT name,lastname,userdescription,birthday,pol,id_user FROM User where id_user LIKE @id";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("id", id);
@@ -102,7 +102,7 @@ namespace KursachTP.DAO
             while (reader.Read())
             {
                 Profiles.profiles.Add(new Profile(reader.GetString(0), reader.GetString(1),
-                    reader.GetString(2), reader.GetString(3), reader.GetString(4)));
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5)));
             }
 
             Disconnect();
@@ -289,6 +289,28 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("password", HashPasswordHelper.HashPassword(user.Password));
             comanda.Parameters.AddWithValue("phone", user.Phone);
             comanda.Parameters.AddWithValue("rol", user.Rol);
+
+            comanda.ExecuteNonQuery();
+            Disconnect();
+        }
+
+        public void UpUserZn(User user)
+        {
+            Connect();
+            string sql = "UPDATE USER SET name = @name, lastname = @lastname, userdescription = @userdescription," +
+                " birthday = @birthday, pol = @pol, password = @password, phone=@phone" +
+                " WHERE id_user = @id_user ;";
+
+            MySqlCommand comanda = new MySqlCommand(sql, connection);
+
+            comanda.Parameters.AddWithValue("id_user", user.UserID);
+            comanda.Parameters.AddWithValue("name", user.Name);
+            comanda.Parameters.AddWithValue("lastname", user.LastName);
+            comanda.Parameters.AddWithValue("userdescription", user.UserDescription);
+            comanda.Parameters.AddWithValue("birthday", user.Birthday);
+            comanda.Parameters.AddWithValue("pol", user.Pol);
+            comanda.Parameters.AddWithValue("password", HashPasswordHelper.HashPassword(user.Password)); //после редактирование он снова хеширует пароль поэтому при входе теперь пароль не будет верным
+            comanda.Parameters.AddWithValue("phone", user.Phone);
 
             comanda.ExecuteNonQuery();
             Disconnect();

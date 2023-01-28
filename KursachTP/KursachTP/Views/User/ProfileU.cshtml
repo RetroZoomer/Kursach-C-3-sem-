@@ -252,6 +252,18 @@
             text-decoration: none;
         }
 
+        .buttonEdit {
+            margin: 5% auto 0% auto;
+            border-radius: 51px;
+            border: 2px solid white;
+            background: white;
+            color: #6296E4;
+            font-size: 24px;
+            width: 200px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
         .bMenu {
             margin: 0% auto;
             display: flex;
@@ -530,16 +542,16 @@
                     </div>
 
                     <div class="Text">
-                        Имя:
+                        Фамилия:
                         <div class="input">
-                            @pr.Name
+                            @pr.LastName
                         </div>
                     </div>
 
                     <div class="Text">
-                        Фамилия:
+                        Имя:
                         <div class="input">
-                            @pr.LastName
+                            @pr.Name
                         </div>
                     </div>
 
@@ -548,10 +560,10 @@
                         <div class="input">
                             @if (pr.Pol == true)
                             {
-                                <div>Мужской</div> }
-                            else
-                            {
-                                <div>Женский</div>}
+                <div>Мужской</div> }
+            else
+            {
+                <div>Женский</div>}
                         </div>
                     </div>
 
@@ -562,7 +574,9 @@
                         </div>
                     </div>
 
-                    <a class="buttonExit" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
+                    <a class="buttonEdit" asp-controller="User"  asp-action="EditUser" asp-route-id="@pr.UserID">Редактировать</a>
+
+                    <a class="buttonExit" asp-controller="Home" asp-action="Logout">Выход</a>
 
                 </div>
             </div>

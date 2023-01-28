@@ -177,8 +177,7 @@ namespace KursachTP.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return View("UnLogin");
-            //return View("Index",dataDao.Record(2, 1, 5, null));
+            return View("StarterPage");
         }
 
 
