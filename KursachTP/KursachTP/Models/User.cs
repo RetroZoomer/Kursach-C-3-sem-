@@ -29,7 +29,7 @@ namespace KursachTP.Models
 
         }
         [Required]
-        public int? UserID { get; set; }
+        public int UserID { get; set; }
         [Required]
         public string? Name { get; set; }
         [Required]

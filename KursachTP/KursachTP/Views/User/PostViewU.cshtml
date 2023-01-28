@@ -370,48 +370,45 @@
     <div style="display: flex; flex-direction: column-reverse;">
         @foreach (var pst in Model)
         {
-            <div class="post">
-                <div class="title">
-                    <div>
-                        <b>@pst.PostTitle</b>
-                    </div>
+        <div class="post">
+            <div class="title">
+                <div>
+                    <b>@pst.PostTitle</b>
+                </div>
 
-                </div>
-                <div class="dateTimePost">
-                    <a asp-controller="User" asp-action="AnotherUser" asp-route-id="@pst.UserID">
-                        <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="navImg">
-                    </a>
-                    <div class="ProfilePost">
-                        <a asp-controller="User" asp-action="AnotherUser" asp-route-id="@pst.UserID" style="color: white;">@pst.LastName @pst.Name</a>
-
-                        <div>@pst.StartTime</div>
-                    </div>
-
-                </div>
-                <div class="titleD">
-                    <b>Описание:</b>
-                </div>
-                <div class="textDescription">
-                    @pst.PostDescription
-                </div>
-                <div class="hobby">
-                    Хобби: #Спорт #АПОЖ
-                </div>
-                <div class="titleNiz">
-                    Дата проведения:
-                    <div class="dateTime">
-                        2023-02-01 06:30
-                    </div>
-                </div>
-                <input type="submit" value="Участвовать" class="button">
-
-                <hr style="width: 90%; visibility: hidden;">
-                <div class="bMenu">
-                    <a class="buttonMenu" asp-action="WarningU"  asp-route-id="@pst.PostID" asp-controller="User">Жалобы</a>
-                    <a class="buttonMenu" asp-action="DeletePost" asp-route-id="@pst.PostID">Удалить</a>
-                    <a class="buttonMenu" asp-action="EditPost" asp-route-id="@pst.PostID">Редактировать</a>
-                </div>
             </div>
+            <div class="dateTimePost">
+                <a asp-controller="User" asp-action="AnotherUser" asp-route-id="@pst.UserID">
+                    <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="navImg">
+                </a>
+                <div class="ProfilePost">
+                    <a asp-controller="User" asp-action="AnotherUser" asp-route-id="@pst.UserID" style="color: white;">@pst.LastName @pst.Name</a>
+
+                    <div>@pst.StartTime</div>
+                </div>
+
+            </div>
+            <div class="titleD">
+                <b>Описание:</b>
+            </div>
+            <div class="textDescription">
+                @pst.PostDescription
+            </div>
+            <div class="hobby">
+                Хобби: #Спорт #АПОЖ
+            </div>
+
+            <hr style="width: 90%; visibility: hidden;">
+            <div class="bMenu">
+                <a class="buttonMenu" asp-action="WarningU" asp-route-id="@pst.PostID" asp-controller="User">Пожаловаться</a>
+                @if (User.FindFirst(x => x.Type == ClaimTypes.Name).Value == pst.Login)
+                {
+                    <a class="buttonMenu" asp-action="EditPost" asp-route-id="@pst.PostID">Редактировать</a>
+                    <a class="buttonMenu" asp-action="DeletePost" asp-route-id="@pst.PostID">Удалить</a>
+                }
+
+            </div>
+        </div>
         }
 
     </div>

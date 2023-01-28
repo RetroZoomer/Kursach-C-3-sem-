@@ -195,8 +195,7 @@ namespace KursachTP.Controllers
                  var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.Login), 
-                    new Claim(ClaimTypes.Locality, dataDao.GetRole(user)),
-                    new Claim("userid", user.UserID.ToString())
+                    new Claim(ClaimTypes.Locality, dataDao.GetRole(user))
                 };
                 string nm = user.Login;
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");

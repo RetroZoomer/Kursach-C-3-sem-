@@ -120,7 +120,7 @@ namespace KursachTP.DAO
             }
             else
             {
-                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname " +
+                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname,user.login " +
                 "FROM post " + "INNER JOIN user ON post.id_user = user.id_user where hide = true order by starttime;";
             }
 
@@ -134,7 +134,8 @@ namespace KursachTP.DAO
             {
                 Posts.posts.Add(new Post(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7)));
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7), 
+                    reader.GetString(8)));
             }
 
             Disconnect();
@@ -142,7 +143,7 @@ namespace KursachTP.DAO
         }
 
         [HttpGet]
-        public async void GetPerson(User user)
+        public void GetPerson(User user)
         {
             Connect();
             string sql = "INSERT INTO USER(name,lastname,userdescription,birthday,pol,login," +
@@ -339,7 +340,7 @@ namespace KursachTP.DAO
         {
             Connect();
 
-            string sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname FROM Post " +
+            string sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname,user.login FROM Post " +
                 "INNER JOIN user ON post.id_user = user.id_user WHERE post.id_post like (@userid);";
             Post postic = null;
 
@@ -353,7 +354,8 @@ namespace KursachTP.DAO
             {
                 postic = new Post(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7));
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                    reader.GetString(8));
             }
 
             Disconnect();
