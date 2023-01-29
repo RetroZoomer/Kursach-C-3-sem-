@@ -99,7 +99,9 @@ namespace KursachTP.Controllers
 
         public ActionResult FriendsU()
         {
-            return View("FriendsU", dataDao2.ListFriends());
+            string nameAuthor = HttpContext.User.Identity.Name;
+            int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
+            return View("FriendsU", dataDao2.ListFriends(id_user));
         }
 
         // POST: UserController/Create

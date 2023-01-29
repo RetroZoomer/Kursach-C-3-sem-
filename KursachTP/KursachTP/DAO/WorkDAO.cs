@@ -141,15 +141,16 @@ namespace KursachTP.DAO
             Disconnect();
             return Posts.posts;
         }
-        public List<Friend> ListFriends()
+        public List<Friend> ListFriends(int id)
         {
             Connect();
             string sql = "SELECT id_friends, name,lastname,birthday,pol,phone FROM friends " +
-                "join user on user.id_user=friends.id_user2 where friends.id_user = 1 union " +
+                "join user on user.id_user=friends.id_user2 where friends.id_user = @id union " +
                 "SELECT id_friends, name,lastname,birthday,pol,phone FROM friends " +
-                "join user on user.id_user=friends.id_user where friends.id_user2 = 1;";
+                "join user on user.id_user=friends.id_user where friends.id_user2 LIKE @id";
 
             MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("id", id);
 
             MySqlDataReader reader = command.ExecuteReader();
 
