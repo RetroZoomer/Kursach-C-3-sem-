@@ -1,6 +1,6 @@
 ﻿@using KursachTP.Models
 @using System.Security.Claims
-@* тут список друзей *@
+@model List<Friend>
 
 <style>
     body {
@@ -165,7 +165,7 @@
         text-decoration: none;
         color: #FFFFFF;
     }
-    
+
     .ProfilePost {
         text-align: left;
         padding-left: 1%;
@@ -330,7 +330,6 @@
         text-decoration: none;
         color: #FFFFFF;
     }
-
 </style>
 
 
@@ -366,158 +365,57 @@
         </form>
     </div>
 
-    @*@foreach (var pst in Model)
-        {*@
-    <div class="friend">
+    @foreach (var r in Model)
+    {
+        <div class="friend">
 
-        <div class="mainInf">
+            <div class="mainInf">
 
-            <div class="styleImg">
-                <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
-            </div>
-
-            <div class="Text">
-                Имя:
-                <div class="input">
-                    @*@pr.Name*@
+                <div class="styleImg">
+                    <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
                 </div>
-            </div>
 
-            <div class="Text">
-                Фамилия:
-                <div class="input">
-                    @*@pr.LastName*@
+                <div class="Text">
+                    Имя:
+                    <div class="input">
+                        @r.Name
+                    </div>
                 </div>
-            </div>
 
-            <div class="Text">
-                Пол:
-                <div class="input">
-                    @*@if (pr.Pol == true)
+                <div class="Text">
+                    Фамилия:
+                    <div class="input">
+                        @r.LastName
+                    </div>
+                </div>
+
+                <div class="Text">
+                    Пол:
+                    <div class="input">
+                        @if (r.Pol == true)
                         {
                             <div>Мужской</div> }
                         else
                         {
-                            <div>Женский</div>}*@
+                            <div>Женский</div>}
+                    </div>
                 </div>
-            </div>
 
-            <div class="Text">
-                День рождения:
-                <div class="input">
-                    @*@pr.Birthday*@
+                <div class="Text">
+                    День рождения:
+                    <div class="input">
+                        @r.Birthday
+                    </div>
                 </div>
-            </div>
 
+            </div>
+            <hr style="width: 90%; visibility: hidden;">
+            <div class="bMenu">
+                <a class="buttonMenu" asp-controller="User" asp-action="AnotherUser" asp-route-id="@r.UserID">Подробнее</a>
+                <a class="buttonMenu" asp-controller="User" asp-action="NewFriend" asp-route-id="@r.UserID">Добавить в друзья</a>
+            </div>
         </div>
-        <hr style="width: 90%; visibility: hidden;">
-        <div class="bMenu">
-            <a class="buttonMenu">Подробнее</a>
-            <a class="buttonMenu">Добавить в друзья</a>
-        </div>
-    </div>
-    @*}*@
-
-    <div class="friend">
-
-        <div class="mainInf">
-
-            <div class="styleImg">
-                <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
-            </div>
-
-            <div class="Text">
-                Имя:
-                <div class="input">
-                    @*@pr.Name*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Фамилия:
-                <div class="input">
-                    @*@pr.LastName*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Пол:
-                <div class="input">
-                    @*@if (pr.Pol == true)
-                        {
-                            <div>Мужской</div> }
-                        else
-                        {
-                            <div>Женский</div>}*@
-                </div>
-            </div>
-
-            <div class="Text">
-                День рождения:
-                <div class="input">
-                    @*@pr.Birthday*@
-                </div>
-            </div>
-
-        </div>
-        <hr style="width: 90%; visibility: hidden;">
-        <div class="bMenu">
-            <a class="buttonMenu">Подробнее</a>
-            <a class="buttonMenu">Добавить в друзья</a>
-        </div>
-    </div>
-
-    <div class="friend">
-
-        <div class="mainInf">
-
-            <div class="styleImg">
-                <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
-            </div>
-
-            <div class="Text">
-                Имя:
-                <div class="input">
-                    @*@pr.Name*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Фамилия:
-                <div class="input">
-                    @*@pr.LastName*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Пол:
-                <div class="input">
-                    @*@if (pr.Pol == true)
-                        {
-                            <div>Мужской</div> }
-                        else
-                        {
-                            <div>Женский</div>}*@
-                </div>
-            </div>
-
-            <div class="Text">
-                День рождения:
-                <div class="input">
-                    @*@pr.Birthday*@
-                </div>
-            </div>
-
-        </div>
-        <hr style="width: 90%; visibility: hidden;">
-        <div class="bMenu">
-            <a class="buttonMenu">Подробнее</a>
-            <a class="buttonMenu">Добавить в друзья</a>
-        </div>
-    </div>
-
-    
-
+    }
 
 </div>
 

@@ -148,20 +148,38 @@ namespace KursachTP.DAO
                 "join user on user.id_user=friends.id_user2 where friends.id_user = @id union " +
                 "SELECT friends.id_user2, name,lastname,birthday,pol,phone FROM friends " +
                 "join user on user.id_user=friends.id_user where friends.id_user2 LIKE @id";
-
-            MySqlCommand command = new MySqlCommand(sql, connection);
-            command.Parameters.AddWithValue("id", id);
-
-            MySqlDataReader reader = command.ExecuteReader();
-
-            Friends.friends.Clear();
-
-            while (reader.Read())
+            string sql2 = "SELECT DISTINCT user.id_user, name,lastname,birthday,pol,phone FROM user " +
+                "LEFT join friends on user.id_user=friends.id_user2;";
+            if (id == 0)
             {
-                Friends.friends.Add(new Friend(reader.GetString(0), reader.GetString(1),
-                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5)));
+                MySqlCommand command2 = new MySqlCommand(sql2, connection);
+                MySqlDataReader reader = command2.ExecuteReader();
+                Friends.friends.Clear();
+
+                while (reader.Read())
+                {
+                    Friends.friends.Add(new Friend(reader.GetString(0), reader.GetString(1),
+                        reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                        reader.GetString(5)));
+                }
             }
+            else {
+                MySqlCommand command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("id", id);
+
+                MySqlDataReader reader = command.ExecuteReader();
+                Friends.friends.Clear();
+
+                while (reader.Read())
+                {
+                    Friends.friends.Add(new Friend(reader.GetString(0), reader.GetString(1),
+                        reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                        reader.GetString(5)));
+                }
+            }
+           
+
+            
 
             Disconnect();
             return Friends.friends;
