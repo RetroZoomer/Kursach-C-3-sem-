@@ -75,6 +75,13 @@ namespace KursachTP.Controllers
             //Страница профиля
             return View("ProfileU", dataDao2.RecordOprID(id));
         }
+        public IActionResult NewFriend(int id)
+        {
+            string nameAuthor = HttpContext.User.Identity.Name;
+            int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
+            dataDao2.GetFr(id_user, id);
+            return View("ProfileU", dataDao2.RecordOprID(id));
+        }
         public IActionResult EditUser(int id)
         {
             return View("UpdateUserU", dataDao2.UserInfo(id));

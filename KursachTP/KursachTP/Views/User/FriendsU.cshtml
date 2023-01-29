@@ -411,8 +411,8 @@
             </div>
             <hr style="width: 90%; visibility: hidden;">
             <div class="bMenu">
-                <a class="buttonMenu">Подробнее</a>
-                <a class="buttonMenu">Добавить в друзья</a>
+                <a class="buttonMenu" asp-controller="User" asp-action="AnotherUser" asp-route-id="@r.UserID">Подробнее</a>
+                <a class="buttonMenu" asp-controller="User" asp-action="NewFriend" asp-route-id="@r.UserID">Добавить в друзья</a>
             </div>
         </div>
         }
