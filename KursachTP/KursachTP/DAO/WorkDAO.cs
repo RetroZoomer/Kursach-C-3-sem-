@@ -299,10 +299,12 @@ namespace KursachTP.DAO
         {
             Connect();
             string sql = "UPDATE USER SET name = @name, lastname = @lastname, userdescription = @userdescription," +
-                " birthday = @birthday, pol = @pol, password = @password, phone=@phone" +
+                " birthday = @birthday, pol = @pol, phone=@phone" +
                 " WHERE id_user = @id_user ;";
+            string sql2 = "UPDATE USER SET password= IF(password=@password,@password,@password2) WHERE id_user = @id_user;";
 
             MySqlCommand comanda = new MySqlCommand(sql, connection);
+            MySqlCommand comanda2 = new MySqlCommand(sql2, connection);
 
             comanda.Parameters.AddWithValue("id_user", user.UserID);
             comanda.Parameters.AddWithValue("name", user.Name);
@@ -310,10 +312,15 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("userdescription", user.UserDescription);
             comanda.Parameters.AddWithValue("birthday", user.Birthday);
             comanda.Parameters.AddWithValue("pol", user.Pol);
-            comanda.Parameters.AddWithValue("password", HashPasswordHelper.HashPassword(user.Password)); //после редактирование он снова хеширует пароль поэтому при входе теперь пароль не будет верным
             comanda.Parameters.AddWithValue("phone", user.Phone);
 
             comanda.ExecuteNonQuery();
+
+            comanda2.Parameters.AddWithValue("password2", HashPasswordHelper.HashPassword(user.Password));
+            comanda2.Parameters.AddWithValue("password", user.Password);
+            comanda2.Parameters.AddWithValue("id_user", user.UserID);
+            comanda2.ExecuteNonQuery();
+
             Disconnect();
         }
 

@@ -173,3 +173,6 @@ C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\KursachTP.gen
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\WarningView.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\UpdateUserU.cshtml.g.cs
 Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\UpdatePostU.cshtml.g.cs
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\Home\WarningView.cshtml.g.cs
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\UpdatePostU.cshtml.g.cs
+C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\UpdateUserU.cshtml.g.cs
