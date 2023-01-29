@@ -141,7 +141,30 @@ namespace KursachTP.DAO
             Disconnect();
             return Posts.posts;
         }
+        public List<Friend> ListFriends()
+        {
+            Connect();
+            string sql = "SELECT id_friends, name,lastname,birthday,pol,phone FROM friends " +
+                "join user on user.id_user=friends.id_user2 where friends.id_user = 1 union " +
+                "SELECT id_friends, name,lastname,birthday,pol,phone FROM friends " +
+                "join user on user.id_user=friends.id_user where friends.id_user2 = 1;";
 
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            MySqlDataReader reader = command.ExecuteReader();
+
+            Friends.friends.Clear();
+
+            while (reader.Read())
+            {
+                Friends.friends.Add(new Friend(reader.GetString(0), reader.GetString(1),
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5)));
+            }
+
+            Disconnect();
+            return Friends.friends;
+        }
         [HttpGet]
         public void GetPerson(User user)
         {

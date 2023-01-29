@@ -1,724 +1,428 @@
 ﻿@using KursachTP.Models
 @using System.Security.Claims
-@* тут список друзей *@
+@model List<Friend>
 
-<style>
-    body {
-        font-family: 'Roboto', sans-serif;
-        font-size: 16px;
-        background: #7CA8FF;
-        width: 70%;
-        margin: 0 auto;
-    }
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            background: #7CA8FF;
+            width: 70%;
+            margin: 0 auto;
+        }
 
-    .header {
-        position: absolute;
-        width: 100%;
-        height: 10%;
-        left: 0px;
-        top: 0px;
-        min-width: 20%;
-        background: #6296E4;
-        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
-    }
+        .header {
+            position: absolute;
+            width: 100%;
+            height: 10%;
+            left: 0px;
+            top: 0px;
+            min-width: 20%;
+            background: #6296E4;
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+        }
 
-    .nav {
-        display: flex;
-        align-items: center;
-        justify-content: end;
-        min-width: 20%;
-        min-height: 50%;
-    }
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            min-width: 20%;
+            min-height: 50%;
+        }
 
-    .header-intro {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 1.3%;
-        margin-left: 15%;
-        margin-right: 15%;
-        min-width: none;
-    }
+        .header-intro {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.3%;
+            margin-left: 15%;
+            margin-right: 15%;
+            min-width: none;
+        }
 
-    .logo {
-        text-decoration: none;
-        color: white;
-        font-size: 24pt;
-        min-width: 20%;
-        min-height: 100%;
-    }
+        .logo {
+            text-decoration: none;
+            color: white;
+            font-size: 24pt;
+            min-width: 20%;
+            min-height: 100%;
+        }
 
-    .nav_link_find {
-        display: inline-block;
-        text-decoration: none;
-        color: #6296E4;
-        font-size: 24pt;
-        background-color: #FFFFFF;
-        border-radius: 51px;
-        padding: 0 15px 0 15px;
-    }
+        .nav_link_find {
+            display: inline-block;
+            text-decoration: none;
+            color: #6296E4;
+            font-size: 24pt;
+            background-color: #FFFFFF;
+            border-radius: 51px;
+            padding: 0 15px 0 15px;
+        }
 
-    .nav_link {
-        display: inline-block;
-        margin-left: 10%;
-        text-decoration: none;
-        color: white;
-        font: 'Roboto';
-        font-size: 24pt;
-        white-space: nowrap;
-        max-height: 100%;
-        min-width: auto;
-        min-height: 100%;
-    }
+        .nav_link {
+            display: inline-block;
+            margin-left: 10%;
+            text-decoration: none;
+            color: white;
+            font: 'Roboto';
+            font-size: 24pt;
+            white-space: nowrap;
+            max-height: 100%;
+            min-width: auto;
+            min-height: 100%;
+        }
 
-    .navImg {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        padding: 0% 5%;
-    }
+        .navImg {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            padding: 0% 5%;
+        }
 
-    .main {
-        margin: 13% auto 0 auto;
-        min-width: 50%;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-content: flex-start;
-    }
+        .main {
+            margin: 13% auto 0 auto;
+            min-width: 50%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-content: flex-start;
+        }
 
-    .right {
-        margin: 0% auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
+        .right {
+            margin: 0% auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
 
-    .createPost {
-        font-size: 24px;
-    }
+        .createPost {
+            font-size: 24px;
+        }
 
-    .friend {
-        text-align: center;
-        margin: 0% 2% 3% 1.98%;
-        width: 280px;
-        background: #6296E4;
-        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-    }
+        .friend {
+            text-align: center;
+            margin: 0% 2% 3% 1.98%;
+            width: 280px;
+            background: #6296E4;
+            box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+        }
 
-    .findFriends {
-        text-align: center;
-        border-radius: 51px;
-        border: 2px solid white;
-        background: white;
-        color: #6296E4;
-        font-size: 24px;
-        font-family: Arial, Helvetica, sans-serif;
-        width: 250px;
-        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-    }
+        .findFriends {
+            text-align: center;
+            border-radius: 51px;
+            border: 2px solid white;
+            background: white;
+            color: #6296E4;
+            font-size: 24px;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 250px;
+            box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+        }
 
-    .title {
-        text-align: left;
-        color: #FFFFFF;
-        font-size: 26px;
-        padding: 3% 5% 0% 5%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        .title {
+            text-align: left;
+            color: #FFFFFF;
+            font-size: 26px;
+            padding: 3% 5% 0% 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .menu {
-        background-color: #000000;
-        width: 25px;
-        height: 5px;
-    }
+        .menu {
+            background-color: #000000;
+            width: 25px;
+            height: 5px;
+        }
 
-    .topmenu > li {
-        display: inline-block;
-        position: relative;
-        margin: 0;
-        padding: 0;
-    }
+        .topmenu > li {
+            display: inline-block;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
 
-    .submenu {
-        z-index: 4;
-        width: 200px;
-        padding: 15px 10px 15px 10px;
-        text-align: left;
-        background: #5e91dd;
-        border-radius: 5px;
-        box-shadow: 0 0 30px rgba(0,0,0,.2);
-        box-sizing: border-box;
-        visibility: hidden;
-        opacity: 0;
-        transform: translate(-50%, 20px);
-        transition: .2s;
-        list-style-type: none;
-    }
+        .submenu {
+            z-index: 4;
+            width: 200px;
+            padding: 15px 10px 15px 10px;
+            text-align: left;
+            background: #5e91dd;
+            border-radius: 5px;
+            box-shadow: 0 0 30px rgba(0,0,0,.2);
+            box-sizing: border-box;
+            visibility: hidden;
+            opacity: 0;
+            transform: translate(-50%, 20px);
+            transition: .2s;
+            list-style-type: none;
+        }
 
-    .ali {
-        text-decoration: none;
-        color: #FFFFFF;
-    }
-    
-    .ProfilePost {
-        text-align: left;
-        padding-left: 1%;
-        font-size: 16px;
-        color: #d6d6d6;
-        display: flex;
-        flex-direction: column;
-        align-content: flex-start;
-        flex-wrap: nowrap;
-    }
+        .ali {
+            text-decoration: none;
+            color: #FFFFFF;
+        }
 
-    .button {
-        float: right;
-        margin: 1% 5% 3% 0%;
-        border-radius: 51px;
-        border: 2px solid white;
-        background: white;
-        color: #6296E4;
-        font-size: 24px;
-        width: 200px;
-        cursor: pointer;
-    }
+        .ProfilePost {
+            text-align: left;
+            padding-left: 1%;
+            font-size: 16px;
+            color: #d6d6d6;
+            display: flex;
+            flex-direction: column;
+            align-content: flex-start;
+            flex-wrap: nowrap;
+        }
 
-    .bMenu {
-        margin: 0% auto;
-        display: flex;
-        padding: 1% 5% 2% 5%;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-    }
+        .button {
+            float: right;
+            margin: 1% 5% 3% 0%;
+            border-radius: 51px;
+            border: 2px solid white;
+            background: white;
+            color: #6296E4;
+            font-size: 24px;
+            width: 200px;
+            cursor: pointer;
+        }
 
-    .buttonMenu {
-        float: right;
-        margin: 1% 0% 3% 0%;
-        border-radius: 51px;
-        border: 2px solid white;
-        background: white;
-        color: #6296E4;
-        text-decoration: none;
-        font-size: 24px;
-        width: 180px;
-        cursor: pointer;
-    }
+        .bMenu {
+            margin: 0% auto;
+            display: flex;
+            padding: 1% 5% 2% 5%;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .buttonRight {
-        margin: 0% auto 30px auto;
-        border-radius: 51px;
-        border: 2px solid white;
-        background: white;
-        color: #6296E4;
-        font-size: 24px;
-        width: 250px;
-        box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-        cursor: pointer;
-    }
+        .buttonMenu {
+            float: right;
+            margin: 1% 0% 3% 0%;
+            border-radius: 51px;
+            border: 2px solid white;
+            background: white;
+            color: #6296E4;
+            text-decoration: none;
+            font-size: 24px;
+            width: 180px;
+            cursor: pointer;
+        }
 
-    .mainInf {
-        color: #FFFFFF;
-        font-size: 21px;
-        display: flex;
-        flex-direction: column;
-        flex-flow: column nowrap;
-        align-items: stretch;
-        justify-content: normal;
-        height: auto;
-        padding: 20px 15px 0px 15px;
-    }
+        .buttonRight {
+            margin: 0% auto 30px auto;
+            border-radius: 51px;
+            border: 2px solid white;
+            background: white;
+            color: #6296E4;
+            font-size: 24px;
+            width: 250px;
+            box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            cursor: pointer;
+        }
 
-    .Text {
-        text-align: left;
-        padding: 0% 0% 3% 0%;
-    }
+        .mainInf {
+            color: #FFFFFF;
+            font-size: 21px;
+            display: flex;
+            flex-direction: column;
+            flex-flow: column nowrap;
+            align-items: stretch;
+            justify-content: normal;
+            height: auto;
+            padding: 20px 15px 0px 15px;
+        }
 
-    .input {
-        background: #8aaaf3;
-        border-radius: 10px;
-        color: white;
-        min-height: 10px;
-        height: auto;
-        padding: 5px 10px;
-        word-break: break-word;
-    }
+        .Text {
+            text-align: left;
+            padding: 0% 0% 3% 0%;
+        }
 
-    .styleImg {
-        display: block;
-        margin: auto;
-    }
+        .input {
+            background: #8aaaf3;
+            border-radius: 10px;
+            color: white;
+            min-height: 10px;
+            height: auto;
+            padding: 5px 10px;
+            word-break: break-word;
+        }
 
-    .profileImg {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-    }
+        .styleImg {
+            display: block;
+            margin: auto;
+        }
 
-    .titleID {
-        text-align: center;
-        color: white;
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
+        .profileImg {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
 
-    .contentID {
-        text-align: center;
-        padding-top: 2%;
-        padding-bottom: 2%;
-        width: 485px;
-        height: 160px;
-        margin-bottom: 50px;
-        display: flex;
-        flex-flow: column wrap;
-        align-items: center;
-        justify-content: center;
-        background: #6296E4;
-        box-shadow: 0px 12px 15px rgb(0 0 0 / 25%);
-        border-radius: 20px;
-    }
+        .titleID {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
 
-    .inputID {
-        background: #5389DA;
-        border-radius: 51px;
-        border: 2px solid #4876bb;
-        color: white;
-        width: 430px;
-        height: 30px;
-        margin-bottom: 20px;
-        padding: 0% 2% 0 2%;
-    }
+        .contentID {
+            text-align: center;
+            padding-top: 2%;
+            padding-bottom: 2%;
+            width: 485px;
+            height: 160px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+            justify-content: center;
+            background: #6296E4;
+            box-shadow: 0px 12px 15px rgb(0 0 0 / 25%);
+            border-radius: 20px;
+        }
 
-    .buttonID {
-        width: 150px;
-        margin: 0 auto;
-        border-radius: 51px;
-        border: 2px solid white;
-        background: white;
-        color: #6296E4;
-        font-size: 24px;
-    }
+        .inputID {
+            background: #5389DA;
+            border-radius: 51px;
+            border: 2px solid #4876bb;
+            color: white;
+            width: 430px;
+            height: 30px;
+            margin-bottom: 20px;
+            padding: 0% 2% 0 2%;
+        }
 
-    .contentF {
-        justify-content: space-between;
-        max-width: 100%;
-        margin-right: 0;
-        margin-left: 0;
-    }
+        .buttonID {
+            width: 150px;
+            margin: 0 auto;
+            border-radius: 51px;
+            border: 2px solid white;
+            background: white;
+            color: #6296E4;
+            font-size: 24px;
+        }
 
-    footer {
-        display: flex;
-        justify-content: space-between;
-        color: #FFFFFF;
-        width: 100%;
-        margin-top: 2%;
-        margin-bottom: 5%;
-    }
+        .contentF {
+            justify-content: space-between;
+            max-width: 100%;
+            margin-right: 0;
+            margin-left: 0;
+        }
 
-    .aboutF {
-        float: right;
-    }
+        footer {
+            display: flex;
+            justify-content: space-between;
+            color: #FFFFFF;
+            width: 100%;
+            margin-top: 2%;
+            margin-bottom: 5%;
+        }
 
-    .footerA {
-        text-decoration: none;
-        color: #FFFFFF;
-    }
+        .aboutF {
+            float: right;
+        }
 
-</style>
+        .footerA {
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+    </style>
 
 
-<header class="header">
-    <div class="header-intro">
-        <div class="logo">Logo</div>
-        <nav class="nav">
-            <a class="nav_link" asp-area="" asp-controller="User" asp-action="PostViewU">Посты</a>
-            <a class="nav_link" asp-area="" asp-controller="User" asp-action="FriendsU">Друзья</a>
-            <a class="nav_link" asp-area="" asp-controller="User" asp-action="ProfileU">
-                @try
-                {
-                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value}
-                catch (NullReferenceException ex)
-                {
+    <header class="header">
+        <div class="header-intro">
+            <div class="logo">Logo</div>
+            <nav class="nav">
+                <a class="nav_link" asp-area="" asp-controller="User" asp-action="PostViewU">Посты</a>
+                <a class="nav_link" asp-area="" asp-controller="User" asp-action="FriendsU">Друзья</a>
+                <a class="nav_link" asp-area="" asp-controller="User" asp-action="ProfileU">
+                    @try
+                    {
+                        @User.FindFirst(x => x.Type == ClaimTypes.Name).Value}
+                    catch (NullReferenceException ex)
+                    {
 
-                }
-            </a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
-        </nav>
-    </div>
-</header>
-
-<div class="main">
-
-    <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
-        <form method="post" asp-action="IndexName">
-            <div class="contentID">
-                <div class="titleID">Введите фрагмент имени пользователя:</div>
-                <input name="namesuser" type="text" class="inputID" />
-                <input type="submit" id="btnB" class="buttonID" value="Найти" />
-            </div>
-        </form>
-    </div>
-
-    @*@foreach (var pst in Model)
-        {*@
-    <div class="friend">
-
-        <div class="mainInf">
-
-            <div class="styleImg">
-                <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
-            </div>
-
-            <div class="Text">
-                Имя:
-                <div class="input">
-                    @*@pr.Name*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Фамилия:
-                <div class="input">
-                    @*@pr.LastName*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Пол:
-                <div class="input">
-                    @*@if (pr.Pol == true)
-                        {
-                            <div>Мужской</div> }
-                        else
-                        {
-                            <div>Женский</div>}*@
-                </div>
-            </div>
-
-            <div class="Text">
-                День рождения:
-                <div class="input">
-                    @*@pr.Birthday*@
-                </div>
-            </div>
-
+                    }
+                </a>
+                <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
+            </nav>
         </div>
-        <hr style="width: 90%; visibility: hidden;">
-        <div class="bMenu">
-            <a class="buttonMenu">Подробнее</a>
-            <a class="buttonMenu">Удалить</a>
+    </header>
+
+    <div class="main">
+
+        <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
+            <form method="post" asp-action="IndexName">
+                <div class="contentID">
+                    <div class="titleID">Введите фрагмент имени пользователя:</div>
+                    <input name="namesuser" type="text" class="inputID" />
+                    <input type="submit" id="btnB" class="buttonID" value="Найти" />
+                </div>
+            </form>
         </div>
-    </div>
-    @*}*@
 
-    <div class="friend">
+        @foreach (var r in Model)
+        {
+        <div class="friend">
 
-        <div class="mainInf">
+            <div class="mainInf">
 
-            <div class="styleImg">
-                <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
-            </div>
-
-            <div class="Text">
-                Имя:
-                <div class="input">
-                    @*@pr.Name*@
+                <div class="styleImg">
+                    <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
                 </div>
-            </div>
 
-            <div class="Text">
-                Фамилия:
-                <div class="input">
-                    @*@pr.LastName*@
+                <div class="Text">
+                    Имя:
+                    <div class="input">
+                        @r.Name
+                    </div>
                 </div>
-            </div>
 
-            <div class="Text">
-                Пол:
-                <div class="input">
-                    @*@if (pr.Pol == true)
-                        {
-                            <div>Мужской</div> }
-                        else
-                        {
-                            <div>Женский</div>}*@
+                <div class="Text">
+                    Фамилия:
+                    <div class="input">
+                        @r.LastName
+                    </div>
                 </div>
-            </div>
 
-            <div class="Text">
-                День рождения:
-                <div class="input">
-                    @*@pr.Birthday*@
+                <div class="Text">
+                    Пол:
+                    <div class="input">
+                        @if (r.Pol == true)
+                            {
+                                <div>Мужской</div> }
+                            else
+                            {
+                                <div>Женский</div>}
+                    </div>
                 </div>
-            </div>
 
+                <div class="Text">
+                    День рождения:
+                    <div class="input">
+                        @r.Birthday
+                    </div>
+                </div>
+
+            </div>
+            <hr style="width: 90%; visibility: hidden;">
+            <div class="bMenu">
+                <a class="buttonMenu">Подробнее</a>
+                <a class="buttonMenu">Добавить в друзья</a>
+            </div>
         </div>
-        <hr style="width: 90%; visibility: hidden;">
-        <div class="bMenu">
-            <a class="buttonMenu">Подробнее</a>
-            <a class="buttonMenu">Удалить</a>
-        </div>
+        }
+
     </div>
 
-    <div class="friend">
+    <hr style="margin-top: 15%;">
 
-        <div class="mainInf">
+    @section scripts{
 
-            <div class="styleImg">
-                <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
-            </div>
-
-            <div class="Text">
-                Имя:
-                <div class="input">
-                    @*@pr.Name*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Фамилия:
-                <div class="input">
-                    @*@pr.LastName*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Пол:
-                <div class="input">
-                    @*@if (pr.Pol == true)
-                        {
-                            <div>Мужской</div> }
-                        else
-                        {
-                            <div>Женский</div>}*@
-                </div>
-            </div>
-
-            <div class="Text">
-                День рождения:
-                <div class="input">
-                    @*@pr.Birthday*@
-                </div>
-            </div>
-
-        </div>
-        <hr style="width: 90%; visibility: hidden;">
-        <div class="bMenu">
-            <a class="buttonMenu">Подробнее</a>
-            <a class="buttonMenu">Удалить</a>
-        </div>
-    </div>
-
-    <div class="friend">
-
-        <div class="mainInf">
-
-            <div class="styleImg">
-                <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
-            </div>
-
-            <div class="Text">
-                Имя:
-                <div class="input">
-                    @*@pr.Name*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Фамилия:
-                <div class="input">
-                    @*@pr.LastName*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Пол:
-                <div class="input">
-                    @*@if (pr.Pol == true)
-                        {
-                            <div>Мужской</div> }
-                        else
-                        {
-                            <div>Женский</div>}*@
-                </div>
-            </div>
-
-            <div class="Text">
-                День рождения:
-                <div class="input">
-                    @*@pr.Birthday*@
-                </div>
-            </div>
-
-        </div>
-        <hr style="width: 90%; visibility: hidden;">
-        <div class="bMenu">
-            <a class="buttonMenu">Подробнее</a>
-            <a class="buttonMenu">Удалить</a>
-        </div>
-    </div>
-
-    <div class="friend">
-
-        <div class="mainInf">
-
-            <div class="styleImg">
-                <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
-            </div>
-
-            <div class="Text">
-                Имя:
-                <div class="input">
-                    @*@pr.Name*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Фамилия:
-                <div class="input">
-                    @*@pr.LastName*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Пол:
-                <div class="input">
-                    @*@if (pr.Pol == true)
-                        {
-                            <div>Мужской</div> }
-                        else
-                        {
-                            <div>Женский</div>}*@
-                </div>
-            </div>
-
-            <div class="Text">
-                День рождения:
-                <div class="input">
-                    @*@pr.Birthday*@
-                </div>
-            </div>
-
-        </div>
-        <hr style="width: 90%; visibility: hidden;">
-        <div class="bMenu">
-            <a class="buttonMenu">Подробнее</a>
-            <a class="buttonMenu">Удалить</a>
-        </div>
-    </div>
-
-    <div class="friend">
-
-        <div class="mainInf">
-
-            <div class="styleImg">
-                <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
-            </div>
-
-            <div class="Text">
-                Имя:
-                <div class="input">
-                    @*@pr.Name*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Фамилия:
-                <div class="input">
-                    @*@pr.LastName*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Пол:
-                <div class="input">
-                    @*@if (pr.Pol == true)
-                        {
-                            <div>Мужской</div> }
-                        else
-                        {
-                            <div>Женский</div>}*@
-                </div>
-            </div>
-
-            <div class="Text">
-                День рождения:
-                <div class="input">
-                    @*@pr.Birthday*@
-                </div>
-            </div>
-
-        </div>
-        <hr style="width: 90%; visibility: hidden;">
-        <div class="bMenu">
-            <a class="buttonMenu">Подробнее</a>
-            <a class="buttonMenu">Удалить</a>
-        </div>
-    </div>
-
-    <div class="friend">
-
-        <div class="mainInf">
-
-            <div class="styleImg">
-                <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
-            </div>
-
-            <div class="Text">
-                Имя:
-                <div class="input">
-                    @*@pr.Name*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Фамилия:
-                <div class="input">
-                    @*@pr.LastName*@
-                </div>
-            </div>
-
-            <div class="Text">
-                Пол:
-                <div class="input">
-                    @*@if (pr.Pol == true)
-                        {
-                            <div>Мужской</div> }
-                        else
-                        {
-                            <div>Женский</div>}*@
-                </div>
-            </div>
-
-            <div class="Text">
-                День рождения:
-                <div class="input">
-                    @*@pr.Birthday*@
-                </div>
-            </div>
-
-        </div>
-        <hr style="width: 90%; visibility: hidden;">
-        <div class="bMenu">
-            <a class="buttonMenu">Подробнее</a>
-            <a class="buttonMenu">Удалить</a>
-        </div>
-    </div>
-
-
-</div>
-
-<hr style="margin-top: 15%;">
-
-@section scripts{
-
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-}
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }
