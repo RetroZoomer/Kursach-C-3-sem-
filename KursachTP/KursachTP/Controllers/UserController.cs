@@ -32,6 +32,24 @@ namespace KursachTP.Controllers
             return View("InsertPostU", post);
             //Ссылка на создание нового поста
         }
+        public IActionResult DeletePostU(int id)
+        {
+            dataDao2.DeleteByIdPost(id);
+            return View("PostViewU", dataDao2.ListPost(true));
+            //Удаление поста
+        }
+        public IActionResult EditPostU(int id)
+        {
+            return View("UpdatePostU", dataDao2.PostInfo(id));
+            // Ссылка на страницу редактуры
+        }
+
+        public IActionResult UpdatePostU(Post post)
+        // Редактура
+        {
+            dataDao2.UpPostU(post);
+            return View("PostViewU", dataDao2.ListPost(true));
+        }
 
         public IActionResult FindFriendsU()
         {
@@ -56,6 +74,18 @@ namespace KursachTP.Controllers
         {
             //Страница профиля
             return View("ProfileU", dataDao2.RecordOprID(id));
+        }
+        public IActionResult EditUser(int id)
+        {
+            return View("UpdateUserU", dataDao2.UserInfo(id));
+            // Ссылка на страницу редактуры
+        }
+
+        public IActionResult UpdateUser(User user)
+        // Редактура
+        {
+            dataDao2.UpUserZn(user);
+            return View("FriendsU");  
         }
 
         public IActionResult WarningU(int id)

@@ -68,7 +68,7 @@ namespace KursachTP.DAO
         public List<Profile> RecordOprName(string name)
         {
             Connect();
-            string sql = "SELECT name,lastname,userdescription,birthday,pol FROM User where name LIKE @name or Login LIKE @name";
+            string sql = "SELECT name,lastname,userdescription,birthday,pol,id_user FROM User where name LIKE @name or Login LIKE @name";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("name", name);
@@ -80,7 +80,7 @@ namespace KursachTP.DAO
             while (reader.Read())
             {
                 Profiles.profiles.Add(new Profile(reader.GetString(0), reader.GetString(1),
-                    reader.GetString(2), reader.GetString(3), reader.GetString(4)));
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5)));
             }
 
             Disconnect();
@@ -90,7 +90,7 @@ namespace KursachTP.DAO
         public List<Profile> RecordOprID(int id)
         {
             Connect();
-            string sql = "SELECT name,lastname,userdescription,birthday,pol FROM User where id_user LIKE @id";
+            string sql = "SELECT name,lastname,userdescription,birthday,pol,id_user FROM User where id_user LIKE @id";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("id", id);
@@ -102,7 +102,7 @@ namespace KursachTP.DAO
             while (reader.Read())
             {
                 Profiles.profiles.Add(new Profile(reader.GetString(0), reader.GetString(1),
-                    reader.GetString(2), reader.GetString(3), reader.GetString(4)));
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5)));
             }
 
             Disconnect();
@@ -115,12 +115,12 @@ namespace KursachTP.DAO
             string sql = null;
             if (vbr == true)
             {
-                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname FROM post " +
+                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname,user.login FROM post " +
                     "INNER JOIN user ON post.id_user = user.id_user order by starttime;";
             }
             else
             {
-                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname " +
+                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname,user.login " +
                 "FROM post " + "INNER JOIN user ON post.id_user = user.id_user where hide = true order by starttime;";
             }
 
@@ -134,7 +134,8 @@ namespace KursachTP.DAO
             {
                 Posts.posts.Add(new Post(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7)));
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7), 
+                    reader.GetString(8)));
             }
 
             Disconnect();
@@ -142,7 +143,7 @@ namespace KursachTP.DAO
         }
 
         [HttpGet]
-        public async void GetPerson(User user)
+        public void GetPerson(User user)
         {
             Connect();
             string sql = "INSERT INTO USER(name,lastname,userdescription,birthday,pol,login," +
@@ -294,6 +295,28 @@ namespace KursachTP.DAO
             Disconnect();
         }
 
+        public void UpUserZn(User user)
+        {
+            Connect();
+            string sql = "UPDATE USER SET name = @name, lastname = @lastname, userdescription = @userdescription," +
+                " birthday = @birthday, pol = @pol, password = @password, phone=@phone" +
+                " WHERE id_user = @id_user ;";
+
+            MySqlCommand comanda = new MySqlCommand(sql, connection);
+
+            comanda.Parameters.AddWithValue("id_user", user.UserID);
+            comanda.Parameters.AddWithValue("name", user.Name);
+            comanda.Parameters.AddWithValue("lastname", user.LastName);
+            comanda.Parameters.AddWithValue("userdescription", user.UserDescription);
+            comanda.Parameters.AddWithValue("birthday", user.Birthday);
+            comanda.Parameters.AddWithValue("pol", user.Pol);
+            comanda.Parameters.AddWithValue("password", HashPasswordHelper.HashPassword(user.Password)); //после редактирование он снова хеширует пароль поэтому при входе теперь пароль не будет верным
+            comanda.Parameters.AddWithValue("phone", user.Phone);
+
+            comanda.ExecuteNonQuery();
+            Disconnect();
+        }
+
         public void UpPost(Post post)
         {
             Connect();
@@ -313,11 +336,27 @@ namespace KursachTP.DAO
             Disconnect();
         }
 
+        public void UpPostU(Post post)
+        {
+            Connect();
+            string sql = "UPDATE POST SET posttitle = @posttitle," +
+                " postdescription = @postdescription" +
+                " WHERE id_post = @id;";
+
+            MySqlCommand comanda = new MySqlCommand(sql, connection);
+            comanda.Parameters.AddWithValue("id", post.PostID);
+            comanda.Parameters.AddWithValue("posttitle", post.PostTitle);
+            comanda.Parameters.AddWithValue("postdescription", post.PostDescription);
+
+            comanda.ExecuteNonQuery();
+            Disconnect();
+        }
+
         public Post PostInfo(int userid)
         {
             Connect();
 
-            string sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname FROM Post " +
+            string sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname,user.login FROM Post " +
                 "INNER JOIN user ON post.id_user = user.id_user WHERE post.id_post like (@userid);";
             Post postic = null;
 
@@ -331,7 +370,8 @@ namespace KursachTP.DAO
             {
                 postic = new Post(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7));
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                    reader.GetString(8));
             }
 
             Disconnect();
