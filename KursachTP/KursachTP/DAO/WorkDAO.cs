@@ -266,6 +266,17 @@ namespace KursachTP.DAO
             command.ExecuteNonQuery();
             Disconnect();
         }
+        public void DeleteFriendID(int id,int id_user)
+        {
+            Connect();
+            string sql = "DELETE FROM friends WHERE id_user = @id and id_user2 = @id2 or id_user = @id2 and id_user2 = @id;";
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.AddWithValue("id", id);
+            command.Parameters.AddWithValue("id2", id_user);
+            command.ExecuteNonQuery();
+            Disconnect();
+        }
 
         public void DeleteByIdPost(int id)
         {

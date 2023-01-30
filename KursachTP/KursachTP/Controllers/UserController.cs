@@ -79,9 +79,8 @@ namespace KursachTP.Controllers
             return View("ProfileFr", dataDao2.RecordOprID(id));
         }
         public IActionResult EditUser(int id)
-        {
-            return View("UpdateUserU", dataDao2.UserInfo(id));
-            // Ссылка на страницу редактуры
+        {            // Ссылка на страницу редактуры
+            return View("UpdateUserU", dataDao2.UserInfo(id);
         }
 
         public IActionResult FindFriendsU()
@@ -89,7 +88,15 @@ namespace KursachTP.Controllers
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
             return View("FindFriendsU", dataDao2.ListFriends(0));
-            //Ссылка на страницу с посиском
+            //Ссылка на страницу с поиском
+        }
+        public IActionResult DeleteFriend(int id)
+        {
+            string nameAuthor = HttpContext.User.Identity.Name;
+            int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
+            dataDao2.DeleteFriendID(id,id_user);
+            return View("FindFriendsU", dataDao2.ListFriends(0));
+            //Удаление пользователя и возвращение ко всем пользователям
         }
         public IActionResult UpdateUser(User user)
         // Редактура
