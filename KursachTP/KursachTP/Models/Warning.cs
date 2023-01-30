@@ -8,13 +8,17 @@ namespace KursachTP.Models
 {
     public class Warning
     {
-        public Warning(string f0, string f1, string f2, string f3, string f4)
+        public Warning(string f0, string f1, string f2, string f3, string f4, string f5, string f6)
         {
             WarningID = Convert.ToInt32(f0);
-            NameUser = f1;
-            LastNameUser = f2;
-            WarningDescription = f3;
-            WarningTime = Convert.ToDateTime(f4);
+            UserID = Convert.ToInt32(f1);
+            NameUser = f2;
+            LastNameUser = f3;
+            WarningDescription = f4;
+            WarningTime = Convert.ToDateTime(f5);
+            PostID = Convert.ToInt32(f6);
+
+
         }
         public Warning()
         {
@@ -22,6 +26,8 @@ namespace KursachTP.Models
         }
         [Required]
         public int? WarningID { get; set; }
+        [Required]
+        public int UserID { get; set; }
         [Required]
         public string? NameUser { get; set; }
         [Required]
@@ -31,7 +37,10 @@ namespace KursachTP.Models
         public string? WarningDescription { get; set; }
         [Required]
         public DateTime? WarningTime { get; set; }
-
+        [Required]
+        public int PostID { get; set; }
+        [Required]
+        public int WarningCount { get; set; }
     }
     public static class Warnings
     {

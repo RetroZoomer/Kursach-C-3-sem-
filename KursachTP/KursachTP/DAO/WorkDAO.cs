@@ -141,6 +141,61 @@ namespace KursachTP.DAO
             Disconnect();
             return Posts.posts;
         }
+
+        public List<Warning> ListWarning()
+        {
+            Connect();
+
+
+            string sql = "SELECT id_warning, post.id_user, user.Name, user.LastName, warningDescription, warningTime, warning.id_post " +
+                "FROM Warning " +
+                "INNER JOIN post ON post.id_post = warning.id_post " +
+                "INNER JOIN user ON user.id_user = post.id_user ORDER BY warning.WarningTime DESC;";
+
+            
+
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            
+
+            MySqlDataReader reader = command.ExecuteReader();
+            
+
+            Warnings.warnings.Clear();
+
+            while (reader.Read())
+            {
+                Warnings.warnings.Add(new Warning(reader.GetString(0), reader.GetString(1),
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), reader.GetString(6)));
+            }
+
+            Disconnect();
+            return Warnings.warnings;
+        }
+
+        public string WarningCount(int id)
+        {
+            Connect();
+            string sql = "SELECT count(id_post) FROM Warning WHERE id_post = @id;";
+
+            string res = null;
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("id", id);
+
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                res = reader.GetString(0);
+            }
+            Disconnect();
+
+            return res;
+        }
+
         public List<Friend> ListFriends(int id,string namesuser,bool pyt)
         {
             Connect();
@@ -266,19 +321,6 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("warning.id_user", id_us);
             comanda.Parameters.AddWithValue("warning.warningdescription", description);
             comanda.Parameters.AddWithValue("warning.warningtime", dateTime);
-
-            comanda.ExecuteNonQuery(); //Срабатывает исключение
-            Disconnect();
-
-        }
-
-        public void CancelWarning(int id_warning)
-        {
-            Connect();
-            string sql = "DELETE FROM Warning WHERE id_warning = @id_warning";
-            MySqlCommand comanda = new MySqlCommand(sql, connection);
-
-            comanda.Parameters.AddWithValue("warning.id_warning", id_warning);
 
             comanda.ExecuteNonQuery(); //Срабатывает исключение
             Disconnect();
@@ -529,8 +571,6 @@ namespace KursachTP.DAO
         {
             Connect();
             string sql = "SELECT id_user FROM USER WHERE login like (@login);";
-
-            string id = null;
 
             MySqlCommand command = new MySqlCommand(sql, connection);
 

@@ -161,10 +161,16 @@ namespace KursachTP.Controllers
             return View("Zapas");
         }
 
-        public IActionResult WarningView()
+        public IActionResult WarningCount(int id)
         {
             // Подробный Вывод 
             return View("WarningView");
+        }
+
+        public IActionResult WarningView()
+        {
+            // Подробный Вывод 
+            return View("WarningView", dataDao.ListWarning());
         }
 
         public IActionResult UnLogin()

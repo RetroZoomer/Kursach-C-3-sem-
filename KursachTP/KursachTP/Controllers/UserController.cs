@@ -113,22 +113,6 @@ namespace KursachTP.Controllers
             return View("PostViewU", dataDao2.ListPost(false));
         }
 
-        //public IActionResult WarningUCancel(int id)
-        //{
-        //    // Отмена записи в БД*//*
-        //    dataDao2.CancelWarning(id);
-        //    return View("PostViewU");
-        //}
-
-        //public IActionResult WarningUUpdate(int id)
-        //{
-        //    // Изменение записи в БД*//*
-        //    string nameAuthor = HttpContext.User.Identity.Name;
-        //    int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
-        //    dataDao2.GetWarning(id, id_user);
-        //    return View("WarningU");
-        //}
-
         public ActionResult FriendsU()
         { // Вывод друзей
             string nameAuthor = HttpContext.User.Identity.Name;

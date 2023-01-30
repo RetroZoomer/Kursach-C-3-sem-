@@ -1,6 +1,7 @@
 ﻿@using KursachTP.Models
 @using System.Security.Claims
-@model List<User>
+@model List<Warning>
+
 <style>
     body {
         font-family: 'Roboto', sans-serif;
@@ -302,14 +303,6 @@
 
 </style>
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Поиск друзей</title>
-</head>
-
 <header class="header">
     <div class="header-intro">
         <div class="logo">Logo</div>
@@ -340,28 +333,43 @@
         <table>
             <tr>
                 <td>ID Поста</td>
-                <td>ID Пользователя добав. пост</td>
-                <td>Фамилия и имя</td>
-                <tb>ID Пользователя отправившего жалобу</tb>
-                <td>Фамилия и имя</td>
-                <td>Описание</td>
-                <tb>Время жалобы</tb>
                 <td>Действия к посту</td>
+                <td>Фамилия и имя польз. опуб. пост</td>
+                <td>Действия к пользователю</td>
+                <td>Описание жалобы</td>
+                <td>Время отправки жалобы</td>
+
             </tr>
+            @foreach (var w in Model)
+            { 
+        <tr>
+            <td>
+                @w.PostID
+            </td>
+
+            <td>
+                <a class="button" asp-action="InfoPerson" asp-route-id="">Информация</a>
+                <a class="button" asp-action="EditPerson" asp-route-id="">Редактировать</a>
+                <a class="button" asp-action="DeletePerson" asp-route-id="">Удалить</a>
+            </td>
+
+            <td>
+                @w.NameUser @w.LastNameUser
+            </td>
+
+            <td>
+                <a class="button" asp-action="InfoPerson" asp-route-id="">Информация</a>
+                <a class="button" asp-action="EditPerson" asp-route-id="">Редактировать</a>
+                <a class="button" asp-action="DeletePerson" asp-route-id="">Удалить</a>
+            </td>
+
+            <td>@w.WarningDescription</td>
+
+            <td>@w.WarningTime</td>
+
+        </tr>           
+            }
             
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a class="button" asp-action="InfoPerson" asp-route-id="">Информация</a>
-                        <a class="button" asp-action="EditPerson" asp-route-id="">Редактировать</a>
-                        <a class="button" asp-action="DeletePerson" asp-route-id="">Удалить</a>
-                    </td>
-                </tr>
             
         </table>
     </div>
