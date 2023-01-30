@@ -110,7 +110,7 @@ namespace KursachTP.Controllers
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
             dataDao2.GetWarning(id, id_user, warning.WarningDescription);
-            return View("PostViewU");
+            return View("PostViewU", dataDao2.ListPost(false));
         }
 
         //public IActionResult WarningUCancel(int id)
@@ -139,7 +139,7 @@ namespace KursachTP.Controllers
         // Редактура
         {
             dataDao2.UpUserZn(user);
-            return View("FriendsU");
+            return View("ProfileU", dataDao2.RecordOprID(user.UserID));
         }
 
         // POST: UserController/Create
