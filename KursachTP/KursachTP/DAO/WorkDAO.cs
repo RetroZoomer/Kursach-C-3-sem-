@@ -141,18 +141,22 @@ namespace KursachTP.DAO
             Disconnect();
             return Posts.posts;
         }
-        public List<Friend> ListFriends(int id)
+        public List<Friend> ListFriends(int id,string namesuser,bool pyt)
         {
             Connect();
+
             string sql = "SELECT friends.id_user2, name,lastname,birthday,pol,phone FROM friends " +
                 "join user on user.id_user=friends.id_user2 where friends.id_user = @id union " +
                 "SELECT friends.id_user2, name,lastname,birthday,pol,phone FROM friends " +
-                "join user on user.id_user=friends.id_user where friends.id_user2 LIKE @id";
-            string sql2 = "SELECT DISTINCT user.id_user, name,lastname,birthday,pol,phone FROM user " +
-                "LEFT join friends on user.id_user=friends.id_user2;";
-            if (id == 0)
+                "join user on user.id_user=friends.id_user where friends.id_user2 LIKE @id"; // Друзья
+            string sql2 = "select DISTINCT id_user, name,lastname,birthday,pol,phone from user where lastname not in (SELECT lastname FROM friends"+
+           " join user on user.id_user = friends.id_user2 where friends.id_user = @id union"+
+            " SELECT lastname FROM friends join user on user.id_user = friends.id_user where friends.id_user2 = @id); "; // неДрузья
+
+            if (!pyt)
             {
                 MySqlCommand command2 = new MySqlCommand(sql2, connection);
+                command2.Parameters.AddWithValue("id", id);
                 MySqlDataReader reader = command2.ExecuteReader();
                 Friends.friends.Clear();
 

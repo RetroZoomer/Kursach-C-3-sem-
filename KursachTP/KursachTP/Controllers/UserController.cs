@@ -80,14 +80,14 @@ namespace KursachTP.Controllers
         }
         public IActionResult EditUser(int id)
         {            // Ссылка на страницу редактуры
-            return View("UpdateUserU", dataDao2.UserInfo(id);
+            return View("UpdateUserU", dataDao2.UserInfo(id));
         }
 
         public IActionResult FindFriendsU()
         {
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
-            return View("FindFriendsU", dataDao2.ListFriends(0));
+            return View("FindFriendsU", dataDao2.ListFriends(id_user,null,false));
             //Ссылка на страницу с поиском
         }
         public IActionResult DeleteFriend(int id)
@@ -95,16 +95,17 @@ namespace KursachTP.Controllers
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
             dataDao2.DeleteFriendID(id,id_user);
-            return View("FindFriendsU", dataDao2.ListFriends(0));
+            return View("FindFriendsU", dataDao2.ListFriends(id_user,null,false));
             //Удаление пользователя и возвращение ко всем пользователям
         }
-        public IActionResult UpdateUser(User user)
-        // Редактура
+        public IActionResult FriendName(string namesuser)
         {
-            dataDao2.UpUserZn(user);
-            return View("FriendsU");  
+            //Вывод друзей по имени/логину
+            string nameAuthor = HttpContext.User.Identity.Name;
+            int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
+            return View("FindFriendsU", dataDao2.ListFriends(id_user, namesuser,false));
         }
-
+        
         public IActionResult WarningU(int id)
         {
             // Добавление в БД*//*
@@ -115,10 +116,16 @@ namespace KursachTP.Controllers
         }
 
         public ActionResult FriendsU()
-        {
+        { // Вывод друзей
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
-            return View("FriendsU", dataDao2.ListFriends(id_user));
+            return View("FriendsU", dataDao2.ListFriends(id_user,null,true));
+        }
+        public IActionResult UpdateUser(User user)
+        // Редактура
+        {
+            dataDao2.UpUserZn(user);
+            return View("FriendsU");
         }
 
         // POST: UserController/Create

@@ -95,7 +95,6 @@ namespace KursachTP.Controllers
         public IActionResult IndexName(string namesuser)
         {
             //Вывод пользователей по имени
-            
             return View("Index" , dataDao.Record(3,0,0,namesuser));
         }
         public IActionResult PostView()
