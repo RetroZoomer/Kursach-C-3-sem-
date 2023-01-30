@@ -149,11 +149,17 @@ namespace KursachTP.DAO
                 "join user on user.id_user=friends.id_user2 where friends.id_user = @id union " +
                 "SELECT friends.id_user2, name,lastname,birthday,pol,phone FROM friends " +
                 "join user on user.id_user=friends.id_user where friends.id_user2 LIKE @id"; // Друзья
-            string sql2 = "select DISTINCT id_user, name,lastname,birthday,pol,phone from user where lastname not in (SELECT lastname FROM friends"+
+            string sql3 = "select  DISTINCT id_user, name,lastname,birthday,pol,phone from user " +
+                "where lastname in (SELECT lastname FROM friends" +
+                " join user on user.id_user = friends.id_user2 where friends.id_user = @id union" +
+                " SELECT lastname FROM friends join user on user.id_user = friends.id_user " +
+                "where friends.id_user2 = @id) and name LIKE @name; "; // Друзья по имени
+            string sql2 = "select DISTINCT id_user, name,lastname,birthday,pol,phone from user " +
+                "where lastname not in (SELECT lastname FROM friends"+
            " join user on user.id_user = friends.id_user2 where friends.id_user = @id union"+
             " SELECT lastname FROM friends join user on user.id_user = friends.id_user where friends.id_user2 = @id); "; // неДрузья
 
-            if (!pyt)
+            if (!pyt) // Вывод недрузей при поиске
             {
                 MySqlCommand command2 = new MySqlCommand(sql2, connection);
                 command2.Parameters.AddWithValue("id", id);
@@ -167,8 +173,18 @@ namespace KursachTP.DAO
                         reader.GetString(5)));
                 }
             }
-            else {
-                MySqlCommand command = new MySqlCommand(sql, connection);
+            else
+            {// Вывод друзей 
+                MySqlCommand command;
+                if (namesuser == null)
+                {
+                    command = new MySqlCommand(sql, connection);
+                }
+                else
+                {
+                    command = new MySqlCommand(sql3, connection);
+                    command.Parameters.AddWithValue("@name", "%" + namesuser+ "%");
+                }
                 command.Parameters.AddWithValue("id", id);
 
                 MySqlDataReader reader = command.ExecuteReader();
@@ -181,10 +197,6 @@ namespace KursachTP.DAO
                         reader.GetString(5)));
                 }
             }
-           
-
-            
-
             Disconnect();
             return Friends.friends;
         }
