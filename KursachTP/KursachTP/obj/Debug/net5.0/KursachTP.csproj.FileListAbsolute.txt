@@ -177,3 +177,4 @@ C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\H
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\UpdatePostU.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\UpdateUserU.cshtml.g.cs
 C:\Users\root\source\repos\KP\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\ProfileFr.cshtml.g.cs
+Z:\FindFriends\KursachTP\KursachTP\obj\Debug\net5.0\Razor\Views\User\ProfileFr.cshtml.g.cs

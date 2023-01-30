@@ -496,25 +496,20 @@
     <div class="header-intro">
         <div class="logo">Logo</div>
         <nav class="nav">
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="LogInView">Вход</a>
-
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Пользователи</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="WarningView">Жалобы</a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
-            <a class="nav_link" href="#">О нас</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
-            <div class="profileHref">
-                <a class="nav_link_p" asp-area="" asp-controller="User" asp-action="ProfileU">
-                    @try
-                    {
-                        @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
-                    }
-                    catch (NullReferenceException ex)
-                    {
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
+                @try
+                {
+                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
+                }
+                catch (NullReferenceException ex)
+                {
 
-                    }
-                </a>
-            </div>
-            
+                }
+            </a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
         </nav>
     </div>
 </header>
@@ -565,9 +560,6 @@
                             @pr.Birthday
                         </div>
                     </div>
-
-                    <a class="buttonExit" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
-
                 </div>
             </div>
 

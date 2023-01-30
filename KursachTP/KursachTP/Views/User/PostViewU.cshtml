@@ -125,6 +125,7 @@
         width: 250px;
         box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
+        cursor: pointer;
     }
 
     .title {
@@ -259,13 +260,32 @@
         cursor: pointer;
     }
 
+    .wButton {
+        margin: 3% auto 3% auto;
+        border-radius: 51px;
+        border: 2px solid white;
+        background: white;
+        color: #6296E4;
+        font-size: 24px;
+        width: 237px;
+        cursor: pointer;
+    }
+
     .bMenu {
         margin: 0% auto;
         display: flex;
         padding: 1% 5% 2% 5%;
         flex-direction: row;
         justify-content: space-between;
-        align-items: start;
+        align-items: center;
+    }
+
+    .content {
+        background: #4c76b5;
+        width: 247px;
+        margin: 0 0 2% auto;
+        border-radius: 10px;
+        border: 2px solid #4876bb;
     }
 
     .buttonMenu {
@@ -355,6 +375,23 @@
         text-decoration: none;
         color: #FFFFFF;
     }
+
+    .inputSel {
+        background: #ffffff;
+        border-radius: 10px;
+        border: 2px solid #4876bb;
+        font-size: 21px;
+        color: #6296E4;
+        height: auto;
+        padding: 1% 2% 1% 2%;
+        margin: 3% auto;
+        word-break: break-word;
+        white-space: normal;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
 </style>
 
 
@@ -422,7 +459,20 @@
 
             <hr style="width: 90%; visibility: hidden;">
             <div class="bMenu">
-                <a class="buttonMenu" asp-action="WarningU" asp-route-id="@pst.PostID" asp-controller="User">Пожаловаться</a>
+                @if (User.FindFirst(x => x.Type == ClaimTypes.Name).Value != pst.Login) 
+                {
+                    <form method="post" asp-antiforgery="true" asp-action="WarningU" asp-route-id="@pst.PostID" asp-controller="User" class="content">
+                        <select name="WarningDescription" class="inputSel">
+                            <option value="Спам">Спам</option>
+                            <option value="Запрещённый товар">Запрещённый товар</option>
+                            <option value="Обман">Обман</option>
+                            <option value="Население и вражда">Население и вражда</option>
+                        </select>
+                        <input type="submit" class="wButton" value="Отправить жалобу" />
+                        @*<a class="buttonMenu" asp-action="WarningU" asp-route-id="@pst.PostID" asp-controller="User">Пожаловаться</a>*@
+                    </form>
+                }
+                
                 @if (User.FindFirst(x => x.Type == ClaimTypes.Name).Value == pst.Login)
                 {
                     <a class="buttonMenu" asp-action="EditPostU" asp-route-id="@pst.PostID" asp-controller="User">Редактировать</a>

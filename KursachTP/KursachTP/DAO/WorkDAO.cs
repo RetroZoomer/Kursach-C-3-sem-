@@ -252,7 +252,7 @@ namespace KursachTP.DAO
             comanda.ExecuteNonQuery();
             Disconnect();
         }
-        public void GetWarning(int id_post, int id_us)
+        public void GetWarning(int id_post, int id_us, string description)
         {
             Connect();
             string sql = "INSERT INTO Warning(id_post, id_user,warningdescription,warningtime) " +
@@ -264,8 +264,21 @@ namespace KursachTP.DAO
 
             comanda.Parameters.AddWithValue("warning.id_post", id_post);
             comanda.Parameters.AddWithValue("warning.id_user", id_us);
-            comanda.Parameters.AddWithValue("warning.warningdescription", "Fuck");
+            comanda.Parameters.AddWithValue("warning.warningdescription", description);
             comanda.Parameters.AddWithValue("warning.warningtime", dateTime);
+
+            comanda.ExecuteNonQuery(); //Срабатывает исключение
+            Disconnect();
+
+        }
+
+        public void CancelWarning(int id_warning)
+        {
+            Connect();
+            string sql = "DELETE FROM Warning WHERE id_warning = @id_warning";
+            MySqlCommand comanda = new MySqlCommand(sql, connection);
+
+            comanda.Parameters.AddWithValue("warning.id_warning", id_warning);
 
             comanda.ExecuteNonQuery(); //Срабатывает исключение
             Disconnect();
@@ -282,6 +295,7 @@ namespace KursachTP.DAO
             command.ExecuteNonQuery();
             Disconnect();
         }
+
         public void DeleteFriendID(int id,int id_user)
         {
             Connect();

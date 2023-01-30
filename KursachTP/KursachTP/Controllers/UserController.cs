@@ -51,8 +51,6 @@ namespace KursachTP.Controllers
             return View("PostViewU", dataDao2.ListPost(true));
         }
 
-
-
         public IActionResult ProfileU()
         {
             //Страница профиля
@@ -106,14 +104,30 @@ namespace KursachTP.Controllers
             return View("FindFriendsU", dataDao2.ListFriends(id_user, namesuser,true));
         }
         
-        public IActionResult WarningU(int id)
+        public IActionResult WarningU(int id, Warning warning)
         {
             // Добавление в БД*//*
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
-            dataDao2.GetWarning(id, id_user);
-            return View("WarningU");
+            dataDao2.GetWarning(id, id_user, warning.WarningDescription);
+            return View("PostViewU");
         }
+
+        //public IActionResult WarningUCancel(int id)
+        //{
+        //    // Отмена записи в БД*//*
+        //    dataDao2.CancelWarning(id);
+        //    return View("PostViewU");
+        //}
+
+        //public IActionResult WarningUUpdate(int id)
+        //{
+        //    // Изменение записи в БД*//*
+        //    string nameAuthor = HttpContext.User.Identity.Name;
+        //    int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
+        //    dataDao2.GetWarning(id, id_user);
+        //    return View("WarningU");
+        //}
 
         public ActionResult FriendsU()
         { // Вывод друзей

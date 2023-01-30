@@ -202,23 +202,13 @@
     }
 </style>
 
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Поиск друзей</title>
-</head>
-
 <header class="header">
     <div class="header-intro">
         <div class="logo">Logo</div>
         <nav class="nav">
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="LogInView">Вход</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Пользователи</a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="WarningView">Жалобы</a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
-            <a class="nav_link" href="#">О нас</a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
                 @try
                 {
@@ -229,6 +219,7 @@
 
                 }
             </a>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
         </nav>
     </div>
 </header>

@@ -219,21 +219,20 @@
     <div class="header-intro">
         <div class="logo">Logo</div>
         <nav class="nav">
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Login">Вход</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="PostView">Посты</a>
-            <a class="nav_link" href="#">О нас</a>
-            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="ProfileView">
-                @try
-                {
-                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value
-                }
-                catch (NullReferenceException ex)
-                {
+            <a class="nav_link" asp-area="" asp-controller="User" asp-action="PostViewU">Посты</a>
+            <a class="nav_link" asp-area="" asp-controller="User" asp-action="FriendsU">Друзья</a>
+            <div class="profileHref">
+                <a class="nav_link_p" asp-area="" asp-controller="User" asp-action="ProfileViewU">
+                    @try
+                    {
+                        @User.FindFirst(x => x.Type == ClaimTypes.Name).Value}
+                    catch (NullReferenceException ex)
+                    {
 
-                }
-            </a>
+                    }
+                </a>
+            </div>
+            <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
         </nav>
     </div>
 </header>
@@ -255,9 +254,9 @@
                     <option value="Население и вражда">Население и вражда</option>
                 </select>
             </div>
-
+            
             <input type="submit" class="button" value="Отправить жалобу" />
-            <a class="button" asp-action="PostViewU">Список постов</a>
+            <a class="button" asp-action="PostViewU" asp-route-id="@*@w.WarningID*@">Список постов</a>
         </div>
     </form>
 </div>
