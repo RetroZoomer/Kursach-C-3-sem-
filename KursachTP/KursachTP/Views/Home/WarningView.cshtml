@@ -358,9 +358,9 @@
             </td>
 
             <td>
-                <a class="button" asp-action="InfoPerson" asp-route-id="">Информация</a>
-                <a class="button" asp-action="EditPerson" asp-route-id="">Редактировать</a>
-                <a class="button" asp-action="DeletePerson" asp-route-id="">Удалить</a>
+                <a class="button" asp-action="InfoPerson" asp-route-id="@w.UserID">Информация</a>
+                <a class="button" asp-action="EditPerson" asp-route-id="@w.UserID">Редактировать</a>
+                <a class="button" asp-action="DeletePerson" asp-route-id="@w.UserID">Удалить</a>
             </td>
 
             <td>@w.WarningDescription</td>
