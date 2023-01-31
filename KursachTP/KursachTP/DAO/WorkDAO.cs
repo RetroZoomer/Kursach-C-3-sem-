@@ -293,15 +293,14 @@ namespace KursachTP.DAO
         public void GetPost(Post post, int id)
         {
             Connect();
-            string sql = "INSERT INTO POST(id_user, posttitle,postdescription,hide) " +
+            string sql = "INSERT INTO POST(id_user, posttitle,postdescription,hide,starttime) " +
                 "VALUES (@post.id_user, @post.posttitle,  @post.postdescription, " +
-                "@post.hide)";
+                "@post.hide, NOW())";
             MySqlCommand comanda = new MySqlCommand(sql, connection);
 
             comanda.Parameters.AddWithValue("post.id_user", id);
             comanda.Parameters.AddWithValue("post.posttitle", post.PostTitle);
             comanda.Parameters.AddWithValue("post.postdescription", post.PostDescription);
-            //comanda.Parameters.AddWithValue("post.starttime", post.StartTime);
             comanda.Parameters.AddWithValue("post.hide", true);
 
             comanda.ExecuteNonQuery();
