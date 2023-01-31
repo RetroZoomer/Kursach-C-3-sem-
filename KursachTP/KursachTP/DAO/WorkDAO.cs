@@ -212,7 +212,7 @@ namespace KursachTP.DAO
             string sql2 = "select DISTINCT id_user, name,lastname,birthday,pol,phone from user " +
                 "where lastname not in (SELECT lastname FROM friends"+
            " join user on user.id_user = friends.id_user2 where friends.id_user = @id union"+
-            " SELECT lastname FROM friends join user on user.id_user = friends.id_user where friends.id_user2 = @id); "; // неДрузья
+            " SELECT lastname FROM friends join user on user.id_user = friends.id_user where friends.id_user2 = @id) and id_user <> @id; "; // неДрузья
 
             if (!pyt) // Вывод недрузей при поиске
             {
