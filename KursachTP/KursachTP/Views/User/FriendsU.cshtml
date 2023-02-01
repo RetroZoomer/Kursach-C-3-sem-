@@ -120,6 +120,7 @@
             width: 250px;
             box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
             border-radius: 20px;
+            cursor: pointer;
         }
 
         .title {
@@ -355,7 +356,7 @@
 
     <div class="main">
 
-        <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
+        <div style="display: flex; flex-direction: column; justify-content: space-around; align-items: center; width: 100%; flex-wrap: nowrap; margin-bottom: 5%; ">
             <form method="post" asp-action="FriendName">
                 <div class="contentID">
                     <div class="titleID">Введите фрагмент имени пользователя:</div>
@@ -365,56 +366,58 @@
             </form>
         </div>
 
+        
+
         @foreach (var r in Model)
         {
-        <div class="friend">
+            <div class="friend">
 
-            <div class="mainInf">
+                <div class="mainInf">
 
-                <div class="styleImg">
-                    <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
-                </div>
-
-                <div class="Text">
-                    Имя:
-                    <div class="input">
-                        @r.Name
+                    <div class="styleImg">
+                        <img src="https://clck.ru/33MEpQ" alt="фото пользователя" class="profileImg">
                     </div>
-                </div>
 
-                <div class="Text">
-                    Фамилия:
-                    <div class="input">
-                        @r.LastName
+                    <div class="Text">
+                        Имя:
+                        <div class="input">
+                            @r.Name
+                        </div>
                     </div>
-                </div>
 
-                <div class="Text">
-                    Пол:
-                    <div class="input">
-                        @if (r.Pol == true)
+                    <div class="Text">
+                        Фамилия:
+                        <div class="input">
+                            @r.LastName
+                        </div>
+                    </div>
+
+                    <div class="Text">
+                        Пол:
+                        <div class="input">
+                            @if (r.Pol == true)
                             {
                                 <div>Мужской</div> }
                             else
                             {
                                 <div>Женский</div>}
+                        </div>
                     </div>
-                </div>
 
-                <div class="Text">
-                    День рождения:
-                    <div class="input">
-                        @r.Birthday
+                    <div class="Text">
+                        День рождения:
+                        <div class="input">
+                            @r.Birthday
+                        </div>
                     </div>
-                </div>
 
+                </div>
+                <hr style="width: 90%; visibility: hidden;">
+                <div class="bMenu">
+                    <a class="buttonMenu" asp-controller="User" asp-action="AnotherUser" asp-route-id="@r.UserID">Подробнее</a>
+                    <a class="buttonMenu" asp-controller="User" asp-action="DeleteFriend" asp-route-id="@r.UserID">Удалить из друзей</a>
+                </div>
             </div>
-            <hr style="width: 90%; visibility: hidden;">
-            <div class="bMenu">
-                <a class="buttonMenu" asp-controller="User" asp-action="AnotherUser" asp-route-id="@r.UserID">Подробнее</a>
-                <a class="buttonMenu" asp-controller="User" asp-action="DeleteFriend" asp-route-id="@r.UserID">Удалить из друзей</a>
-            </div>
-        </div>
         }
 
     </div>
