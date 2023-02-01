@@ -412,10 +412,11 @@
             <hr style="width: 90%; visibility: hidden;">
             <div class="bMenu">
                 <a class="buttonMenu" asp-controller="User" asp-action="AnotherUser" asp-route-id="@r.UserID">Подробнее</a>
-                <a class="buttonMenu" asp-controller="User" asp-action="NewFriend" asp-route-id="@r.UserID">Добавить в друзья</a>
+                <a class="buttonMenu" onclick="addFriend()" asp-controller="User" asp-action="NewFriend" asp-route-id="@r.UserID">Добавить в друзья</a>
             </div>
         </div>
-    }
+        
+      }
 
 </div>
 
@@ -423,6 +424,10 @@
 
 @section scripts{
 
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script>
+        function addFriend() {
+            alert("Вы добавили этого пользователя в список друзей");
+        }
+    </script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }

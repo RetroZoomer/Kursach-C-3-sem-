@@ -415,7 +415,7 @@
                 <hr style="width: 90%; visibility: hidden;">
                 <div class="bMenu">
                     <a class="buttonMenu" asp-controller="User" asp-action="AnotherUser" asp-route-id="@r.UserID">Подробнее</a>
-                    <a class="buttonMenu" asp-controller="User" asp-action="DeleteFriend" asp-route-id="@r.UserID">Удалить из друзей</a>
+                    <a class="buttonMenu" onclick='deleteFriend()' asp-controller="User" asp-action="DeleteFriend" asp-route-id="@r.UserID">Удалить из друзей</a>
                 </div>
             </div>
         }
@@ -426,6 +426,10 @@
 
     @section scripts{
 
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script>
+            function deleteFriend() {
+                alert("Вы удалили этого друга из списка друзей");
+            }
+        </script>
         <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     }
