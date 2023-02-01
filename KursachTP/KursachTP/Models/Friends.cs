@@ -14,7 +14,7 @@ namespace KursachTP.Models
             UserID = Convert.ToInt32(f0);
             Name = f1;
             LastName = f2;
-            Birthday = Convert.ToDateTime(f3);
+            Birthday = f3.Substring(0, 11);
             if (f4 == "1")
             {
                 Pol = true;
@@ -37,7 +37,7 @@ namespace KursachTP.Models
         public string? LastName { get; set; }
 
         [Required]
-        public DateTime? Birthday { get; set; }
+        public string? Birthday { get; set; }
         [Required]
         public bool? Pol { get; set; }
         [Required]

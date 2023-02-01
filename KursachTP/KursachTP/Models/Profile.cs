@@ -13,7 +13,7 @@ namespace KursachTP.Models
             Name = f0;
             LastName = f1;
             UserDescription = f2;
-            Birthday = Convert.ToDateTime(f3);
+            Birthday = f3.Substring(0,11);
             Pol = Convert.ToBoolean(f4);
             UserID = Convert.ToString(f5);
         }
@@ -28,7 +28,7 @@ namespace KursachTP.Models
         [Required]
         public string? UserDescription { get; set; }
         [Required]
-        public DateTime? Birthday { get; set; }
+        public string? Birthday { get; set;}
         [Required]
         public bool? Pol { get; set; }
         [Required]
