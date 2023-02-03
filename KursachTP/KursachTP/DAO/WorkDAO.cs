@@ -114,14 +114,19 @@ namespace KursachTP.DAO
             Connect();
             string sql = null;
             if (vbr == true)
-            {
-                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname,user.login FROM post " +
-                    "INNER JOIN user ON post.id_user = user.id_user order by starttime;";
+            {   // Все посты
+                sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime," +
+                    "hide,user.name,user.lastname,user.login,hobbypost.id_hobby FROM post " +
+                    "INNER JOIN user ON post.id_user = user.id_user  " +
+                    "JOIN hobbypost on hobbypost.id_post = post.id_post  order by starttime ;";
             }
             else
-            {
-                sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname,user.login " +
-                "FROM post " + "INNER JOIN user ON post.id_user = user.id_user where hide = true order by starttime;";
+            {   // Только видемые посты
+                sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime," +
+                    "hide,user.name,user.lastname,user.login,hobbypost.id_hobby FROM post " +
+                    "INNER JOIN user ON post.id_user = user.id_user  " +
+                    "JOIN hobbypost on hobbypost.id_post = post.id_post  where hide = true " +
+                    "order by starttime ;";
             }
 
             MySqlCommand command = new MySqlCommand(sql, connection);
@@ -135,7 +140,7 @@ namespace KursachTP.DAO
                 Posts.posts.Add(new Post(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
                     reader.GetString(5), reader.GetString(6), reader.GetString(7), 
-                    reader.GetString(8)));
+                    reader.GetString(8), reader.GetString(9)));
             }
 
             Disconnect();
@@ -296,14 +301,19 @@ namespace KursachTP.DAO
             string sql = "INSERT INTO POST(id_user, posttitle,postdescription,hide,starttime) " +
                 "VALUES (@post.id_user, @post.posttitle,  @post.postdescription, " +
                 "@post.hide, NOW())";
+            string sql1 = "insert into hobbypost values(@id_post,@id_hobby)";
             MySqlCommand comanda = new MySqlCommand(sql, connection);
+            MySqlCommand comanda1 = new MySqlCommand(sql1, connection);
 
             comanda.Parameters.AddWithValue("post.id_user", id);
+            comanda1.Parameters.AddWithValue("post.id_post", post.PostID);
+            comanda1.Parameters.AddWithValue("post.id_hobby", post.HobbyID);
             comanda.Parameters.AddWithValue("post.posttitle", post.PostTitle);
             comanda.Parameters.AddWithValue("post.postdescription", post.PostDescription);
             comanda.Parameters.AddWithValue("post.hide", true);
 
             comanda.ExecuteNonQuery();
+            comanda1.ExecuteNonQuery();
             Disconnect();
         }
         public void GetWarning(int id_post, int id_us, string description)
@@ -494,8 +504,10 @@ namespace KursachTP.DAO
         {
             Connect();
 
-            string sql = "SELECT id_post,post.id_user, posttitle,postdescription,starttime,hide,user.name,user.lastname,user.login FROM Post " +
-                "INNER JOIN user ON post.id_user = user.id_user WHERE post.id_post like (@userid);";
+            string sql = "SELECT post.id_post,post.id_user, posttitle,postdescription," +
+                "starttime,hide,user.name,user.lastname,user.login,hobbypost.id_hobby " +
+                "FROM Post INNER JOIN user ON post.id_user = user.id_user " +
+                "JOIN hobbypost on hobbypost.id_post = post.id_post WHERE post.id_post like (@userid);";
             Post postic = null;
 
             MySqlCommand command = new MySqlCommand(sql, connection);
@@ -509,7 +521,7 @@ namespace KursachTP.DAO
                 postic = new Post(reader.GetString(0), reader.GetString(1),
                     reader.GetString(2), reader.GetString(3), reader.GetString(4),
                     reader.GetString(5), reader.GetString(6), reader.GetString(7),
-                    reader.GetString(8));
+                    reader.GetString(8), reader.GetString(9));
             }
 
             Disconnect();

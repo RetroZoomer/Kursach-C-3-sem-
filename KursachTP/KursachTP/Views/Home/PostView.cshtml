@@ -229,6 +229,17 @@
         width: 86%;
     }
 
+    .hobbyDis {
+        text-align: left;
+        color: #FFFFFF;
+        font-size: 18px;
+        margin: 0% auto 2% auto;
+        padding: 1% 2% 1% 2%;
+        background: #AAC4FF;
+        border-radius: 10px;
+        width: 534px;
+    }
+
     .button {
         float: right;
         margin: 1% 5% 3% 0%;
@@ -398,9 +409,49 @@
             <div class="textDescription">
                 @pst.PostDescription
             </div>
-            <div class="hobby">
-                Хобби: #Спорт #АПОЖ
+
+            <div class="title">
+                Хобби:
             </div>
+            <div class="hobby">
+                @switch (pst.HobbyID)
+                {
+                    case 1:
+                        <div class="hobbyDis">Интеллектуальные игры</div>
+                        break;
+                    case 35:
+                        <div class="hobbyDis">Спорт</div>
+                        break;
+                    case 36:
+                        <div class="hobbyDis">Музыка</div>
+                        break;
+                    case 37:
+                        <div class="hobbyDis">Кино</div>
+                        break;
+                    case 38:
+                        <div class="hobbyDis">Творчество</div>
+                        break;
+                    case 39:
+                        <div class="hobbyDis">Путешествия</div>
+                        break;
+                    case 40:
+                        <div class="hobbyDis">Коллекционирование</div>
+                        break;
+                    case 41:
+                        <div class="hobbyDis">Компьютерные игры</div>
+                        break;
+                    case 42:
+                        <div class="hobbyDis">Мода</div>
+                        break;
+                    case 43:
+                        <div class="hobbyDis">Разное</div>
+                        break;
+                    case 100:
+                        <div class="hobbyDis">-</div>
+                        break;
+                }
+            </div>
+
 
             <hr style="width: 90%; visibility: hidden;">
             <div class="bMenu">
@@ -434,7 +485,7 @@
         <td>@pst.StartTime</td>
         <td>
             @if (@pst.Hide == true)
-            {<p>Виден</p>}
+                    {<p>Виден</p>}
             else
             {<p>Не виден</p>}
         </td>

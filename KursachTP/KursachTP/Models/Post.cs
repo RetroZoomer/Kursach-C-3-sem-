@@ -34,7 +34,7 @@ namespace KursachTP.Models
         }
         List<string> comments = new List<string>();
 
-        public Post(string f0, string f1, string f2, string f3, string f4, string f5, string f6, string f7, string f8)
+        public Post(string f0, string f1, string f2, string f3, string f4, string f5, string f6, string f7, string f8, string f9)
         {
             PostID = Convert.ToInt32(f0);
             UserID = Convert.ToInt32(f1);
@@ -45,6 +45,7 @@ namespace KursachTP.Models
             Name = f6;
             LastName = f7;
             Login = f8;
+            HobbyID = Convert.ToInt32(f9);
         }
         public Post()
         {
@@ -68,8 +69,8 @@ namespace KursachTP.Models
         public string? LastName { get; set; }
         [Required]
         public string? Login { get; set; }
-        //[Range(1, 150, ErrorMessage = "Incorrect age")]
-        //public int Age { get; set; }
+        [Required]
+        public int? HobbyID { get; set; }
     }
     public static class Posts
     {
