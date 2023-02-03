@@ -295,24 +295,63 @@ namespace KursachTP.DAO
             comanda.ExecuteNonQuery();
             Disconnect();
         }
+        public int PostID(string postTitle)
+        {
+            Connect();
+            string sql = "SELECT id_post " +
+                "FROM Post WHERE postTitle like (@postTitle);";
+            int res = 0;
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("postTitle", postTitle);
+            command.ExecuteNonQuery();
+
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                res = Convert.ToInt32(reader.GetString(0));
+                /*
+                postic = new Post(reader.GetString(0), reader.GetString(1),
+                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                    reader.GetString(8), reader.GetString(9));*/
+            }
+            Disconnect();
+            return res;
+        }
         public void GetPost(Post post, int id)
         {
             Connect();
             string sql = "INSERT INTO POST(id_user, posttitle,postdescription,hide,starttime) " +
                 "VALUES (@post.id_user, @post.posttitle,  @post.postdescription, " +
                 "@post.hide, NOW())";
-            string sql1 = "insert into hobbypost values(@id_post,@id_hobby)";
+
             MySqlCommand comanda = new MySqlCommand(sql, connection);
-            MySqlCommand comanda1 = new MySqlCommand(sql1, connection);
+
 
             comanda.Parameters.AddWithValue("post.id_user", id);
-            comanda1.Parameters.AddWithValue("post.id_post", post.PostID);
-            comanda1.Parameters.AddWithValue("post.id_hobby", post.HobbyID);
+
             comanda.Parameters.AddWithValue("post.posttitle", post.PostTitle);
             comanda.Parameters.AddWithValue("post.postdescription", post.PostDescription);
             comanda.Parameters.AddWithValue("post.hide", true);
+            string ttl = post.PostTitle;
+            int hbb = Convert.ToInt32(post.HobbyID);
 
             comanda.ExecuteNonQuery();
+
+            Disconnect();
+
+            DoID(ttl,hbb);
+        }
+        public void DoID(string ttl, int hbb)
+        {
+            int pst = PostID(ttl);
+            Connect();
+            string sql1 = "insert into hobbypost(id_post, id_hobby) values(@id_post,@id_hobby)";
+            MySqlCommand comanda1 = new MySqlCommand(sql1, connection);
+            comanda1.Parameters.AddWithValue("id_hobby", hbb);
+            comanda1.Parameters.AddWithValue("id_post", pst);
             comanda1.ExecuteNonQuery();
             Disconnect();
         }
