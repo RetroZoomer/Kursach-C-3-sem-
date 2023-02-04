@@ -109,28 +109,53 @@ namespace KursachTP.DAO
             return Profiles.profiles;
         }
 
-        public List<Post> ListPost(bool vbr)
+        public List<Post> ListPost(bool vbr, bool fr, int id)
         {
             Connect();
             string sql = null;
-            if (vbr == true)
-            {   // Все посты
-                sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime," +
-                    "hide,user.name,user.lastname,user.login,hobbypost.id_hobby FROM post " +
-                    "INNER JOIN user ON post.id_user = user.id_user  " +
-                    "JOIN hobbypost on hobbypost.id_post = post.id_post  order by starttime ;";
+            if (fr == false) {
+                if (vbr == true)
+                {   // Все посты
+                    sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime," +
+                        "hide,user.name,user.lastname,user.login,hobbypost.id_hobby FROM post " +
+                        "INNER JOIN user ON post.id_user = user.id_user  " +
+                        "JOIN hobbypost on hobbypost.id_post = post.id_post  order by starttime ;";
+                }
+                else
+                {   // Только видимые посты
+                    sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime," +
+                        "hide,user.name,user.lastname,user.login,hobbypost.id_hobby FROM post " +
+                        "INNER JOIN user ON post.id_user = user.id_user  " +
+                        "JOIN hobbypost on hobbypost.id_post = post.id_post  where hide = true " +
+                        "order by starttime ;";
+                }
             }
             else
-            {   // Только видемые посты
-                sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime," +
-                    "hide,user.name,user.lastname,user.login,hobbypost.id_hobby FROM post " +
-                    "INNER JOIN user ON post.id_user = user.id_user  " +
-                    "JOIN hobbypost on hobbypost.id_post = post.id_post  where hide = true " +
-                    "order by starttime ;";
+            {
+                if (vbr == true)
+                {   // Все посты друзей
+                    sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime, hide,user.name," +
+                        "user.lastname,user.login,hobbypost.id_hobby FROM post " +
+                        "INNER JOIN user ON post.id_user = user.id_user " +
+                        "JOIN hobbypost on hobbypost.id_post = post.id_post where post.id_user in (SELECT friends.id_user2 FROM friends " +
+                        "join user on user.id_user = friends.id_user2 where friends.id_user = @id union " +
+                        "SELECT friends.id_user2 FROM friends " +
+                        "join user on user.id_user = friends.id_user where friends.id_user2 LIKE @id) order by starttime; ";
+                    
+                }
+                else
+                {   // Только видимые посты друзей
+                    sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime, hide,user.name," +
+                        "user.lastname,user.login,hobbypost.id_hobby FROM post " +
+                        "INNER JOIN user ON post.id_user = user.id_user " +
+                        "JOIN hobbypost on hobbypost.id_post = post.id_post where post.id_user in (SELECT friends.id_user2 FROM friends " +
+                        "join user on user.id_user = friends.id_user2 where friends.id_user = @id union " +
+                        "SELECT friends.id_user2 FROM friends " +
+                        "join user on user.id_user = friends.id_user where friends.id_user2 LIKE @id) and hide = true order by starttime; ";
+                }
             }
-
             MySqlCommand command = new MySqlCommand(sql, connection);
-
+            command.Parameters.AddWithValue("id", id);
             MySqlDataReader reader = command.ExecuteReader();
 
             Posts.posts.Clear();
@@ -151,21 +176,15 @@ namespace KursachTP.DAO
         {
             Connect();
 
-
             string sql = "SELECT id_warning, post.id_user, user.Name, user.LastName, warningDescription, warningTime, warning.id_post " +
                 "FROM Warning " +
                 "INNER JOIN post ON post.id_post = warning.id_post " +
                 "INNER JOIN user ON user.id_user = post.id_user ORDER BY warning.WarningTime DESC;";
 
-            
-
-
             MySqlCommand command = new MySqlCommand(sql, connection);
             
-
             MySqlDataReader reader = command.ExecuteReader();
             
-
             Warnings.warnings.Clear();
 
             while (reader.Read())
