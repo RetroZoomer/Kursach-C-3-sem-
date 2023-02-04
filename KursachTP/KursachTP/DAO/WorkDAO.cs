@@ -109,53 +109,66 @@ namespace KursachTP.DAO
             return Profiles.profiles;
         }
 
-        public List<Post> ListPost(bool vbr, bool fr, int id)
+        public List<Post> ListPost(bool vbr, bool fr, int id, int id_hb)
         {
             Connect();
             string sql = null;
-            if (fr == false) {
-                if (vbr == true)
-                {   // Все посты
-                    sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime," +
-                        "hide,user.name,user.lastname,user.login,hobbypost.id_hobby FROM post " +
-                        "INNER JOIN user ON post.id_user = user.id_user  " +
-                        "JOIN hobbypost on hobbypost.id_post = post.id_post  order by starttime ;";
+            if (id_hb == 0)
+            {
+                if (fr == false)
+                {
+                    if (vbr == true)
+                    {   // Все посты
+                        sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime," +
+                            "hide,user.name,user.lastname,user.login,hobbypost.id_hobby FROM post " +
+                            "INNER JOIN user ON post.id_user = user.id_user  " +
+                            "JOIN hobbypost on hobbypost.id_post = post.id_post  order by starttime ;";
+                    }
+                    else
+                    {   // Только видимые посты
+                        sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime," +
+                            "hide,user.name,user.lastname,user.login,hobbypost.id_hobby FROM post " +
+                            "INNER JOIN user ON post.id_user = user.id_user  " +
+                            "JOIN hobbypost on hobbypost.id_post = post.id_post  where hide = true " +
+                            "order by starttime ;";
+                    }
                 }
                 else
-                {   // Только видимые посты
-                    sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime," +
-                        "hide,user.name,user.lastname,user.login,hobbypost.id_hobby FROM post " +
-                        "INNER JOIN user ON post.id_user = user.id_user  " +
-                        "JOIN hobbypost on hobbypost.id_post = post.id_post  where hide = true " +
-                        "order by starttime ;";
+                {
+                    if (vbr == true)
+                    {   // Все посты друзей
+                        sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime, hide,user.name," +
+                            "user.lastname,user.login,hobbypost.id_hobby FROM post " +
+                            "INNER JOIN user ON post.id_user = user.id_user " +
+                            "JOIN hobbypost on hobbypost.id_post = post.id_post where post.id_user in (SELECT friends.id_user2 FROM friends " +
+                            "join user on user.id_user = friends.id_user2 where friends.id_user = @id union " +
+                            "SELECT friends.id_user2 FROM friends " +
+                            "join user on user.id_user = friends.id_user where friends.id_user2 LIKE @id) order by starttime; ";
+
+                    }
+                    else
+                    {   // Только видимые посты друзей
+                        sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime, hide,user.name," +
+                            "user.lastname,user.login,hobbypost.id_hobby FROM post " +
+                            "INNER JOIN user ON post.id_user = user.id_user " +
+                            "JOIN hobbypost on hobbypost.id_post = post.id_post where post.id_user in (SELECT friends.id_user2 FROM friends " +
+                            "join user on user.id_user = friends.id_user2 where friends.id_user = @id union " +
+                            "SELECT friends.id_user2 FROM friends " +
+                            "join user on user.id_user = friends.id_user where friends.id_user2 LIKE @id) and hide = true order by starttime; ";
+                    }
                 }
             }
             else
             {
-                if (vbr == true)
-                {   // Все посты друзей
-                    sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime, hide,user.name," +
-                        "user.lastname,user.login,hobbypost.id_hobby FROM post " +
-                        "INNER JOIN user ON post.id_user = user.id_user " +
-                        "JOIN hobbypost on hobbypost.id_post = post.id_post where post.id_user in (SELECT friends.id_user2 FROM friends " +
-                        "join user on user.id_user = friends.id_user2 where friends.id_user = @id union " +
-                        "SELECT friends.id_user2 FROM friends " +
-                        "join user on user.id_user = friends.id_user where friends.id_user2 LIKE @id) order by starttime; ";
-                    
-                }
-                else
-                {   // Только видимые посты друзей
-                    sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime, hide,user.name," +
-                        "user.lastname,user.login,hobbypost.id_hobby FROM post " +
-                        "INNER JOIN user ON post.id_user = user.id_user " +
-                        "JOIN hobbypost on hobbypost.id_post = post.id_post where post.id_user in (SELECT friends.id_user2 FROM friends " +
-                        "join user on user.id_user = friends.id_user2 where friends.id_user = @id union " +
-                        "SELECT friends.id_user2 FROM friends " +
-                        "join user on user.id_user = friends.id_user where friends.id_user2 LIKE @id) and hide = true order by starttime; ";
-                }
+                sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime," +
+                            "hide,user.name,user.lastname,user.login,hobbypost.id_hobby FROM post " +
+                            "INNER JOIN user ON post.id_user = user.id_user  " +
+                            "JOIN hobbypost on hobbypost.id_post = post.id_post  where hide = true and hobbypost.id_hobby = @id_hobby " +
+                            "order by starttime ;";
             }
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.AddWithValue("id", id);
+            command.Parameters.AddWithValue("id_hobby", id_hb);
             MySqlDataReader reader = command.ExecuteReader();
 
             Posts.posts.Clear();

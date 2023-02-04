@@ -18,14 +18,21 @@ namespace KursachTP.Controllers
         { // Посты для пользователя
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
-            return View("PostViewU", dataDao2.ListPost(false, false, id_user));
+            return View("PostViewU", dataDao2.ListPost(false, false, id_user, 0));
         }
         public IActionResult PostViewFriendsU()
         {
             //Страница постов
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
-            return View("PostViewU", dataDao2.ListPost(false,true, id_user));
+            return View("PostViewU", dataDao2.ListPost(false,true, id_user,0));
+        }
+        public IActionResult PostViewNameU(int id)
+        {
+            //Страница постов
+            string nameAuthor = HttpContext.User.Identity.Name;
+            int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
+            return View("PostViewU", dataDao2.ListPost(false, false, id_user, id));
         }
         public IActionResult NewPostU(Post post)
         {
@@ -33,7 +40,7 @@ namespace KursachTP.Controllers
             string nameAuthor = HttpContext.User.Identity.Name;
             int id = Convert.ToInt32(dataDao2.GetID(nameAuthor));
             dataDao2.GetPost(post, id);
-            return View("PostViewU", dataDao2.ListPost(true, false,id));
+            return View("PostViewU", dataDao2.ListPost(true, false,id, 0));
         }
 
         public IActionResult CreatePostU(Post post)
@@ -46,7 +53,7 @@ namespace KursachTP.Controllers
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
             dataDao2.DeleteByIdPost(id);
-            return View("PostViewU", dataDao2.ListPost(true, false, id_user));
+            return View("PostViewU", dataDao2.ListPost(true, false, id_user, 0));
             //Удаление поста
         }
         public IActionResult EditPostU(int id)
@@ -61,7 +68,7 @@ namespace KursachTP.Controllers
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
             dataDao2.UpPostU(post);
-            return View("PostViewU", dataDao2.ListPost(true, false, id_user));
+            return View("PostViewU", dataDao2.ListPost(true, false, id_user, 0));
         }
 
         public IActionResult ProfileU()
@@ -123,7 +130,7 @@ namespace KursachTP.Controllers
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
             dataDao2.GetWarning(id, id_user, warning.WarningDescription);
-            return View("PostViewU", dataDao2.ListPost(false, false, id_user));
+            return View("PostViewU", dataDao2.ListPost(false, false, id_user, 0));
         }
 
         public ActionResult FriendsU()

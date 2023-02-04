@@ -102,14 +102,14 @@ namespace KursachTP.Controllers
             //Страница постов
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao.GetID(nameAuthor));
-            return View("PostView", dataDao.ListPost(true,false,id_user));
+            return View("PostView", dataDao.ListPost(true,false,id_user, 0));
         }
         public IActionResult PostViewFriends()
         {
             //Страница постов
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao.GetID(nameAuthor));
-            return View("PostView", dataDao.ListPost(true,true, id_user));
+            return View("PostView", dataDao.ListPost(true,true, id_user, 0));
         }
         public IActionResult ProfileView()
         {
@@ -131,7 +131,7 @@ namespace KursachTP.Controllers
             string nameAuthor = HttpContext.User.Identity.Name;
             int id = Convert.ToInt32(dataDao.GetID(nameAuthor));
             dataDao.GetPost(post,id);
-            return View("PostView", dataDao.ListPost(true, false,id));
+            return View("PostView", dataDao.ListPost(true, false,id, 0));
         }
 
         public IActionResult CreatePost(Post post)
@@ -144,7 +144,7 @@ namespace KursachTP.Controllers
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao.GetID(nameAuthor));
             dataDao.DeleteByIdPost(id);
-            return View("PostView", dataDao.ListPost(true, false, id_user));
+            return View("PostView", dataDao.ListPost(true, false, id_user, 0));
             //Удаление поста
         }
         public IActionResult EditPost(int id)
@@ -159,7 +159,7 @@ namespace KursachTP.Controllers
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao.GetID(nameAuthor));
             dataDao.UpPost(post);
-            return View("PostView", dataDao.ListPost(true, false, id_user));
+            return View("PostView", dataDao.ListPost(true, false, id_user, 0));
         }
         public IActionResult InfoPost(int id)
         {
