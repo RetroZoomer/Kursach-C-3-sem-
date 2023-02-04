@@ -80,6 +80,7 @@
     .title {
         color: #FFFFFF;
         font-size: 26px;
+        margin-bottom: 20px;
     }
 
     .mainInf {
@@ -96,7 +97,7 @@
 
     .Text {
         text-align: left;
-        padding: 0% 0% 3% 0%;
+        margin: 0 0 25px 0;
         color: white;
     }
 
@@ -146,7 +147,7 @@
         padding: 0% 2% 0 2%;
         resize: none;
         width: 96%;
-        min-height: 30px;
+        min-height: 76px;
     }
 
     .button {
@@ -246,17 +247,17 @@
 
         <div class="mainInf">
             <div class="Text">
-                <p>Название поста: </p>
+                Название поста:
                 <input asp-for="PostTitle" id="PostTitle" type="text" required minlength="2" maxlength="20" class="input">
             </div>
 
             <div class="Text">
-                <p>Содержание поста: </p>
+                Содержание поста:
                 <textarea asp-for="PostDescription" name="PostDescription" required minlength="2" maxlength="200" rows="1" class="inputBig"> </textarea>
             </div>
 
             <div class="Text">
-                <p>Разновидность хобби: </p>
+                Хобби:
                 <select name="HobbyID" class="inputSel">
                     <option value="null">-</option>
                     <option value="35">Спорт</option>
