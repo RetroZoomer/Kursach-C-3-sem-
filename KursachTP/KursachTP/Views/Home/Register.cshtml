@@ -134,6 +134,7 @@
         border: 2px solid #4876bb;
         color: white;
         padding: 5%;
+        margin-bottom: 30px;
         resize: none;
         width: 90%;
         min-height: 50px;
@@ -239,6 +240,12 @@
                 <p>Описание: </p>
                 <textarea asp-for="UserDescription" name="UserDescription" required minlength="2" maxlength="100" rows="1" class="inputBig"> </textarea>
             </div>
+            @*СЮДА*@
+            <div class="Text">
+                <p>Ссылка на мессенджер: </p>
+                <input @*asp-for="MesHref"*@ type="tel" required minlength="" maxlength="" value="" class="input">
+            </div>
+            @*СЮДА*@
 
         </div>
         <input type="submit" value="Зарегистрироваться" class="button">

@@ -261,6 +261,11 @@
             </div>
 
             <div class="Text">
+                Ссылка на мессенджер:
+                <input @*value="@Model.UserDescription"*@ type="text" @*asp-for="UserDescription"*@ class="input" />
+            </div>
+
+            <div class="Text">
                 Логин:
                 <input value="@Model.Login" type="text" asp-for="Login" class="input" />
             </div>
