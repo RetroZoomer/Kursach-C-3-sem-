@@ -159,7 +159,7 @@ namespace KursachTP.DAO
                 }
             }
             else
-            {
+            { // Видимые посты по увлечению
                 sql = "SELECT post.id_post,post.id_user, posttitle,postdescription,starttime," +
                             "hide,user.name,user.lastname,user.login,hobbypost.id_hobby FROM post " +
                             "INNER JOIN user ON post.id_user = user.id_user  " +
@@ -616,6 +616,7 @@ namespace KursachTP.DAO
             Disconnect();
             return postic;
         }
+        // Поиск пользователя в БД для авторизации
         public Boolean YesNoData(User user)
         {
             Connect();

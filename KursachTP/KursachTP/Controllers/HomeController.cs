@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -8,18 +7,10 @@ using KursachTP.Models;
 using Microsoft.Extensions.Logging;
 using KursachTP.DAO;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-using System.Threading;
 
-//namespace ValidationApp.Controllers
 namespace KursachTP.Controllers
 {
     public class HomeController : Controller
@@ -74,14 +65,12 @@ namespace KursachTP.Controllers
             return View("UpdateUser", dataDao.UserInfo(id));
             // Ссылка на страницу редактуры
         }
-
         public IActionResult UpdatePerson(User user)
         // Редактура
         {
             dataDao.UpZn(user);
             return View("Index", dataDao.Record(1, 0, 0, null));
         }
-
         public IActionResult InfoPerson(int id)
         {
             // Подробный Вывод
@@ -114,7 +103,6 @@ namespace KursachTP.Controllers
         public IActionResult ProfileView()
         {
             //Страница профиля
-            //static ClaimsPrincipal.FindFirst(string);
             string namesuser = HttpContext.User.Identity.Name;
             return View("Profile", dataDao.RecordOprName(namesuser));
         }
@@ -169,7 +157,6 @@ namespace KursachTP.Controllers
 
         public IActionResult Zapas()
         {
-            // Подробный Вывод 
             return View("Zapas");
         }
 

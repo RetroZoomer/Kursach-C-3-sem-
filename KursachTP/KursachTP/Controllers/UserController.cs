@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using KursachTP.Controllers;
 using KursachTP.DAO;
 using KursachTP.Models;
 
@@ -13,7 +9,6 @@ namespace KursachTP.Controllers
     public class UserController : Controller
     {
         WorkDAO dataDao2 = new WorkDAO();
-        // GET: UserController
         public ActionResult PostViewU()
         { // Посты для пользователя
             string nameAuthor = HttpContext.User.Identity.Name;
@@ -74,14 +69,8 @@ namespace KursachTP.Controllers
         public IActionResult ProfileU()
         {
             //Страница профиля
-            //static ClaimsPrincipal.FindFirst(string);
             string namesuser = HttpContext.User.Identity.Name;
             return View("ProfileU", dataDao2.RecordOprName(namesuser));
-        }
-        // GET: UserController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         public IActionResult AnotherUser(int id)
@@ -132,7 +121,6 @@ namespace KursachTP.Controllers
             dataDao2.GetWarning(id, id_user, warning.WarningDescription);
             return View("PostViewU", dataDao2.ListPost(false, false, id_user, 0));
         }
-
         public ActionResult FriendsU()
         { // Вывод друзей
             string nameAuthor = HttpContext.User.Identity.Name;
@@ -145,21 +133,5 @@ namespace KursachTP.Controllers
             dataDao2.UpUserZn(user);
             return View("ProfileU", dataDao2.RecordOprID(user.UserID));
         }
-
-        // POST: UserController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
     }
 }
