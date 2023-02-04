@@ -171,13 +171,26 @@
         padding: 0% 2% 0 2%;
         resize: none;
         width: 96%;
-        min-height: 30px;
+        min-height: 76px;
     }
 
     .button {
         margin: 10% auto 0% auto;
         padding: 1px 1px 1px 1px;
-        width: 280px;
+        width: 180px;
+        border-radius: 51px;
+        border: 2px solid white;
+        background: white;
+        color: #6296E4;
+        font-size: 24px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .buttonBack {
+        margin: 10% auto 0% auto;
+        padding: 1px 1px 1px 1px;
+        width: 100px;
         border-radius: 51px;
         border: 2px solid white;
         background: white;
@@ -251,7 +264,7 @@
 
             <div class="Text">
                 Описание:
-                <input value="@Model.PostDescription" type="text" asp-for="PostDescription" class="input" />
+                <textarea asp-for="@Model.PostDescription" name="PostDescription" required minlength="2" maxlength="200" rows="1" class="inputBig"> </textarea>
             </div>
 
             <div class="Text">
@@ -311,8 +324,11 @@
 
             <input value="@Model.PostID" type="text" asp-for="PostID" style="display: none;" />
 
-            <input type="submit" class="button" value="Изменить" />
-            <a class="button" asp-action="PostViewU">Список постов</a>
+            <div style="display:flex">
+                <a class="buttonBack" asp-action="PostViewU">Назад</a>
+                <input type="submit" class="button" value="Изменить" />
+            </div>
+            
         </div>
     </form>
 </div>
