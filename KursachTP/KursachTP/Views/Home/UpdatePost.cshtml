@@ -247,36 +247,97 @@
 
             <div class="Text">
                 ID поста:
-                <input value="@Model.PostID" type="text" asp-for="PostID" class="input"/>
+                <input value="@Model.PostID" type="text" asp-for="PostID" class="input" />
             </div>
 
             <div class="Text">
                 ID пользователя:
-                <input value="@Model.UserID" type="text" asp-for="UserID" class="input"/>
+                <input value="@Model.UserID" type="text" asp-for="UserID" class="input" />
 
             </div>
 
             <div class="Text">
                 Заголовок:
-                <input value="@Model.PostTitle" type="text" asp-for="PostTitle" class="input"/>
+                <input value="@Model.PostTitle" type="text" asp-for="PostTitle" class="input" />
             </div>
 
             <div class="Text">
                 Описание:
-                <input value="@Model.PostDescription" type="text" asp-for="PostDescription" class="input"/>
+                <input value="@Model.PostDescription" type="text" asp-for="PostDescription" class="input" />
             </div>
 
             <div class="Text">
                 Время создание:
-                <input value="@Model.StartTime" asp-for="StartTime" type="datetime" class="input"/>
+                <input value="@Model.StartTime" asp-for="StartTime" type="datetime" class="input" />
+            </div>
+
+            <div class="Text">
+                Разновидность хобби:
+                <select name="HobbyID" class="inputSel">
+                    <option value="@Model.HobbyID">
+                        @switch (@Model.HobbyID)
+                        {
+                            case 1:
+                                <div class="hobbyDis">Интеллектуальные игры</div>
+                                break;
+                            case 35:
+                                <div class="hobbyDis">Спорт</div>
+                                break;
+                            case 36:
+                                <div class="hobbyDis">Музыка</div>
+                                break;
+                            case 37:
+                                <div class="hobbyDis">Кино</div>
+                                break;
+                            case 38:
+                                <div class="hobbyDis">Творчество</div>
+                                break;
+                            case 39:
+                                <div class="hobbyDis">Путешествия</div>
+                                break;
+                            case 40:
+                                <div class="hobbyDis">Коллекционирование</div>
+                                break;
+                            case 41:
+                                <div class="hobbyDis">Компьютерные игры</div>
+                                break;
+                            case 42:
+                                <div class="hobbyDis">Мода</div>
+                                break;
+                            case 43:
+                                <div class="hobbyDis">Разное</div>
+                                break;
+                            case 100:
+                                <div class="hobbyDis">-</div>
+                                break;
+                        }
+                    </option>
+                    <option value="null">-</option>
+                    <option value="35">Спорт</option>
+                    <option value="36">Музыка</option>
+                    <option value="37">Кино</option>
+                    <option value="38">Творчество</option>
+                    <option value="39">Путешествия</option>
+                    <option value="40">Коллекционирование</option>
+                    <option value="41">Компьютерные-игры</option>
+                    <option value="42">Мода</option>
+                    <option value="43">Разное</option>
+                    <option value="1">Интеллектуальные игры</option>
+                </select>
             </div>
 
             <div class="Text">
                 Скрыт:
                 <select name="Hide" class="inputSel">
-                    <option value="@Model.Hide">@Model.Hide</option>
-                    <option value="True">True</option>
-                    <option value="False">False</option>
+                    <option value="@Model.Hide">
+                        @if (Model.Hide == true) {
+                            <div>Да</div>
+                        } else {
+                            <div>Нет</div>
+                        }
+                    </option>
+                    <option value="True">Да</option>
+                    <option value="False">Нет</option>
                 </select>
             </div>
 
