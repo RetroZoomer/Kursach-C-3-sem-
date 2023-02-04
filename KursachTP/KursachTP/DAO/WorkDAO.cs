@@ -539,16 +539,21 @@ namespace KursachTP.DAO
         public void UpPostU(Post post)
         {
             Connect();
-            string sql = "UPDATE POST SET posttitle = @posttitle," +
-                " postdescription = @postdescription" +
-                " WHERE id_post = @id;";
+            string sql = "UPDATE POST SET posttitle = @posttitle, postdescription = @postdescription WHERE id_post = @id;";
+            string sql1 = "UPDATE HOBBYPOST SET id_hobby = @id_hobby WHERE id_post = @id_post;";
 
             MySqlCommand comanda = new MySqlCommand(sql, connection);
+            MySqlCommand comanda1 = new MySqlCommand(sql1, connection);
+
             comanda.Parameters.AddWithValue("id", post.PostID);
             comanda.Parameters.AddWithValue("posttitle", post.PostTitle);
             comanda.Parameters.AddWithValue("postdescription", post.PostDescription);
 
+            comanda1.Parameters.AddWithValue("id_hobby", post.HobbyID);
+            comanda1.Parameters.AddWithValue("id_post", post.PostID);
+
             comanda.ExecuteNonQuery();
+            comanda1.ExecuteNonQuery();
             Disconnect();
         }
 

@@ -200,16 +200,23 @@
         text-decoration: none;
         color: #FFFFFF;
     }
+
+    .inputSel {
+        background: #5389DA;
+        border-radius: 10px;
+        border: 2px solid #4876bb;
+        font-size: 21px;
+        color: white;
+        height: auto;
+        padding: 1% 2% 1% 2%;
+        word-break: break-word;
+        white-space: normal;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
 </style>
-
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Поиск друзей</title>
-</head>
 
 <header class="header">
     <div class="header-intro">
@@ -246,6 +253,23 @@
             <div class="Text">
                 <p>Содержание поста: </p>
                 <textarea asp-for="PostDescription" name="PostDescription" required minlength="2" maxlength="200" rows="1" class="inputBig"> </textarea>
+            </div>
+
+            <div class="Text">
+                <p>Разновидность хобби: </p>
+                <select name="HobbyID" class="inputSel">
+                    <option value="null">-</option>
+                    <option value="35">Спорт</option>
+                    <option value="36">Музыка</option>
+                    <option value="37">Кино</option>
+                    <option value="38">Творчество</option>
+                    <option value="39">Путешествия</option>
+                    <option value="40">Коллекционирование</option>
+                    <option value="41">Компьютерные-игры</option>
+                    <option value="42">Мода</option>
+                    <option value="43">Разное</option>
+                    <option value="1">Интеллектуальные игры</option>
+                </select>
             </div>
 
             <div style=" display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%; margin-top: 10%; ">
