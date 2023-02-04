@@ -402,10 +402,17 @@ namespace KursachTP.DAO
         {
             Connect();
             string sql = "DELETE FROM Post WHERE id_post = @id;";
+            string sql1 = "DELETE FROM HobbyPost WHERE id_post = @id;";
 
             MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlCommand command1 = new MySqlCommand(sql1, connection);
+
             command.Parameters.AddWithValue("id", id);
+            command1.Parameters.AddWithValue("id", id);
+
             command.ExecuteNonQuery();
+            command1.ExecuteNonQuery();
+
             Disconnect();
         }
         public User UserInfo(int userid) 
