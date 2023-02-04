@@ -421,10 +421,17 @@ namespace KursachTP.DAO
         {
             Connect();
             string sql = "DELETE FROM Post WHERE id_post = @id;";
+            string sql1 = "DELETE FROM HobbyPost WHERE id_post = @id;";
 
             MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlCommand command1 = new MySqlCommand(sql1, connection);
+
             command.Parameters.AddWithValue("id", id);
+            command1.Parameters.AddWithValue("id", id);
+
             command.ExecuteNonQuery();
+            command1.ExecuteNonQuery();
+
             Disconnect();
         }
         public User UserInfo(int userid) 
@@ -526,35 +533,46 @@ namespace KursachTP.DAO
         public void UpPost(Post post)
         {
             Connect();
-            string sql = "UPDATE POST SET id_post = @id_post,id_user = @id_user, posttitle = @posttitle," +
-                " postdescription = @postdescription," +
-                " starttime = @starttime, hide = @hide  WHERE id_post = @id_post ;";
+            string sql = "UPDATE POST SET id_post = @id_post,id_user = @id_user, posttitle = @posttitle, postdescription = @postdescription, starttime = @starttime, hide = @hide WHERE id_post = @id_post ;";
+            string sql1 = "UPDATE HOBBYPOST SET id_hobby = @id_hobby WHERE id_post = @id_post ;";
 
             MySqlCommand comanda = new MySqlCommand(sql, connection);
+            MySqlCommand comanda1 = new MySqlCommand(sql1, connection);
+
             comanda.Parameters.AddWithValue("id_post", post.PostID);
             comanda.Parameters.AddWithValue("id_user", post.UserID);
             comanda.Parameters.AddWithValue("posttitle", post.PostTitle);
             comanda.Parameters.AddWithValue("postdescription", post.PostDescription);
             comanda.Parameters.AddWithValue("starttime", post.StartTime);
             comanda.Parameters.AddWithValue("hide", post.Hide);
-           
+
+
+            comanda1.Parameters.AddWithValue("id_hobby", post.HobbyID);
+            comanda1.Parameters.AddWithValue("id_post", post.PostID);
+
             comanda.ExecuteNonQuery();
+            comanda1.ExecuteNonQuery();
             Disconnect();
         }
 
         public void UpPostU(Post post)
         {
             Connect();
-            string sql = "UPDATE POST SET posttitle = @posttitle," +
-                " postdescription = @postdescription" +
-                " WHERE id_post = @id;";
+            string sql = "UPDATE POST SET posttitle = @posttitle, postdescription = @postdescription WHERE id_post = @id;";
+            string sql1 = "UPDATE HOBBYPOST SET id_hobby = @id_hobby WHERE id_post = @id_post;";
 
             MySqlCommand comanda = new MySqlCommand(sql, connection);
+            MySqlCommand comanda1 = new MySqlCommand(sql1, connection);
+
             comanda.Parameters.AddWithValue("id", post.PostID);
             comanda.Parameters.AddWithValue("posttitle", post.PostTitle);
             comanda.Parameters.AddWithValue("postdescription", post.PostDescription);
 
+            comanda1.Parameters.AddWithValue("id_hobby", post.HobbyID);
+            comanda1.Parameters.AddWithValue("id_post", post.PostID);
+
             comanda.ExecuteNonQuery();
+            comanda1.ExecuteNonQuery();
             Disconnect();
         }
 

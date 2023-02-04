@@ -156,7 +156,7 @@
     .button {
         margin: 10% auto 0% auto;
         padding: 1px 1px 1px 1px;
-        width: 280px;
+        width: 100px;
         border-radius: 51px;
         border: 2px solid white;
         background: white;
@@ -268,31 +268,61 @@
             </div>
 
             <div class="Text">
-                Видимость:
+                Скрыт:
                 <div class="input">
                     @if (@Model.Hide == true)
                     {
-                        <div>Виден</div> }
+                        <div>Нет</div> }
                     else
                     {
-                        <div>Не виден</div>}
+                        <div>Да</div>}
                 </div>
             </div>
 
             <div class="Text">
                 Хобби:
                 <div class="input">
-                    @if (@Model.HobbyID == 1)
+                    @switch (Model.HobbyID)
                     {
-                        <div> Интеллектуальные игры</div> }
-                    else
-                    {
-                        <div>Не виден</div>}
+                        case 1:
+                            <div class="hobbyDis">Интеллектуальные игры</div>
+                            break;
+                        case 35:
+                            <div class="hobbyDis">Спорт</div>
+                            break;
+                        case 36:
+                            <div class="hobbyDis">Музыка</div>
+                            break;
+                        case 37:
+                            <div class="hobbyDis">Кино</div>
+                            break;
+                        case 38:
+                            <div class="hobbyDis">Творчество</div>
+                            break;
+                        case 39:
+                            <div class="hobbyDis">Путешествия</div>
+                            break;
+                        case 40:
+                            <div class="hobbyDis">Коллекционирование</div>
+                            break;
+                        case 41:
+                            <div class="hobbyDis">Компьютерные игры</div>
+                            break;
+                        case 42:
+                            <div class="hobbyDis">Мода</div>
+                            break;
+                        case 43:
+                            <div class="hobbyDis">Разное</div>
+                            break;
+                        case 100:
+                            <div class="hobbyDis">-</div>
+                            break;
+                    }
                 </div>
             </div>
 
 
-            <a class="button" asp-action="PostView">Список постов</a>
+            <a class="button" asp-action="PostView">Назад</a>
         </div>
     </div>
 </div>

@@ -171,13 +171,26 @@
         padding: 0% 2% 0 2%;
         resize: none;
         width: 96%;
-        min-height: 30px;
+        min-height: 76px;
     }
 
     .button {
         margin: 10% auto 0% auto;
         padding: 1px 1px 1px 1px;
-        width: 280px;
+        width: 180px;
+        border-radius: 51px;
+        border: 2px solid white;
+        background: white;
+        color: #6296E4;
+        font-size: 24px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .buttonBack {
+        margin: 10% auto 0% auto;
+        padding: 1px 1px 1px 1px;
+        width: 100px;
         border-radius: 51px;
         border: 2px solid white;
         background: white;
@@ -247,41 +260,108 @@
 
             <div class="Text">
                 ID поста:
-                <input value="@Model.PostID" type="text" asp-for="PostID" class="input"/>
+                <input value="@Model.PostID" type="text" asp-for="PostID" class="input" />
             </div>
 
             <div class="Text">
                 ID пользователя:
-                <input value="@Model.UserID" type="text" asp-for="UserID" class="input"/>
+                <input value="@Model.UserID" type="text" asp-for="UserID" class="input" />
 
             </div>
 
             <div class="Text">
                 Заголовок:
-                <input value="@Model.PostTitle" type="text" asp-for="PostTitle" class="input"/>
+                <input value="@Model.PostTitle" type="text" asp-for="PostTitle" class="input" />
             </div>
 
             <div class="Text">
                 Описание:
-                <input value="@Model.PostDescription" type="text" asp-for="PostDescription" class="input"/>
+                <textarea asp-for="@Model.PostDescription" name="PostDescription" required minlength="2" maxlength="200" rows="1" class="inputBig"> </textarea>
             </div>
 
             <div class="Text">
                 Время создание:
-                <input value="@Model.StartTime" asp-for="StartTime" type="datetime" class="input"/>
+                <input value="@Model.StartTime" asp-for="StartTime" type="datetime" class="input" />
+            </div>
+
+            <div class="Text">
+                Разновидность хобби:
+                <select name="HobbyID" class="inputSel">
+                    <option value="@Model.HobbyID">
+                        @switch (@Model.HobbyID)
+                        {
+                            case 1:
+                                <div class="hobbyDis">Интеллектуальные игры</div>
+                                break;
+                            case 35:
+                                <div class="hobbyDis">Спорт</div>
+                                break;
+                            case 36:
+                                <div class="hobbyDis">Музыка</div>
+                                break;
+                            case 37:
+                                <div class="hobbyDis">Кино</div>
+                                break;
+                            case 38:
+                                <div class="hobbyDis">Творчество</div>
+                                break;
+                            case 39:
+                                <div class="hobbyDis">Путешествия</div>
+                                break;
+                            case 40:
+                                <div class="hobbyDis">Коллекционирование</div>
+                                break;
+                            case 41:
+                                <div class="hobbyDis">Компьютерные игры</div>
+                                break;
+                            case 42:
+                                <div class="hobbyDis">Мода</div>
+                                break;
+                            case 43:
+                                <div class="hobbyDis">Разное</div>
+                                break;
+                            case 100:
+                                <div class="hobbyDis">-</div>
+                                break;
+                        }
+                    </option>
+                    <option value="null">-</option>
+                    <option value="35">Спорт</option>
+                    <option value="36">Музыка</option>
+                    <option value="37">Кино</option>
+                    <option value="38">Творчество</option>
+                    <option value="39">Путешествия</option>
+                    <option value="40">Коллекционирование</option>
+                    <option value="41">Компьютерные-игры</option>
+                    <option value="42">Мода</option>
+                    <option value="43">Разное</option>
+                    <option value="1">Интеллектуальные игры</option>
+                </select>
             </div>
 
             <div class="Text">
                 Скрыт:
                 <select name="Hide" class="inputSel">
-                    <option value="@Model.Hide">@Model.Hide</option>
-                    <option value="True">True</option>
-                    <option value="False">False</option>
+                    <option value="@Model.Hide">
+                        @if (Model.Hide == true)
+                        {
+                            <div>Нет</div>
+                        }
+                        else
+                        {
+                            <div>Да</div>
+                        }
+                    </option>
+                    <option value="true">Да</option>
+                    <option value="false">Нет</option>
                 </select>
             </div>
 
-            <input type="submit" class="button" value="Изменить" />
-            <a class="button" asp-action="PostView">Список постов</a>
+            <div style="display:flex">
+                <a class="buttonBack" asp-action="PostView">Назад</a>
+                <input type="submit" class="button" value="Изменить" />
+            </div>
+            
         </div>
     </form>
 </div>

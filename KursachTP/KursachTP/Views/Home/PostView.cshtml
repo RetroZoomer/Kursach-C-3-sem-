@@ -123,7 +123,8 @@
     .title {
         text-align: left;
         color: #FFFFFF;
-        font-size: 26px;
+        font-size: 21px;
+        font-weight: bold;
         padding: 3% 5% 0% 5%;
         display: flex;
         justify-content: space-between;
@@ -238,6 +239,17 @@
         background: #AAC4FF;
         border-radius: 10px;
         width: 534px;
+    }
+
+    .titleHobby {
+        text-align: left;
+        color: #FFFFFF;
+        font-size: 21px;
+        font-weight: bold;
+        padding: 0% 5% 0% 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .button {
@@ -417,47 +429,47 @@
                     @pst.PostDescription
                 </div>
 
-                <div class="title">
-                    Хобби:
-                </div>
-                <div class="hobby">
-                    @switch (pst.HobbyID)
-                    {
-                        case 1:
-                            <div class="hobbyDis">Интеллектуальные игры</div>
-                            break;
-                        case 35:
-                            <div class="hobbyDis">Спорт</div>
-                            break;
-                        case 36:
-                            <div class="hobbyDis">Музыка</div>
-                            break;
-                        case 37:
-                            <div class="hobbyDis">Кино</div>
-                            break;
-                        case 38:
-                            <div class="hobbyDis">Творчество</div>
-                            break;
-                        case 39:
-                            <div class="hobbyDis">Путешествия</div>
-                            break;
-                        case 40:
-                            <div class="hobbyDis">Коллекционирование</div>
-                            break;
-                        case 41:
-                            <div class="hobbyDis">Компьютерные игры</div>
-                            break;
-                        case 42:
-                            <div class="hobbyDis">Мода</div>
-                            break;
-                        case 43:
-                            <div class="hobbyDis">Разное</div>
-                            break;
-                        case 100:
-                            <div class="hobbyDis">-</div>
-                            break;
-                    }
-                </div>
+            <div class="titleHobby">
+                Хобби:
+            </div>
+            <div class="hobby">
+                @switch (pst.HobbyID)
+                {
+                    case 1:
+                        <div class="hobbyDis">Интеллектуальные игры</div>
+                        break;
+                    case 35:
+                        <div class="hobbyDis">Спорт</div>
+                        break;
+                    case 36:
+                        <div class="hobbyDis">Музыка</div>
+                        break;
+                    case 37:
+                        <div class="hobbyDis">Кино</div>
+                        break;
+                    case 38:
+                        <div class="hobbyDis">Творчество</div>
+                        break;
+                    case 39:
+                        <div class="hobbyDis">Путешествия</div>
+                        break;
+                    case 40:
+                        <div class="hobbyDis">Коллекционирование</div>
+                        break;
+                    case 41:
+                        <div class="hobbyDis">Компьютерные игры</div>
+                        break;
+                    case 42:
+                        <div class="hobbyDis">Мода</div>
+                        break;
+                    case 43:
+                        <div class="hobbyDis">Разное</div>
+                        break;
+                    case 100:
+                        <div class="hobbyDis">-</div>
+                        break;
+                }
+            </div>
 
 
                 <hr style="width: 90%; visibility: hidden;">
@@ -477,28 +489,10 @@
     </div>
 </div>
 
+<hr style="margin-top: 15%;">
 
 @section scripts{
 
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }
-
-@*<tr>
-        <td>@pst.PostID</td>
-        <td>@pst.UserID</td>
-        <td>@pst.PostTitle</td>
-        <td>@pst.PostDescription</td>
-        <td>@pst.StartTime</td>
-        <td>
-            @if (@pst.Hide == true)
-                    {<p>Виден</p>}
-            else
-            {<p>Не виден</p>}
-        </td>
-        <td>
-        <td>
-            <a class="btn btn-warning" asp-action="DeletePost" asp-route-id="@pst.PostID">Удалить</a>
-            <a class="btn btn-primary" asp-action="EditPost" asp-route-id="@pst.PostID">Редактировать</a>
-            <a class="btn btn-info" asp-action="InfoPost" asp-route-id="@pst.PostID">i</a>
-    </tr>*@
