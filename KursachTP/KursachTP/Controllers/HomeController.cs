@@ -41,7 +41,7 @@ namespace KursachTP.Controllers
         public IActionResult NewPerson(User user)
         { //Создание нового пользователя
             dataDao.GetPerson(user);
-            return View("Login");
+            return View("StarterPage");
         }
 
         public IActionResult CreatePerson(User user)
@@ -142,6 +142,11 @@ namespace KursachTP.Controllers
             return View("PostView", dataDao.ListPost(true, false, id_user, 0));
         }
         public IActionResult InfoPost(int id)
+        {
+            // Подробный Вывод 
+            return View("InfoPostView", dataDao.PostInfo(id));
+        }
+        public IActionResult InfoPostWarning(int id)
         {
             // Подробный Вывод 
             return View("InfoPostView", dataDao.PostInfo(id));

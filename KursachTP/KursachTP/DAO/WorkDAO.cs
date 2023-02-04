@@ -471,7 +471,7 @@ namespace KursachTP.DAO
         {
             Connect();
             string sql = "UPDATE USER SET id_user = @id_user, name = @name, lastname = @lastname, userdescription = @userdescription," +
-                " birthday = @birthday, pol = @pol, login = @login, password = @password, phone=@phone, rol=@rol" +
+                " birthday = @birthday, pol = @pol, login = @login, password= IF(password=@password,@password,@password2), phone=@phone, rol=@rol" +
                 " WHERE id_user = @id_user ;";
 
             MySqlCommand comanda = new MySqlCommand(sql, connection);
@@ -483,7 +483,8 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("birthday", user.Birthday);
             comanda.Parameters.AddWithValue("pol", user.Pol);
             comanda.Parameters.AddWithValue("login", user.Login);
-            comanda.Parameters.AddWithValue("password", HashPasswordHelper.HashPassword(user.Password));
+            comanda.Parameters.AddWithValue("password2", HashPasswordHelper.HashPassword(user.Password));
+            comanda.Parameters.AddWithValue("password", user.Password);
             comanda.Parameters.AddWithValue("phone", user.Phone);
             comanda.Parameters.AddWithValue("rol", user.Rol);
 

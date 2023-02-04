@@ -105,7 +105,7 @@ namespace KursachTP.Controllers
             //Вывод друзей по имени/логину
             string nameAuthor = HttpContext.User.Identity.Name;
             int id_user = Convert.ToInt32(dataDao2.GetID(nameAuthor));
-            return View("FindFriendsU", dataDao2.ListFriends(id_user, namesuser,true));
+            return View("FriendsU", dataDao2.ListFriends(id_user, namesuser,true));
         }
         public IActionResult WarningU(int id, Warning warning)
         {
