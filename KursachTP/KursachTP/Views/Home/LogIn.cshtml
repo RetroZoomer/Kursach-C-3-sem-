@@ -96,7 +96,6 @@
     .loginText {
         text-align: left;
         margin-top: 10px;
-        margin-bottom: 20px;
     }
 
     .inputLogin {
@@ -159,11 +158,11 @@
     <form class="content" method="post">
         <div class="login">
             <div class="loginText">
-                Логин:
+                Логин:<p>
                 <input asp-for="Login" type="text" required minlength="2" maxlength="20" class="inputLogin">
             </div>
             <div class="loginText">
-                <p>Пароль:
+                <p>Пароль:</p>
                 <input asp-for="Password" type="password" required minlength="2" maxlength="50" class="inputLogin">
             </div>
         </div>
