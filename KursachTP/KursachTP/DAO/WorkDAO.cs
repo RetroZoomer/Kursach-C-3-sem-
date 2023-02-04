@@ -46,14 +46,10 @@ namespace KursachTP.DAO
                 sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
                 "password,phone,rol FROM User where name LIKE @name or Login LIKE @name";
                 command = new MySqlCommand(sql, connection);
-
                 command.Parameters.AddWithValue("name", "%" + name + "%");
             }
-
             MySqlDataReader reader = command.ExecuteReader();
-
             Users.users.Clear();
-
             while (reader.Read())
             {
                 Users.users.Add(new User(reader.GetString(0), reader.GetString(1),
@@ -64,15 +60,12 @@ namespace KursachTP.DAO
             Disconnect();
             return Users.users;
         }
-        
         public List<Profile> RecordOprName(string name)
         {
             Connect();
             string sql = "SELECT name,lastname,userdescription,birthday,pol,id_user FROM User where name LIKE @name or Login LIKE @name";
             MySqlCommand command = new MySqlCommand(sql, connection);
-
             command.Parameters.AddWithValue("name", name);
-
             MySqlDataReader reader = command.ExecuteReader();
 
             Profiles.profiles.Clear();
@@ -108,7 +101,6 @@ namespace KursachTP.DAO
             Disconnect();
             return Profiles.profiles;
         }
-
         public List<Post> ListPost(bool vbr, bool fr, int id, int id_hb)
         {
             Connect();
@@ -180,24 +172,19 @@ namespace KursachTP.DAO
                     reader.GetString(5), reader.GetString(6), reader.GetString(7), 
                     reader.GetString(8), reader.GetString(9)));
             }
-
             Disconnect();
             return Posts.posts;
         }
-
         public List<Warning> ListWarning()
         {
             Connect();
-
             string sql = "SELECT id_warning, post.id_user, user.Name, user.LastName, warningDescription, warningTime, warning.id_post " +
                 "FROM Warning " +
                 "INNER JOIN post ON post.id_post = warning.id_post " +
                 "INNER JOIN user ON user.id_user = post.id_user ORDER BY warning.WarningTime DESC;";
 
             MySqlCommand command = new MySqlCommand(sql, connection);
-            
             MySqlDataReader reader = command.ExecuteReader();
-            
             Warnings.warnings.Clear();
 
             while (reader.Read())
@@ -215,21 +202,15 @@ namespace KursachTP.DAO
         {
             Connect();
             string sql = "SELECT count(id_post) FROM Warning WHERE id_post = @id;";
-
             string res = null;
-
             MySqlCommand command = new MySqlCommand(sql, connection);
-
             command.Parameters.AddWithValue("id", id);
-
             MySqlDataReader reader = command.ExecuteReader();
-
             while (reader.Read())
             {
                 res = reader.GetString(0);
             }
             Disconnect();
-
             return res;
         }
 
@@ -343,11 +324,6 @@ namespace KursachTP.DAO
             while (reader.Read())
             {
                 res = Convert.ToInt32(reader.GetString(0));
-                /*
-                postic = new Post(reader.GetString(0), reader.GetString(1),
-                    reader.GetString(2), reader.GetString(3), reader.GetString(4),
-                    reader.GetString(5), reader.GetString(6), reader.GetString(7),
-                    reader.GetString(8), reader.GetString(9));*/
             }
             Disconnect();
             return res;
@@ -360,10 +336,7 @@ namespace KursachTP.DAO
                 "@post.hide, NOW())";
 
             MySqlCommand comanda = new MySqlCommand(sql, connection);
-
-
             comanda.Parameters.AddWithValue("post.id_user", id);
-
             comanda.Parameters.AddWithValue("post.posttitle", post.PostTitle);
             comanda.Parameters.AddWithValue("post.postdescription", post.PostDescription);
             comanda.Parameters.AddWithValue("post.hide", true);
@@ -371,7 +344,6 @@ namespace KursachTP.DAO
             int hbb = Convert.ToInt32(post.HobbyID);
 
             comanda.ExecuteNonQuery();
-
             Disconnect();
 
             DoID(ttl,hbb);
@@ -402,7 +374,7 @@ namespace KursachTP.DAO
             comanda.Parameters.AddWithValue("warning.warningdescription", description);
             comanda.Parameters.AddWithValue("warning.warningtime", dateTime);
 
-            comanda.ExecuteNonQuery(); //Срабатывает исключение
+            comanda.ExecuteNonQuery(); 
             Disconnect();
 
         }
@@ -685,7 +657,6 @@ namespace KursachTP.DAO
             }
             Disconnect();
             return login;
-
         }
     }
 }

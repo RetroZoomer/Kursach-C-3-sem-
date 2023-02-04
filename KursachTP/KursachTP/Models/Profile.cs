@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace KursachTP.Models
 {
@@ -34,7 +32,6 @@ namespace KursachTP.Models
         [Required]
         public string? UserID { get; }
     }
-
     public static class Profiles
     {
         public static List<Profile> profiles = new List<Profile>();

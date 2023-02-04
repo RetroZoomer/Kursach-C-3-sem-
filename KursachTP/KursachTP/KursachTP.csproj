@@ -5,12 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Graph" Version="4.50.0" />
-    <PackageReference Include="MySql.Data" Version="8.0.29" />
+    <Compile Remove="Views\Home\Admin\**" />
+    <Content Remove="Views\Home\Admin\**" />
+    <EmbeddedResource Remove="Views\Home\Admin\**" />
+    <None Remove="Views\Home\Admin\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Home\Admin\" />
+    <PackageReference Include="Microsoft.Graph" Version="4.50.0" />
+    <PackageReference Include="MySql.Data" Version="8.0.29" />
   </ItemGroup>
 
 </Project>

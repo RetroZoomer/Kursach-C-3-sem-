@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace KursachTP.Models
 {
@@ -17,8 +15,6 @@ namespace KursachTP.Models
             WarningDescription = f4;
             WarningTime = Convert.ToDateTime(f5);
             PostID = Convert.ToInt32(f6);
-
-
         }
         public Warning()
         {
@@ -33,7 +29,6 @@ namespace KursachTP.Models
         [Required]
         public string? LastNameUser { get; set; }
         [Required]
-
         public string? WarningDescription { get; set; }
         [Required]
         public DateTime? WarningTime { get; set; }

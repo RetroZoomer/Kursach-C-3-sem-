@@ -30,27 +30,23 @@ namespace KursachTP.Controllers
         }
         [Authorize(Policy = "OnlyForAdmin")]
         public IActionResult Index()
-        {
-            //Пока что Стартовая страница
+        { // Список пользователей
             return View(dataDao.Record(1,0,0,null));
         }
         public IActionResult StarterPage()
-        {
-            //Пока что Стартовая страница
+        {     // Стартовая страница
             return View("StarterPage");
         }
 
         public IActionResult NewPerson(User user)
-        {
-            //Создание нового пользователя
+        { //Создание нового пользователя
             dataDao.GetPerson(user);
             return View("Login");
         }
 
         public IActionResult CreatePerson(User user)
-        {
+        {  //Ссылка на создание нового пользователя
             return View("Register", user);
-            //Ссылка на создание нового знатока
         }
         [Authorize(Policy ="OnlyForAdmin")]
         public IActionResult DeletePerson(int id)
@@ -106,13 +102,11 @@ namespace KursachTP.Controllers
             string namesuser = HttpContext.User.Identity.Name;
             return View("Profile", dataDao.RecordOprName(namesuser));
         }
-
         public IActionResult AnotherUser(int id)
         {
             //Страница профиля
             return View("Profile", dataDao.RecordOprID(id));
         }
-
         public IActionResult NewPost(Post post)
         {
             //Создание нового поста
@@ -121,7 +115,6 @@ namespace KursachTP.Controllers
             dataDao.GetPost(post,id);
             return View("PostView", dataDao.ListPost(true, false,id, 0));
         }
-
         public IActionResult CreatePost(Post post)
         {
             return View("InsertPost", post);
@@ -140,7 +133,6 @@ namespace KursachTP.Controllers
             return View("UpdatePost", dataDao.PostInfo(id));
             // Ссылка на страницу редактуры
         }
-
         public IActionResult UpdatePost(Post post)
         // Редактура
         {
@@ -154,43 +146,34 @@ namespace KursachTP.Controllers
             // Подробный Вывод 
             return View("InfoPostView", dataDao.PostInfo(id));
         }
-
         public IActionResult Zapas()
         {
             return View("Zapas");
         }
-
         public IActionResult WarningCount(int id)
         {
             // Подробный Вывод 
             return View("WarningView");
         }
-
         public IActionResult WarningView()
         {
             // Подробный Вывод 
             return View("WarningView", dataDao.ListWarning());
         }
-
         public IActionResult UnLogin()
         {
             return View();
         }
-
-        //[HttpPost]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
             return View("StarterPage");
         }
-
-
         public IActionResult Login(string returnURL)
         {
             ViewBag.ReturnURL = returnURL;
             return View();
         }
-
         [HttpPost]
         public async Task<IActionResult> Login(User user)
         {
@@ -201,10 +184,7 @@ namespace KursachTP.Controllers
                     new Claim(ClaimTypes.Name, user.Login), 
                     new Claim(ClaimTypes.Locality, dataDao.GetRole(user))
                 };
-                string nm = user.Login;
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");
-
-
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity));
                 if (dataDao.GetRole(user) == "AdminIS")

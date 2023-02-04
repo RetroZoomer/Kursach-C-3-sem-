@@ -8,30 +8,6 @@ namespace KursachTP.Models
 {
     public class Post
     {
-        private string header;
-        public static string Header
-        {
-            get
-            {
-                return Header;
-            }
-            set
-            {
-                Header = value;
-            }
-        }
-        private string text;
-        public static string Text
-        {
-            get
-            {
-                return Text;
-            }
-            set
-            {
-                Text = value;
-            }
-        }
         List<string> comments = new List<string>();
 
         public Post(string f0, string f1, string f2, string f3, string f4, string f5, string f6, string f7, string f8, string f9)

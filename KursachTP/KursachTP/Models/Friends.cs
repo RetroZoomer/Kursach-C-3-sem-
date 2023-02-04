@@ -42,15 +42,6 @@ namespace KursachTP.Models
         public bool? Pol { get; set; }
         [Required]
         public string? Phone { get; set; }
-
-        public static void SkipPerson()
-        {
-            //Console.WriteLine("Работает2");
-        }
-        public static void AddFriend()
-        {
-            //Console.WriteLine("Работает2");
-        }
     }
     public static class Friends
     {

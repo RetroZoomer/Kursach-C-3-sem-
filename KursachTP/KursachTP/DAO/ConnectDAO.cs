@@ -17,7 +17,6 @@ namespace KursachTP.DAO
             connection = new MySqlConnection(connStr);
             connection.Open();
         }
-
         public void Disconnect()
         {
             connection.Close();
