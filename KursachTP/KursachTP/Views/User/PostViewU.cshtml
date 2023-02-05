@@ -139,6 +139,27 @@
         align-items: center;
     }
 
+    .titleLeft {
+        color: #FFFFFF;
+        font-size: 24px;
+        font-weight: bold;
+        padding: 3% 5% 0% 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .titleLeftIn {
+        text-align: center;
+        color: #FFFFFF;
+        font-size: 21px;
+        /*font-weight: bold;*/
+        padding: 3% 5% 0% 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .titleHobby {
         text-align: left;
         color: #FFFFFF;
@@ -272,6 +293,20 @@
         cursor: pointer;
     }
 
+    .buttonLeft {
+        display: flex;
+        margin: 5% auto 5% auto;
+        border-radius: 51px;
+        border: 2px solid white;
+        background: white;
+        color: #6296E4;
+        font-size: 24px;
+        width: 200px;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+    }
+
     .wButton {
         margin: 3% auto 3% auto;
         border-radius: 51px;
@@ -297,6 +332,22 @@
         width: 247px;
         margin: 0 0 2% auto;
         border-radius: 10px;
+        border: 2px solid #4876bb;
+    }
+
+    .contentLeft {
+        background: #6296e4;
+        width: 330px;
+        margin: 0 auto;
+        border-radius: 15px;
+        box-shadow: 0px 12px 15px rgb(0 0 0 / 25%);
+    }
+
+    .contentLeftIn {
+        background: #6296e4;
+        width: 300px;
+        margin: 0 auto 4% auto;
+        border-radius: 15px;
         border: 2px solid #4876bb;
     }
 
@@ -442,14 +493,21 @@
 
 <div class="main">
     <div style="margin: 0% auto; visibility: hidden;"> </div>
-    <div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
+    <div class="contentLeft">
+        <div class="titleLeft">
+            Отоброжение постов
+        </div>
         <form method="post" asp-action="PostViewFriendsU">
             <div class="contentID">
                 <div class="titleID"></div>
-                <input type="submit" id="btnB" class="buttonID" value="Только посты друзей:" />
+                <input type="submit" id="btnB" class="buttonLeft" value="Посты друзей" />
             </div>
         </form>
-        <form method="post" asp-antiforgery="true" asp-action="PostViewNameU" asp-route-id="id" asp-controller="User" class="content">
+
+        <form method="post" asp-antiforgery="true" asp-action="PostViewNameU" asp-route-id="id" asp-controller="User" class="contentLeftIn">
+            <div class="titleLeftIn">
+                Поиск по хобби
+            </div>
             <select name="id" class="inputSel">
                 <option value="1">Интеллектуальные игры</option>
                 <option value="35">Спорт</option>
@@ -462,7 +520,7 @@
                 <option value="42">Мода</option>
                 <option value="43">Разное</option>
             </select>
-            <input type="submit" class="wButton" value="Найти посты" />
+            <input type="submit" class="buttonLeft" value="Найти посты" />
         </form>
     </div>
 
