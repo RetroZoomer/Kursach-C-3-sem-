@@ -18,16 +18,5 @@ namespace KursachTP.Models
                 Email = value;
             }
         }
-        public static DateTime Birthday
-        {
-            get
-            {
-                return Birthday;
-            }
-            set
-            {
-                Birthday = value;
-            }
-        }
     }
 }

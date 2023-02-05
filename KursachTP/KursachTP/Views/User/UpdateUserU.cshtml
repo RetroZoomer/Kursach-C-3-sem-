@@ -300,7 +300,6 @@
 
             <div class="Text">
                 Пол:
-                @*<input value="@Model.Pol" type="text" asp-for="Pol" class="input" />*@
                 <select name="Pol" class="inputSel">
                     <option value="@Model.Pol">
                         @if (@Model.Pol == true)
@@ -321,6 +320,11 @@
             </div>
 
             <div class="Text">
+                Ссылка на мессенджер:
+                <input value="@Model.LinkMes" type="text" asp-for="LinkMes" class="input" />
+            </div>
+
+            <div class="Text">
                 Пароль:
                 <input value="@Model.Password" type="text" asp-for="Password" class="input" />
             </div>
@@ -330,7 +334,7 @@
                 <input value="@Model.Phone" type="text" asp-for="Phone" class="input" />
             </div>
             <input value="@Model.UserID" type="text" asp-for="UserID" style="display: none;" />
-            
+
             <input type="submit" class="button" value="Изменить" />
         </div>
     </form>

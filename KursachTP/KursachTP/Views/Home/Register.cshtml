@@ -149,6 +149,7 @@
         background: white;
         color: #6296E4;
         font-size: 24px;
+        cursor:pointer;
     }
 
 
@@ -178,14 +179,6 @@
     }
 
 </style>
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Поиск друзей</title>
-</head>
 
 <header class="header">
     <div class="header-intro">
@@ -238,14 +231,13 @@
             </div>
             <div class="Text">
                 <p>Описание: </p>
-                <textarea asp-for="UserDescription" name="UserDescription" required minlength="2" maxlength="100" rows="1" class="inputBig"> </textarea>
+                <textarea asp-for="UserDescription"  name="UserDescription" required minlength="2" maxlength="100" rows="1" class="inputBig"> </textarea>
             </div>
-            @*СЮДА*@
+
             <div class="Text">
                 <p>Ссылка на мессенджер: </p>
-                <input @*asp-for="MesHref"*@ type="tel" required minlength="" maxlength="" value="" class="input">
+                <input asp-for="LinkMes" id="LinkMes" type="text" required maxlength="100" class="input">
             </div>
-            @*СЮДА*@
 
         </div>
         <input type="submit" value="Зарегистрироваться" class="button">
