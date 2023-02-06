@@ -25,13 +25,13 @@ namespace KursachTP.DAO
             MySqlCommand command;
             if (vbr == 1)
             {
-                sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
+                sql = "SELECT id_user,name,lastname,userdescription, linkmes, birthday,pol,login," +
                 "password,phone,rol,LinkMes FROM User";
                 command = new MySqlCommand(sql, connection);
             }
             else if (vbr == 2)
             {
-                sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
+                sql = "SELECT id_user,name,lastname,userdescription,linkmes,birthday,pol,login," +
                 "password,phone,rol,LinkMes FROM User where id_user BETWEEN @id_user and @id_user2";
                 command = new MySqlCommand(sql, connection);
                 command.Parameters.AddWithValue("id_user", id_user);
@@ -43,7 +43,7 @@ namespace KursachTP.DAO
             }
             else
             {
-                sql = "SELECT id_user,name,lastname,userdescription,birthday,pol,login," +
+                sql = "SELECT id_user,name,lastname,userdescription,linkmes,birthday,pol,login," +
                 "password,phone,rol,LinkMes FROM User where name LIKE @name or Login LIKE @name";
                 command = new MySqlCommand(sql, connection);
                 command.Parameters.AddWithValue("name", "%" + name + "%");
