@@ -86,7 +86,7 @@
     }
 
     .right {
-        margin: 0% 0% 3% auto;
+        margin: 0% 0% 3% 2%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -387,16 +387,8 @@
 </header>
 
 <div class="main">
-    @*<div style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; width: 100%;">
-            <form method="post" asp-action="PostViewFriends">
-                <div class="contentID">
-                    <div class="titleID"></div>
-                    <input type="submit" id="btnB" class="buttonID" value="Показывать только посты друзей:" />
-                </div>
-            </form>
-        </div>*@
 
-    <div style="display: flex; flex-direction: column-reverse;">
+    <div style="display: flex; flex-direction: column-reverse; margin: 0 1% 0 auto;">
         @foreach (var pst in Model)
         {
             <div class="post">
