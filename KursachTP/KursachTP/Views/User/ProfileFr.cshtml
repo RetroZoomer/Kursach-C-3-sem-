@@ -471,7 +471,7 @@
         background: #8aaaf3;
         border-radius: 10px;
         color: white;
-        min-height: 10px;
+        min-height: 20px;
         height: auto;
         padding: 5px 10px;
         word-break: break-word;
@@ -507,17 +507,15 @@
         <nav class="nav">
             <a class="nav_link" asp-area="" asp-controller="User" asp-action="PostViewU">Посты</a>
             <a class="nav_link" asp-area="" asp-controller="User" asp-action="FriendsU">Друзья</a>
-            <div class="profileHref">
-                <a class="nav_link_p" asp-area="" asp-controller="User" asp-action="ProfileViewU">
-                    @try
-                    {
-                        @User.FindFirst(x => x.Type == ClaimTypes.Name).Value}
-                    catch (NullReferenceException ex)
-                    {
+            <a class="nav_link" asp-area="" asp-controller="User" asp-action="ProfileU">
+                @try
+                {
+                    @User.FindFirst(x => x.Type == ClaimTypes.Name).Value}
+                catch (NullReferenceException ex)
+                {
 
-                    }
-                </a>
-            </div>
+                }
+            </a>
             <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Logout">Выход</a>
         </nav>
     </div>
